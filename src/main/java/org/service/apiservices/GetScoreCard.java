@@ -11,31 +11,32 @@ import org.service.scorecardforplayer.ScoreCardForPlayer;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class GetScoreCard {
-    String tournamentName;
-    String team1Name;
-    String team2Name;
+    int tournamentId;
+    int team1Id;
+    int team2Id;
     Date date;
-    public GetScoreCard(String tournamentName, String team1Name, String team2Name, Date date){
-        this.tournamentName = tournamentName;
-        this.team1Name = team1Name;
-        this.team2Name = team2Name;
-        this.date = date;
+    public GetScoreCard(Map<String,Object> requestBody){
+        tournamentId = Integer.parseInt((String)requestBody.get("tournamentId"));
+        team1Id = Integer.parseInt((String) requestBody.get("team1Id"));
+        team2Id = Integer.parseInt((String)requestBody.get("team2Id"));
+        //System.out.println(tournamentId + " " + team1Id + " " + team2Id);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date sqlDate = new Date(System.currentTimeMillis());
+        try {
+            sqlDate = new Date(dateFormat.parse((String) requestBody.get("date")).getTime());
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        date = sqlDate;
     }
 
-    public int getTournamentId(String tournamentName, Connection connection) {
-        FindTournamentId findTournamentId = new FindTournamentId();
-        int tournamentId = findTournamentId.find(tournamentName, connection);
-        return tournamentId;
-    }
-
-    public int getTeamId(String teamName, Connection connection) {
-        FindTeamId findTeamId = new FindTeamId();
-        int teamId = findTeamId.find(teamName, connection);
-        return teamId;
-    }
 
     public int getMatchId(int tournamentId, int team1Id, int team2Id, Date date, Connection connection) {
         FindMatchIdByStartDate findMatchIdByStartDate = new FindMatchIdByStartDate(tournamentId, team1Id, team2Id, date);
@@ -58,9 +59,7 @@ public class GetScoreCard {
         ArrayList<ArrayList<ScoreCardForPlayer>> stats = new ArrayList<>();
         JdbcConnection jdbcConnection = new JdbcConnection();
         Connection connection = jdbcConnection.getConnection();
-        int tournamentId = getTournamentId(tournamentName, connection);
-        int team1Id = getTeamId(team1Name, connection);
-        int team2Id = getTeamId(team2Name, connection);
+
         int matchId = getMatchId(tournamentId, team1Id, team2Id, date, connection);
 
         FindBattingFirstTeamId findBattingFirstTeamId = new FindBattingFirstTeamId();

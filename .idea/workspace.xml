@@ -5,95 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3083c863-6d26-46ca-9094-c6702de0e0d5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/controller/GetApis.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databaseadd/AddBattingStats.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databaseadd/AddBowlingStats.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databaseadd/AddMatch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databaseadd/AddPlayer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databaseadd/AddTeam.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databaseadd/AddToDataBase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databaseadd/AddToTable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databaseadd/AddTournament.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databasequery/FindBattingFirstTeamId.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databasequery/FindBattingStatsId.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databasequery/FindBattingStatsOfAPlayerForAMatch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databasequery/FindBowlingStatsId.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databasequery/FindBowlingStatsOfAPlayerForAMatch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databasequery/FindMatchId.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databasequery/FindMatchIdByStartDate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databasequery/FindPlayerId.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databasequery/FindPlayerName.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databasequery/FindTeamId.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databasequery/FindTournamentId.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databasequery/QueryDatabase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databasequery/scorecard/GetScoreCardFromDatabase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databasequery/scorecard/battingscorecard/GetBattingScoreCardOfAnInning.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databasequery/scorecard/battingscorecard/GetBattingStatsFromDatabase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databasequery/scorecard/bowlingscorecard/GetBowlingScoreCardOfAnInning.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databasequery/scorecard/bowlingscorecard/GetBowlingStatsFromDatabase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databaseupdate/battingstats/UpdateBallsPlayed.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databaseupdate/battingstats/UpdateBattingStats.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databaseupdate/battingstats/UpdateFoursScored.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databaseupdate/battingstats/UpdateNotOut.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databaseupdate/battingstats/UpdatePlayerBattingStats.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databaseupdate/battingstats/UpdateRunsScored.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databaseupdate/battingstats/UpdateSixesScored.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databaseupdate/battingstats/UpdateStrikeRate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databaseupdate/bowlingstats/UpdateBallsBalled.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databaseupdate/bowlingstats/UpdateBowlingAverage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databaseupdate/bowlingstats/UpdateBowlingStats.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databaseupdate/bowlingstats/UpdatePlayerBowlingStats.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databaseupdate/bowlingstats/UpdateRunsConceded.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/databaseupdate/bowlingstats/UpdateWicketsTaken.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/repo/jdbc/JdbcConnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/apiservices/GetPlayerStatsForAGivenMatch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/apiservices/GetScoreCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/apiservices/StartNewTournament.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/cricketgame/Ball.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/cricketgame/CricketGame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/cricketgame/CricketGamePlay.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/cricketgame/Over.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/cricketgame/PlayerFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/cricketgame/Team.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/cricketgame/Toss.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/cricketgame/Umpire.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/cricketgame/UpdatingBowlingStats.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/cricketgamecontroller/PlayTournament.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/cricketgamecontroller/Tournament.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/input/FormatInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/input/InputInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/input/PlayerNameInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/input/PlayerTypeInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/input/TeamNameInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/input/VenueInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/player/AllRounder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/player/Batsman.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/player/Bowler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/player/Player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/scorecard/BattingScoreCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/scorecard/BowlingScoreCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/scorecard/InningScoreCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/scorecard/ScoreCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/scorecardforplayer/ScoreCardForPlayer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/springapplication/SpringApplicationCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/stats/BattingStats.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/stats/BowlingStats.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/stats/Stats.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/stats/TeamStats.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/service/storeteam/TeamMap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/controller/GetApis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/controller/GetApis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repo/databasequery/FindBattingStatsOfAPlayerForAMatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repo/databasequery/FindBattingStatsOfAPlayerForAMatch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repo/databasequery/FindBowlingStatsOfAPlayerForAMatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repo/databasequery/FindBowlingStatsOfAPlayerForAMatch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/service/apiservices/GetPlayerStatsForAGivenMatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/service/apiservices/GetPlayerStatsForAGivenMatch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/service/apiservices/GetScoreCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/service/apiservices/GetScoreCard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

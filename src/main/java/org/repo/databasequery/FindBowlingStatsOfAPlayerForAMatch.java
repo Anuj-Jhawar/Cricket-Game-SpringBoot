@@ -9,14 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class FindBowlingStatsOfAPlayerForAMatch {
-    public BowlingStats find(String tournamentName, String team1Name, String team2Name, String playerName, Date date, Connection connection){
-        FindTournamentId findTournamentId = new FindTournamentId();
-        int tournamentId = findTournamentId.find(tournamentName,connection);
-        FindTeamId findTeamId = new FindTeamId();
-        int team1Id = findTeamId.find(team1Name,connection);
-        int team2Id = findTeamId.find(team2Name,connection);
-        FindPlayerId findPlayerId = new FindPlayerId();
-        int playerId = findPlayerId.find(playerName,connection);
+    public BowlingStats find(int tournamentId, int team1Id, int team2Id, int playerId, Date date, Connection connection){
         FindMatchIdByStartDate findMatchIdByStartDate = new FindMatchIdByStartDate(tournamentId,team1Id,team2Id,date);
         int matchId = findMatchIdByStartDate.find("",connection);
         if(connection!=null){
