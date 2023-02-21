@@ -1,6 +1,6 @@
 package org.service.cricketgamecontroller;
 
-import org.repo.databaseadd.AddTournament;
+import org.repo.TournamentDB;
 
 import java.util.Scanner;
 
@@ -12,8 +12,8 @@ public class PlayTournament {
         System.out.println("Please enter tournament name:");
         tournamentName = scanner.nextLine();
         tournament.setTournamentName(tournamentName);
-        AddTournament addTournamentToTournamentTable = new AddTournament(tournamentName);
-        addTournamentToTournamentTable.add();
+        TournamentDB tournamentDB = new TournamentDB(tournamentName);
+        tournament.setTournamentName(tournamentDB.addTournament());
         tournament.playTournament();
     }
 }

@@ -1,6 +1,6 @@
-package org.repo.databasequery.scorecard.battingscorecard;
+package org.repo;
 
-import org.repo.databasequery.FindPlayerName;
+import org.service.GetBattingStatsFromDatabase;
 import org.service.scorecardforplayer.ScoreCardForPlayer;
 
 import java.sql.Connection;
@@ -33,8 +33,8 @@ public class GetBattingScoreCardOfAnInning {
                     do {
                         GetBattingStatsFromDatabase getBattingStatsFromDatabase = new GetBattingStatsFromDatabase();
                         int playerId = resultSet.getInt("player_id");
-                        FindPlayerName findPlayerName = new FindPlayerName(playerId);
-                        String playerName = findPlayerName.find(connection);
+                        PlayerDB playerDB = new PlayerDB();
+                        String playerName = playerDB.getPlayerName(playerId);
                         ScoreCardForPlayer scoreCardForPlayer = new ScoreCardForPlayer(playerName, getBattingStatsFromDatabase.createBattingStats(resultSet));
                         battingStats.add(scoreCardForPlayer);
                     } while (resultSet.next());
@@ -42,10 +42,10 @@ public class GetBattingScoreCardOfAnInning {
                 } else
                     return null;
             } catch (Exception e) {
-                System.out.println("Statement not created in org.service.databasequery.scorecard.battingscorecard.getBattingScoreCardOfAnInning.");
+                System.out.println("Statement not created in org.repo.GetBattingScoreCardOfAnInning.");
             }
         } else {
-            System.out.println("Connection not established in org.service.databasequery.scorecard.battingscorecard.getBattingScoreCardOfAnInning.");
+            System.out.println("Connection not established in org.repo.GetBattingScoreCardOfAnInning.");
         }
         return battingStats;
     }

@@ -1,6 +1,6 @@
 package org.service.cricketgame;
 
-import org.repo.databaseadd.AddToDataBase;
+import org.service.AddToDataBase;
 import org.service.scorecard.ScoreCard;
 import org.service.storeteam.TeamMap;
 

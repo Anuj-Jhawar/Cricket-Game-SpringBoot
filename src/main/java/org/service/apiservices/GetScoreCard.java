@@ -1,12 +1,9 @@
 package org.service.apiservices;
 
-import org.repo.databasequery.FindBattingFirstTeamId;
-import org.repo.databasequery.FindMatchIdByStartDate;
-import org.repo.databasequery.FindTeamId;
-import org.repo.databasequery.FindTournamentId;
-import org.repo.databasequery.scorecard.battingscorecard.GetBattingScoreCardOfAnInning;
-import org.repo.databasequery.scorecard.bowlingscorecard.GetBowlingScoreCardOfAnInning;
-import org.repo.jdbc.JdbcConnection;
+import org.repo.MatchDB;
+import org.repo.GetBattingScoreCardOfAnInning;
+import org.repo.GetBowlingScoreCardOfAnInning;
+import org.repo.JdbcConnection;
 import org.service.scorecardforplayer.ScoreCardForPlayer;
 
 import java.sql.Connection;
@@ -39,8 +36,8 @@ public class GetScoreCard {
 
 
     public int getMatchId(int tournamentId, int team1Id, int team2Id, Date date, Connection connection) {
-        FindMatchIdByStartDate findMatchIdByStartDate = new FindMatchIdByStartDate(tournamentId, team1Id, team2Id, date);
-        int matchId = findMatchIdByStartDate.find("", connection);
+        MatchDB matchDB = new MatchDB();
+        int matchId = matchDB.getMatchIdByDate(tournamentId,team1Id,team2Id,date);
         return matchId;
     }
 
@@ -57,13 +54,10 @@ public class GetScoreCard {
     }
     public ArrayList<ArrayList<ScoreCardForPlayer>> get(){
         ArrayList<ArrayList<ScoreCardForPlayer>> stats = new ArrayList<>();
-        JdbcConnection jdbcConnection = new JdbcConnection();
-        Connection connection = jdbcConnection.getConnection();
-
+        Connection connection = JdbcConnection.getConnection();
         int matchId = getMatchId(tournamentId, team1Id, team2Id, date, connection);
-
-        FindBattingFirstTeamId findBattingFirstTeamId = new FindBattingFirstTeamId();
-        int battingFirstTeamId = findBattingFirstTeamId.find(matchId, connection);
+        MatchDB matchDB = new MatchDB();
+        int battingFirstTeamId = matchDB.findBattingFirstTeam(matchId);
         int battingSecondTeamId = battingFirstTeamId == team1Id ? team2Id : team1Id;
 
         stats.add(getBattingScoreCard(battingFirstTeamId, matchId, connection));

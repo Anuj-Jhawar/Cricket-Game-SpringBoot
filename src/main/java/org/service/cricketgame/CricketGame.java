@@ -1,11 +1,13 @@
 package org.service.cricketgame;
 
-import org.repo.databaseupdate.battingstats.UpdateBattingStats;
-import org.repo.databaseupdate.bowlingstats.UpdateBowlingStats;
+import org.repo.*;
+import org.service.builder.BattingStatsBuilder;
+import org.service.builder.BowlingStatsBuilder;
 import org.service.input.FormatInput;
 import org.service.input.InputInterface;
 import org.service.input.TeamNameInput;
 import org.service.input.VenueInput;
+import org.service.player.Player;
 import org.service.storeteam.TeamMap;
 
 public class CricketGame {
@@ -98,12 +100,14 @@ public class CricketGame {
         */
         if (teamIndex == 1) {
             team1.updateBattingStatsOfPlayer(playerIndex, runs);
-            UpdateBattingStats updateBattingStatsOfPlayer = new UpdateBattingStats(this,team1,team1.getPlayer(playerIndex),runs);
-            updateBattingStatsOfPlayer.updateBattingStatsOfPlayer();
+            Player player = team1.getPlayer(playerIndex);
+            BattingStatsDB battingStatsDB = BattingStatsBuilder.getBattingStatsObject(tournamentName,team1.getTeamName(),team2.getTeamName(),player,this.getBattingTeamIndex(), team1.getTeamName());
+            battingStatsDB.updateBattingStats(runs,player.getBattingStats().getScore(),player.getBattingStats().getBallsPlayed());
         } else {
             team2.updateBattingStatsOfPlayer(playerIndex, runs);
-            UpdateBattingStats updateBattingStatsOfPlayer = new UpdateBattingStats(this,team2,team2.getPlayer(playerIndex),runs);
-            updateBattingStatsOfPlayer.updateBattingStatsOfPlayer();
+            Player player = team2.getPlayer(playerIndex);
+            BattingStatsDB battingStatsDB = BattingStatsBuilder.getBattingStatsObject(tournamentName,team1.getTeamName(),team2.getTeamName(),player,this.getBattingTeamIndex(), team2.getTeamName());
+            battingStatsDB.updateBattingStats(runs,player.getBattingStats().getScore(),player.getBattingStats().getBallsPlayed());
         }
     }
 
@@ -113,12 +117,14 @@ public class CricketGame {
         */
         if (teamIndex == 1) {
             team2.updateBowlingStatsOfPlayer(playerIndex, outcomeOfTheBall);
-            UpdateBowlingStats updateBowlingStatsOfPlayer = new UpdateBowlingStats(this,team2.getPlayer(playerIndex),team2,outcomeOfTheBall);
-            updateBowlingStatsOfPlayer.updateBowlingStatsOfPlayer();
+            Player player = team2.getPlayer(playerIndex);
+            BowlingStatsDB bowlingStatsDB = BowlingStatsBuilder.getBowlingStatsObject(tournamentName,team1.getTeamName(),team2.getTeamName(),player,this.getBattingTeamIndex(),team2.getTeamName());
+            bowlingStatsDB.updateBowlingStats(outcomeOfTheBall,player.getBowlingStats().getRunConceded(),player.getBowlingStats().getWickets());
         } else {
             team1.updateBowlingStatsOfPlayer(playerIndex, outcomeOfTheBall);
-            UpdateBowlingStats updateBowlingStatsOfPlayer = new UpdateBowlingStats(this,team1.getPlayer(playerIndex),team1,outcomeOfTheBall);
-            updateBowlingStatsOfPlayer.updateBowlingStatsOfPlayer();
+            Player player = team1.getPlayer(playerIndex);
+            BowlingStatsDB bowlingStatsDB = BowlingStatsBuilder.getBowlingStatsObject(tournamentName,team1.getTeamName(),team2.getTeamName(),player,this.getBattingTeamIndex(), team1.getTeamName());
+            bowlingStatsDB.updateBowlingStats(outcomeOfTheBall,player.getBowlingStats().getRunConceded(),player.getBowlingStats().getWickets());
         }
     }
 
