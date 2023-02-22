@@ -1,4 +1,4 @@
-package org.service.cricketgamecontroller;
+package org.model;
 
 
 import org.service.CricketGameService;

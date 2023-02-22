@@ -2,7 +2,7 @@ package org.controller;
 
 import org.service.PlayerStatsService;
 import org.service.ScoreCardService;
-import org.service.cricketgamecontroller.PlayTournament;
+import org.service.TournamentService;
 import org.model.scorecardforplayer.ScoreCardForPlayer;
 import org.model.stats.Stats;
 import org.springframework.web.bind.annotation.*;
@@ -30,8 +30,8 @@ public class GetApis {
     }
     @GetMapping("/startTournament")
     public String startANewTournament() {
-        PlayTournament playTournament = new PlayTournament();
-        playTournament.main();
+        TournamentService tournamentService = new TournamentService();
+        tournamentService.start();
         return "Tournament Started";
     }
 }
