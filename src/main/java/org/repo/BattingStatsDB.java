@@ -1,7 +1,7 @@
 package org.repo;
 
 import org.service.GetBattingStatsFromDatabase;
-import org.service.stats.BattingStats;
+import org.model.stats.BattingStats;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

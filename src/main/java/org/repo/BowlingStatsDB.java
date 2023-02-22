@@ -2,7 +2,7 @@ package org.repo;
 
 
 import org.service.GetBowlingStatsFromDatabase;
-import org.service.stats.BowlingStats;
+import org.model.stats.BowlingStats;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

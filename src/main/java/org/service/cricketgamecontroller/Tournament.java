@@ -1,7 +1,7 @@
 package org.service.cricketgamecontroller;
 
 
-import org.service.cricketgame.CricketGamePlay;
+import org.service.CricketGameService;
 
 public class Tournament {
     String tournamentName;
@@ -15,7 +15,7 @@ public class Tournament {
     }
 
     public void playTournament() {
-        CricketGamePlay CricketGame = new CricketGamePlay();
+        CricketGameService CricketGame = new CricketGameService();
         CricketGame.play(tournamentName);
         //CricketGame.play(tournamentName);
     }

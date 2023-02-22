@@ -1,6 +1,6 @@
 package org.service.storeteam;
 
-import org.service.cricketgame.Team;
+import org.model.Team;
 
 import java.util.HashMap;
 

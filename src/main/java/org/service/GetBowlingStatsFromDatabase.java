@@ -1,6 +1,6 @@
 package org.service;
 import java.sql.ResultSet;
-import org.service.stats.BowlingStats;
+import org.model.stats.BowlingStats;
 
 public class GetBowlingStatsFromDatabase{
     public BowlingStats createBowlingStats(ResultSet resultSet){

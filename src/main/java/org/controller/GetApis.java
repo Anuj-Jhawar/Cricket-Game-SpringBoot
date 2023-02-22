@@ -1,15 +1,12 @@
 package org.controller;
 
-import org.service.apiservices.GetPlayerStatsForAGivenMatch;
-import org.service.apiservices.GetScoreCard;
+import org.service.PlayerStatsService;
+import org.service.ScoreCardService;
 import org.service.cricketgamecontroller.PlayTournament;
-import org.service.scorecardforplayer.ScoreCardForPlayer;
-import org.service.stats.Stats;
+import org.model.scorecardforplayer.ScoreCardForPlayer;
+import org.model.stats.Stats;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -20,16 +17,16 @@ public class GetApis {
         /*
             Four request variable that's why converted it to the post request.
         */
-        GetScoreCard getScoreCard = new GetScoreCard(requestBody);
-        return getScoreCard.get();
+        ScoreCardService scoreCardService = new ScoreCardService(requestBody);
+        return scoreCardService.get();
     }
     @PostMapping("/playerStats")
     public Stats[] getPlayerDetailsForAParticularMatch(@RequestBody Map<String,Object> requestBody) {
         /*
             Four request variable that's why converted it to the post request.
         */
-        GetPlayerStatsForAGivenMatch getPlayerStatsForAGivenMatch = new GetPlayerStatsForAGivenMatch(requestBody);
-        return getPlayerStatsForAGivenMatch.get();
+        PlayerStatsService playerStatsService = new PlayerStatsService(requestBody);
+        return playerStatsService.get();
     }
     @GetMapping("/startTournament")
     public String startANewTournament() {

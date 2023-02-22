@@ -2,7 +2,7 @@ package org.service;
 
 
 
-import org.service.stats.BattingStats;
+import org.model.stats.BattingStats;
 import java.sql.ResultSet;
 
 public class GetBattingStatsFromDatabase{
