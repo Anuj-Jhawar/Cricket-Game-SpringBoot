@@ -5,12 +5,55 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3083c863-6d26-46ca-9094-c6702de0e0d5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/controller/GetApis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/controller/GetApis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/Over.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/scorecardforplayer/ScoreCardForPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/model/ScoreCardForPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repo/GetBattingScoreCardOfAnInning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repo/GetBattingScoreCardOfAnInning.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repo/GetBowlingScoreCardOfAnInning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repo/GetBowlingScoreCardOfAnInning.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/service/ScoreCardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/service/ScoreCardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/controller/GetApis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/controller/GetApis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/Ball.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/BallCommentary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/BallCommentary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/CricketGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/CricketGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/InningsCommentary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/MatchCommentary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/ScoreCardForPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/ScoreCardForPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/Team.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/Toss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/Toss.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/Tournament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/Tournament.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/Umpire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/Umpire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/player/Batsman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/player/Batsman.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/player/Bowler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/player/Bowler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/player/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/scorecard/BattingScoreCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/scorecard/BattingScoreCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/scorecard/BowlingScoreCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/scorecard/BowlingScoreCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/scorecard/InningScoreCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/scorecard/InningScoreCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/scorecard/ScoreCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/scorecard/ScoreCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/stats/BattingStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/stats/BattingStats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/stats/BowlingStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/stats/BowlingStats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/stats/Stats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/stats/Stats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/stats/TeamStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/stats/TeamStats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repo/BattingStatsDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/BattingStatsDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repo/BowlingStatsDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/BowlingStatsDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repo/CommentaryDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/CommentaryDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repo/GetBattingScoreCardOfAnInning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/GetBattingScoreCardOfAnInning.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repo/GetBowlingScoreCardOfAnInning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/GetBowlingScoreCardOfAnInning.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repo/JdbcConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/JdbcConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repo/MatchDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/MatchDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repo/PlayerDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/PlayerDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repo/TeamDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/TeamDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repo/TournamentDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/TournamentDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/service/CommentaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/CommentaryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/service/CricketGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/CricketGameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/service/DataBaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/DataBaseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/service/GetBattingStatsFromDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/GetBattingStatsFromDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/service/GetBowlingStatsFromDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/GetBowlingStatsFromDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/service/InputService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/InputService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/service/PlayerFactoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/PlayerFactoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/service/PlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/PlayerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/service/PlayerStatsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/PlayerStatsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/service/ScoreCardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/ScoreCardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/service/TeamMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/TeamMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/service/TournamentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/TournamentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/service/objectbuilder/BattingStatsBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/objectbuilder/BattingStatsBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/service/objectbuilder/BowlingStatsBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/objectbuilder/BowlingStatsBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/service/springapplication/SpringApplicationCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/springapplication/SpringApplicationCode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +116,7 @@
       <recent name="org" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.SpringApplicationCode">
+  <component name="RunManager" selected="Application.org.project.SpringApplicationCode">
     <configuration name="GetScoreCardForGivenMatch" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.controller.getscorecardforagivenmatch.GetScoreCardForGivenMatch" />
       <module name="SpringBoot-CricketGame-Test.main" />
@@ -113,6 +156,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="org.project.SpringApplicationCode" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.project.SpringApplicationCode" />
+      <module name="SpringBoot-CricketGame-Test.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.project.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="org.service.cricketgamecontroller.PlayTournament" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.service.cricketgamecontroller.PlayTournament" />
       <module name="SpringBoot-CricketGame-Test.main" />
@@ -126,34 +182,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SpringBoot-CricketGame-Test [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="dependencies" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.org.project.SpringApplicationCode" />
         <item itemvalue="Application.GetScoreCardForGivenMatch" />
         <item itemvalue="Application.SpringApplicationCode" />
         <item itemvalue="Application.org.service.cricketgamecontroller.PlayTournament" />
         <item itemvalue="Application.PlayTournament" />
-        <item itemvalue="Gradle.SpringBoot-CricketGame-Test [dependencies]" />
       </list>
     </recent_temporary>
   </component>

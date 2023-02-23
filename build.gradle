@@ -9,7 +9,7 @@ java {
     targetCompatibility = JavaVersion.VERSION_11
 }
 
-group 'org.example'
+group 'org.project'
 version '1.0-SNAPSHOT'
 
 repositories {
