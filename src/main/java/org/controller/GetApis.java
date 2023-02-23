@@ -1,5 +1,7 @@
 package org.controller;
 
+import org.bson.Document;
+import org.service.CommentaryService;
 import org.service.PlayerStatsService;
 import org.service.ScoreCardService;
 import org.service.TournamentService;
@@ -33,5 +35,10 @@ public class GetApis {
         TournamentService tournamentService = new TournamentService();
         tournamentService.start();
         return "Tournament Started";
+    }
+    @GetMapping("/getCommentary/{matchId}")
+    public ArrayList<ArrayList<Document>> getCommentary(@PathVariable int matchId){
+        CommentaryService commentaryService = new CommentaryService();
+        return commentaryService.getCommentary(matchId);
     }
 }

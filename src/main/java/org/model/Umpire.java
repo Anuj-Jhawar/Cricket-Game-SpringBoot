@@ -66,7 +66,7 @@ public class Umpire {
 
     }
 
-    public void signal(CricketGame game, Ball ball) {
+    public void signal(CricketGame game, Ball ball,int inningNo) {
         /*
             Helps Others.Umpire decides to signal different function depending on the OutcomeOfTheBall.
         */
@@ -81,7 +81,7 @@ public class Umpire {
         else
             commentaryText = runs(OutcomeOfTheBall);
         CommentaryService commentaryService = new CommentaryService();
-        commentaryService.addCommentary(ball,game,commentaryText);
+        commentaryService.addCommentary(ball,game,commentaryText,inningNo);
     }
 
 }

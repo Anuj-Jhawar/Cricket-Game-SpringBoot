@@ -5,7 +5,7 @@ import org.service.InputService;
 import org.service.objectbuilder.BattingStatsBuilder;
 import org.service.objectbuilder.BowlingStatsBuilder;
 import org.model.player.Player;
-import org.service.storeteam.TeamMap;
+import org.service.TeamMap;
 
 public class CricketGame {
     private Team team1;
@@ -51,8 +51,8 @@ public class CricketGame {
         return format;
     }
 
-    public void signalOutcomeOfTheBall(Ball ball) {
-        umpire.signal(this,ball);
+    public void signalOutcomeOfTheBall(Ball ball,int inningNo) {
+        umpire.signal(this,ball,inningNo);
     }
 
     public void setWinner(String winningTeam) {

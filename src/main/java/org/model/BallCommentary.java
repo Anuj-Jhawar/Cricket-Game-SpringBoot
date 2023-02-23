@@ -1,5 +1,8 @@
 package org.model;
 
+import lombok.Data;
+
+@Data
 public class BallCommentary {
     int batsmanId;
     int bowlerId;

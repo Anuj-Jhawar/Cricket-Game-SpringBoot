@@ -3,9 +3,7 @@ package org.service;
 import org.model.Ball;
 import org.model.CricketGame;
 import org.model.Team;
-import org.service.DataBaseService;
 import org.model.scorecard.ScoreCard;
-import org.service.storeteam.TeamMap;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -152,13 +150,17 @@ public class CricketGameService {
         game.updateBowlingStatsOfBowler(teamIndex, currentBowler, newBall.getOutcomeOfTheBall());
     }
 
-    Ball playTheBall(CricketGame game, int teamIndex, int batsmanOnStrikeIndex, int currentBowler) {
+    Ball playTheBall(CricketGame game, int teamIndex, int batsmanOnStrikeIndex, int currentBowler,int inningNo) {
         /*
             Playing and assigning every outcome of the ball.
         */
         Ball newBall = new Ball();
         newBall.assignBallOutcome();
-        game.signalOutcomeOfTheBall(newBall);
+        Team battingTeam = teamIndex==1?game.getTeam1():game.getTeam2();
+        Team bowlingTeam = teamIndex==1?game.getTeam2():game.getTeam1();
+        newBall.setBowlerName(bowlingTeam.getPlayer(currentBowler).getName());
+        newBall.setBatsmanName(battingTeam.getPlayer(batsmanOnStrikeIndex).getName());
+        game.signalOutcomeOfTheBall(newBall,inningNo);
         updateBattingAndBowlingStatsAfterEachBall(game, teamIndex, batsmanOnStrikeIndex, currentBowler, newBall);
         return newBall;
     }
@@ -178,7 +180,7 @@ public class CricketGameService {
                 ArrayList<Integer> batsmanOrder = assignBatsman(batsmanOnStrikeIndex, batsman2, lastBallOutcome, k == 0 ? 1 : 0);
                 batsmanOnStrikeIndex = batsmanOrder.get(0);
                 batsman2 = batsmanOrder.get(0);
-                Ball NewBall = playTheBall(game, i, batsmanOnStrikeIndex, currentBowler);
+                Ball NewBall = playTheBall(game, i, batsmanOnStrikeIndex, currentBowler,target==-1?0:1);
                 if (NewBall.getOutcomeOfTheBall() == 7)
                     wickets++;
                 lastBall = NewBall;

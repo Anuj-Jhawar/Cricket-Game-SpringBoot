@@ -1,4 +1,4 @@
-package org.service.storeteam;
+package org.service;
 
 import org.model.Team;
 

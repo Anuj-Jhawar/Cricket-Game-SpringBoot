@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class Ball {
-    private final String batsmanName;
-    private final String bowlerName;
-    private final String fielderName;
-    private final boolean isANoBall;
+    private String batsmanName;
+    private String bowlerName;
+    private String fielderName;
+    private boolean isANoBall;
     private int outcomeOfTheBall;
 
     public Ball() {
