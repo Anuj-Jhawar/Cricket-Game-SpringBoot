@@ -4,7 +4,7 @@ import org.repo.MatchDB;
 import org.repo.GetBattingScoreCardOfAnInning;
 import org.repo.GetBowlingScoreCardOfAnInning;
 import org.repo.JdbcConnection;
-import org.model.scorecardforplayer.ScoreCardForPlayer;
+import org.model.ScoreCardForPlayer;
 
 import java.sql.Connection;
 import java.sql.Date;

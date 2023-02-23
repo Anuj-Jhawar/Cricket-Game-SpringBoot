@@ -1,4 +1,4 @@
-package org.model.scorecardforplayer;
+package org.model;
 
 import org.model.stats.Stats;
 

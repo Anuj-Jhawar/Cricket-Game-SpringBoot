@@ -5,7 +5,7 @@ import org.service.CommentaryService;
 import org.service.PlayerStatsService;
 import org.service.ScoreCardService;
 import org.service.TournamentService;
-import org.model.scorecardforplayer.ScoreCardForPlayer;
+import org.model.ScoreCardForPlayer;
 import org.model.stats.Stats;
 import org.springframework.web.bind.annotation.*;
 

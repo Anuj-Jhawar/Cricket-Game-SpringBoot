@@ -5,17 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3083c863-6d26-46ca-9094-c6702de0e0d5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/controller/GetApis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/controller/GetApis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/model/Ball.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/BallCommentary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/model/BallCommentary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/CricketGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/model/CricketGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/Umpire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/model/Umpire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/repo/CommentaryDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repo/CommentaryDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/service/CommentaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/service/CommentaryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/service/CricketGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/service/CricketGameService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/service/storeteam/TeamMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/service/TeamMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/Over.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/scorecardforplayer/ScoreCardForPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/model/ScoreCardForPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repo/GetBattingScoreCardOfAnInning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repo/GetBattingScoreCardOfAnInning.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/repo/GetBowlingScoreCardOfAnInning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/repo/GetBowlingScoreCardOfAnInning.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/service/ScoreCardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/service/ScoreCardService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,8 +66,8 @@
       <recent name="$PROJECT_DIR$/src/main/java/org" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="org.service" />
       <recent name="org.model" />
+      <recent name="org.service" />
       <recent name="org.service.cricketgamecontroller" />
       <recent name="org.service.springapplication" />
       <recent name="org" />

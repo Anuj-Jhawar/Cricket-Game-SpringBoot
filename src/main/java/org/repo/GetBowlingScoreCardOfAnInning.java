@@ -1,7 +1,7 @@
 package org.repo;
 
 import org.service.GetBowlingStatsFromDatabase;
-import org.model.scorecardforplayer.ScoreCardForPlayer;
+import org.model.ScoreCardForPlayer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
