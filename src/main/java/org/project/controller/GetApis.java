@@ -1,10 +1,7 @@
 package org.project.controller;
 
 import org.bson.Document;
-import org.project.service.CommentaryService;
-import org.project.service.PlayerStatsService;
-import org.project.service.ScoreCardService;
-import org.project.service.TournamentService;
+import org.project.service.*;
 import org.project.model.ScoreCardForPlayer;
 import org.project.model.stats.Stats;
 import org.springframework.web.bind.annotation.*;
@@ -30,15 +27,20 @@ public class GetApis {
         PlayerStatsService playerStatsService = new PlayerStatsService(requestBody);
         return playerStatsService.get();
     }
-    @GetMapping("/startTournament")
-    public String startANewTournament() {
+    @GetMapping("/startTournament/{tournamentName}")
+    public String startANewTournament(@PathVariable String tournamentName) {
         TournamentService tournamentService = new TournamentService();
-        tournamentService.start();
+        tournamentService.start(tournamentName);
         return "Tournament Started";
     }
     @GetMapping("/getCommentary/{matchId}")
     public ArrayList<ArrayList<Document>> getCommentary(@PathVariable int matchId){
         CommentaryService commentaryService = new CommentaryService();
         return commentaryService.getCommentary(matchId);
+    }
+    @PostMapping("/startGame")
+    public String startGame(@RequestBody Map<String,Object> requestBody){
+        CricketGameService cricketGameService = new CricketGameService();
+        return cricketGameService.setUpGame(requestBody);
     }
 }

@@ -8,8 +8,8 @@ public class Bowler extends Player{
         this.name = Name;
     }
     public Bowler() {
-        InputService inputService = new InputService();
-        inputService.playerNameInput(this);
+//        InputService inputService = new InputService();
+//        inputService.playerNameInput(this);
 //        InputInterface TakePlayerNameInput = new PlayerNameInput(this);
 //        TakePlayerNameInput.collectInput();
     }

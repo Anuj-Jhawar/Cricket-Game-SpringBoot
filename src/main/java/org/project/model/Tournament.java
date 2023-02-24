@@ -16,7 +16,7 @@ public class Tournament {
 
     public void playTournament() {
         CricketGameService CricketGame = new CricketGameService();
-        CricketGame.play(tournamentName);
+        //CricketGame.play(tournamentName);
         //CricketGame.play(tournamentName);
     }
 }

@@ -34,6 +34,8 @@ public class TournamentDB {
         return 0;
     }
     public String addTournament(){
+        if(this.getTournamentId()!=0)
+            return "Tournament with this name already exists.";
         if(connection!=null){
             Statement statement;
             try{

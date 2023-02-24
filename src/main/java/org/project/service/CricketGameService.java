@@ -1,5 +1,6 @@
 package org.project.service;
 
+import org.bson.Document;
 import org.project.model.CricketGame;
 import org.project.model.Ball;
 import org.project.model.Team;
@@ -7,6 +8,7 @@ import org.project.model.scorecard.ScoreCard;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Map;
 import java.util.Scanner;
 
 public class CricketGameService {
@@ -210,9 +212,9 @@ public class CricketGameService {
         newScoreCard.printScoreCard();
     }
 
-    public void play(String tournamentName) {
+    public void play(String tournamentName,Team team1,Team team2,String venue,String format) {
         Scanner scn = new Scanner(System.in);
-        CricketGame game = new CricketGame(tournamentName);
+        CricketGame game = new CricketGame(tournamentName,team1,team2,venue,format);
         game.setTeamsForTheGame();
         System.out.println("Game Start");
         String teamWhoWonTheToss = completeToss(game);
@@ -226,5 +228,15 @@ public class CricketGameService {
         TeamMap teamMap = TeamMap.getTeamMap();
         teamMap.addTeam(game.getTeam1().getTeamName(),game.getTeam1());
         teamMap.addTeam(game.getTeam2().getTeamName(),game.getTeam2());
+    }
+
+    public String setUpGame(Map<String,Object> requestBody){
+        String tournamentName = (String)requestBody.get("tournamentName");
+        String venue = (String)requestBody.get("venue");
+        String format = (String)requestBody.get("format");
+        Team team1 = TeamService.setTeam( (Map<String,Object>) requestBody.get("team1"));
+        Team team2 = TeamService.setTeam( (Map<String,Object>) requestBody.get("team2"));
+        this.play(tournamentName,team1,team2,venue,format);
+        return "";
     }
 }

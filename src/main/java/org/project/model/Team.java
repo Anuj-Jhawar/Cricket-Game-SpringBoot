@@ -21,8 +21,8 @@ public class Team {
     private String name;
 
     public Team() {
-        InputService inputService = new InputService();
-        inputService.playerTypeInput(this);
+//        InputService inputService = new InputService();
+//        inputService.playerTypeInput(this);
 //        InputInterface TakePlayerTypeInput = new PlayerTypeInput(this);
 //        TakePlayerTypeInput.collectInput();
         runsScored = 0;
@@ -38,7 +38,9 @@ public class Team {
     public Player[] getPlayers(){
         return players;
     }
-
+    public void setPlayers(Player[] players){
+        this.players = players;
+    }
     public int GetNumberOfBatsman() {
         return numberOfBatsman;
     }

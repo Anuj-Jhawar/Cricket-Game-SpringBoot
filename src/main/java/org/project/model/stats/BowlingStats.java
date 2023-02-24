@@ -56,6 +56,7 @@ public class BowlingStats implements Stats{
         /*
             Function to invoke all the batting stats of the bowler.
         */
+        System.out.println(ballsBowled);
         setBallsBowled(ballsBowled+1);
         if (outcomeOfTheBall==7)
             setWickets(wickets+1);

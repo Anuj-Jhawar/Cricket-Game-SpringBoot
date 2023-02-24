@@ -6,16 +6,16 @@ import org.project.model.Tournament;
 import java.util.Scanner;
 
 public class TournamentService {
-    public String start(){
+    public String start(String tournamentName){
         Tournament tournament = new Tournament();
-        String tournamentName;
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter tournament name:");
-        tournamentName = scanner.nextLine();
+//        String tournamentName;
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Please enter tournament name:");
+//        tournamentName = scanner.nextLine();
         tournament.setTournamentName(tournamentName);
         TournamentDB tournamentDB = new TournamentDB(tournamentName);
         tournament.setTournamentName(tournamentDB.addTournament());
-        tournament.playTournament();
-        return "Tournament Started";
+        //tournament.playTournament();
+        return "Tournament Created";
     }
 }

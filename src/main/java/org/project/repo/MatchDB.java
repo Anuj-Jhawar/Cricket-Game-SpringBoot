@@ -24,6 +24,7 @@ public class MatchDB {
             team2Id = teamDB.getTeamId();
         }
         TournamentDB tournamentDB = new TournamentDB(tournamentName);
+        System.out.println(tournamentName);
         int tournamentId = tournamentDB.getTournamentId();
         if(connection!=null){
             PreparedStatement statement;

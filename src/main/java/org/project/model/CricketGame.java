@@ -18,15 +18,19 @@ public class CricketGame {
     private String format;
     private String tournamentName;
 
-    public CricketGame(String tournamentName){
-        InputService inputService = new InputService();
-        inputService.venueInput(this);
-        inputService.formatInput(this);
+    public CricketGame(String tournamentName,Team team1,Team team2,String venue,String format){
+//        InputService inputService = new InputService();
+//        inputService.venueInput(this);
+//        inputService.formatInput(this);
 //        InputInterface TakeFormatInput = new FormatInput(this);
 //        InputInterface TakeVenueInput = new VenueInput(this);
 //        TakeVenueInput.collectInput();
 //        TakeFormatInput.collectInput();
         this.tournamentName = tournamentName;
+        this.team1 = team1;
+        this.team2 = team2;
+        this.venue = venue;
+        this.format = format;
     }
 
     public Team getTeam1() {
@@ -144,24 +148,25 @@ public class CricketGame {
         */
         return winner;
     }
-    public Team setTeamForTheGame(){
+    public Team setTeamForTheGame(Team team){
         /*
             Setting team for the game. If previously team played then assigning it directly.
         */
-        InputService inputService = new InputService();
-        String TeamName = inputService.teamNameInput();
-//        InputInterface TakeTeamNameInput = new TeamNameInput();
-//        String TeamName = TakeTeamNameInput.collectInput();
-        Team team = TeamMap.getTeamMap().getTeam(TeamName);
-        team.setTeamName(TeamName);
-        if(TeamMap.getTeamMap().containsTeam(TeamName)==false)
-            team.updateNumberOfEachPlayers();
-        else
-            team.addBattingAndBowlingStatsForEachPlayer();
+        team.addBattingAndBowlingStatsForEachPlayer();
+//        InputService inputService = new InputService();
+//        String TeamName = inputService.teamNameInput();
+////        InputInterface TakeTeamNameInput = new TeamNameInput();
+////        String TeamName = TakeTeamNameInput.collectInput();
+//        Team team = TeamMap.getTeamMap().getTeam(TeamName);
+//        team.setTeamName(TeamName);
+//        if(TeamMap.getTeamMap().containsTeam(TeamName)==false)
+//            team.updateNumberOfEachPlayers();
+//        else
+//
         return team;
     }
     public void setTeamsForTheGame(){
-        team1 = setTeamForTheGame();
-        team2 = setTeamForTheGame();
+        team1 = setTeamForTheGame(team1);
+        team2 = setTeamForTheGame(team2);
     }
 }

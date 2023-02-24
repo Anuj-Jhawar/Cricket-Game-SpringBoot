@@ -61,6 +61,7 @@ public class DataBaseService {
         /*
             Add respective things to their respective databases.
         */
+        JdbcConnection.initializeConnection();
         game.getTeam1().setTeamName(this.addTeamToTeamTable(game.getTeam1()));
         game.getTeam2().setTeamName(this.addTeamToTeamTable(game.getTeam2()));
         this.addMatchToMatchTable();
