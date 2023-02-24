@@ -7,82 +7,87 @@ import java.sql.Statement;
 public class TeamDB {
     String teamName;
     Connection connection;
+
     public TeamDB(String teamName) {
         this.teamName = teamName;
         this.connection = JdbcConnection.getConnection();
     }
-    public int tableSize(){
-        if(connection!=null){
+
+    public int tableSize() {
+        /*
+            Return team table size.
+        */
+        if (connection != null) {
             Statement statement;
-            try{
+            try {
                 statement = connection.createStatement();
                 String sqlCommandToGetSize = "SELECT COUNT(*) FROM Teams";
                 ResultSet resultSet = statement.executeQuery(sqlCommandToGetSize);
-                if(resultSet.next()){
+                if (resultSet.next()) {
                     return resultSet.getInt(1);
-                }
-                else{
+                } else {
                     return 0;
                 }
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
         return 0;
     }
-    public String addTeam(){
-        if(this.getTeamId()!=0)
+
+    public String addTeam() {
+        /*
+            Add team details to data base.
+        */
+        if (this.getTeamId() != 0)
             return "";
-        if(connection!=null){
+        if (connection != null) {
             Statement statement;
-            try{
+            try {
                 statement = connection.createStatement();
                 int size = this.tableSize();
-                String modifiedTeamName = teamName+"_"+size;
+                String modifiedTeamName = teamName + "_" + size;
                 String sqlCommandToInsertTeamInTeamTable = "INSERT INTO Teams (Name) VALUES ('" + modifiedTeamName + "')";
                 try {
                     statement.executeUpdate(sqlCommandToInsertTeamInTeamTable);
                     return modifiedTeamName;
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     System.out.println(e);
                     System.out.println("Query not completed in org.repo.TeamDB.addTeam");
                 }
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Statement not created in org.repo.TeamDB.addTeam");
             }
-        }
-        else{
+        } else {
             System.out.println("Connection not established in org.repo.TeamDB.addTeam");
         }
         return "";
     }
-    public int getTeamId(){
-        if(connection!=null){
+
+    public int getTeamId() {
+        /*
+            Return team id.
+        */
+        if (connection != null) {
             Statement statement;
-            try{
+            try {
                 statement = connection.createStatement();
                 String sqlCommandToGetTeamId = "SELECT * FROM Teams WHERE Name = '" + teamName + "'";
                 try {
                     ResultSet resultSet = statement.executeQuery(sqlCommandToGetTeamId);
-                    if(resultSet.next())
+                    if (resultSet.next())
                         return resultSet.getInt("id");
                     else
                         return 0;
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     System.out.println(e);
                     System.out.println("Query not completed in org.repo.TeamDB.getTeamId");
                 }
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(e);
                 System.out.println("Statement not created in org.repo.TeamDB.getTeamId");
             }
-        }
-        else{
+        } else {
             System.out.println("Connection not established in org.repo.TeamDB.getTeamId");
         }
         return 1;

@@ -1,10 +1,10 @@
 package org.project.service;
 
-import org.project.repo.JdbcConnection;
-import org.project.repo.MatchDB;
+import org.project.model.ScoreCardForPlayer;
 import org.project.repo.GetBattingScoreCardOfAnInning;
 import org.project.repo.GetBowlingScoreCardOfAnInning;
-import org.project.model.ScoreCardForPlayer;
+import org.project.repo.JdbcConnection;
+import org.project.repo.MatchDB;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -18,17 +18,17 @@ public class ScoreCardService {
     int team1Id;
     int team2Id;
     Date date;
-    public ScoreCardService(Map<String,Object> requestBody){
-        tournamentId = Integer.parseInt((String)requestBody.get("tournamentId"));
+
+    public ScoreCardService(Map<String, Object> requestBody) {
+        tournamentId = Integer.parseInt((String) requestBody.get("tournamentId"));
         team1Id = Integer.parseInt((String) requestBody.get("team1Id"));
-        team2Id = Integer.parseInt((String)requestBody.get("team2Id"));
+        team2Id = Integer.parseInt((String) requestBody.get("team2Id"));
         //System.out.println(tournamentId + " " + team1Id + " " + team2Id);
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date sqlDate = new Date(System.currentTimeMillis());
         try {
             sqlDate = new Date(dateFormat.parse((String) requestBody.get("date")).getTime());
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         date = sqlDate;
@@ -37,7 +37,7 @@ public class ScoreCardService {
 
     public int getMatchId(int tournamentId, int team1Id, int team2Id, Date date, Connection connection) {
         MatchDB matchDB = new MatchDB();
-        int matchId = matchDB.getMatchIdByDate(tournamentId,team1Id,team2Id,date);
+        int matchId = matchDB.getMatchIdByDate(tournamentId, team1Id, team2Id, date);
         return matchId;
     }
 
@@ -52,7 +52,11 @@ public class ScoreCardService {
         ArrayList<ScoreCardForPlayer> teamBowlingStats = getBowlingScoreCardOfAnInning.getBowlingScoreCardOfAnInning(connection);
         return teamBowlingStats;
     }
-    public ArrayList<ArrayList<ScoreCardForPlayer>> get(){
+
+    public ArrayList<ArrayList<ScoreCardForPlayer>> get() {
+        /*
+            Return scorecard for a given match.
+        */
         JdbcConnection.initializeConnection();
         ArrayList<ArrayList<ScoreCardForPlayer>> stats = new ArrayList<>();
         Connection connection = JdbcConnection.getConnection();

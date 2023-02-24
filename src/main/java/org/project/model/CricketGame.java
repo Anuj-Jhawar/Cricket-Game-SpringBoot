@@ -3,8 +3,6 @@ package org.project.model;
 import org.project.model.player.Player;
 import org.project.repo.BattingStatsDB;
 import org.project.repo.BowlingStatsDB;
-import org.project.service.InputService;
-import org.project.service.TeamMap;
 import org.project.service.statsbuilder.BattingStatsBuilder;
 import org.project.service.statsbuilder.BowlingStatsBuilder;
 
@@ -18,14 +16,7 @@ public class CricketGame {
     private String format;
     private String tournamentName;
 
-    public CricketGame(String tournamentName,Team team1,Team team2,String venue,String format){
-//        InputService inputService = new InputService();
-//        inputService.venueInput(this);
-//        inputService.formatInput(this);
-//        InputInterface TakeFormatInput = new FormatInput(this);
-//        InputInterface TakeVenueInput = new VenueInput(this);
-//        TakeVenueInput.collectInput();
-//        TakeFormatInput.collectInput();
+    public CricketGame(String tournamentName, Team team1, Team team2, String venue, String format) {
         this.tournamentName = tournamentName;
         this.team1 = team1;
         this.team2 = team2;
@@ -52,12 +43,13 @@ public class CricketGame {
     public int initiateToss() {
         return tossForGame.callForToss();
     }
+
     public String getFormat() {
         return format;
     }
 
-    public void signalOutcomeOfTheBall(Ball ball,int inningNo) {
-        umpire.signal(this,ball,inningNo);
+    public void signalOutcomeOfTheBall(Ball ball, int inningNo) {
+        umpire.signal(this, ball, inningNo);
     }
 
     public void setWinner(String winningTeam) {
@@ -90,15 +82,18 @@ public class CricketGame {
         this.tournamentName = tournamentName;
     }
 
-    public String getTournamentName(){
+    public String getTournamentName() {
         return tournamentName;
     }
-    public int getBattingTeamIndex(){
+
+    public int getBattingTeamIndex() {
         return tossForGame.getBattingTeamIndex();
     }
-    public int getBowlingTeamIndex(){
+
+    public int getBowlingTeamIndex() {
         return tossForGame.getBowlingTeamIndex();
     }
+
     public void updateBattingStatsOfBatsman(int teamIndex, int playerIndex, int runs) {
         /*
             Updating the batsman stats depending on the runs scored on the ball.
@@ -106,13 +101,13 @@ public class CricketGame {
         if (teamIndex == 1) {
             team1.updateBattingStatsOfPlayer(playerIndex, runs);
             Player player = team1.getPlayer(playerIndex);
-            BattingStatsDB battingStatsDB = BattingStatsBuilder.getBattingStatsObject(tournamentName,team1.getTeamName(),team2.getTeamName(),player,this.getBattingTeamIndex(), team1.getTeamName());
-            battingStatsDB.updateBattingStats(runs,player.getBattingStats().getScore(),player.getBattingStats().getBallsPlayed());
+            BattingStatsDB battingStatsDB = BattingStatsBuilder.getBattingStatsObject(tournamentName, team1.getTeamName(), team2.getTeamName(), player, this.getBattingTeamIndex(), team1.getTeamName());
+            battingStatsDB.updateBattingStats(runs, player.getBattingStats().getScore(), player.getBattingStats().getBallsPlayed());
         } else {
             team2.updateBattingStatsOfPlayer(playerIndex, runs);
             Player player = team2.getPlayer(playerIndex);
-            BattingStatsDB battingStatsDB = BattingStatsBuilder.getBattingStatsObject(tournamentName,team1.getTeamName(),team2.getTeamName(),player,this.getBattingTeamIndex(), team2.getTeamName());
-            battingStatsDB.updateBattingStats(runs,player.getBattingStats().getScore(),player.getBattingStats().getBallsPlayed());
+            BattingStatsDB battingStatsDB = BattingStatsBuilder.getBattingStatsObject(tournamentName, team1.getTeamName(), team2.getTeamName(), player, this.getBattingTeamIndex(), team2.getTeamName());
+            battingStatsDB.updateBattingStats(runs, player.getBattingStats().getScore(), player.getBattingStats().getBallsPlayed());
         }
     }
 
@@ -123,13 +118,13 @@ public class CricketGame {
         if (teamIndex == 1) {
             team2.updateBowlingStatsOfPlayer(playerIndex, outcomeOfTheBall);
             Player player = team2.getPlayer(playerIndex);
-            BowlingStatsDB bowlingStatsDB = BowlingStatsBuilder.getBowlingStatsObject(tournamentName,team1.getTeamName(),team2.getTeamName(),player,this.getBattingTeamIndex(),team2.getTeamName());
-            bowlingStatsDB.updateBowlingStats(outcomeOfTheBall,player.getBowlingStats().getRunConceded(),player.getBowlingStats().getWickets());
+            BowlingStatsDB bowlingStatsDB = BowlingStatsBuilder.getBowlingStatsObject(tournamentName, team1.getTeamName(), team2.getTeamName(), player, this.getBattingTeamIndex(), team2.getTeamName());
+            bowlingStatsDB.updateBowlingStats(outcomeOfTheBall, player.getBowlingStats());
         } else {
             team1.updateBowlingStatsOfPlayer(playerIndex, outcomeOfTheBall);
             Player player = team1.getPlayer(playerIndex);
-            BowlingStatsDB bowlingStatsDB = BowlingStatsBuilder.getBowlingStatsObject(tournamentName,team1.getTeamName(),team2.getTeamName(),player,this.getBattingTeamIndex(), team1.getTeamName());
-            bowlingStatsDB.updateBowlingStats(outcomeOfTheBall,player.getBowlingStats().getRunConceded(),player.getBowlingStats().getWickets());
+            BowlingStatsDB bowlingStatsDB = BowlingStatsBuilder.getBowlingStatsObject(tournamentName, team1.getTeamName(), team2.getTeamName(), player, this.getBattingTeamIndex(), team1.getTeamName());
+            bowlingStatsDB.updateBowlingStats(outcomeOfTheBall, player.getBowlingStats());
         }
     }
 
@@ -142,30 +137,23 @@ public class CricketGame {
         else
             return team2.getRunsScored();
     }
+
     public String getWinner() {
         /*
             Returning the winner of the game.
         */
         return winner;
     }
-    public Team setTeamForTheGame(Team team){
+
+    public Team setTeamForTheGame(Team team) {
         /*
-            Setting team for the game. If previously team played then assigning it directly.
+            Adding batting and bowling stats for each player.
         */
         team.addBattingAndBowlingStatsForEachPlayer();
-//        InputService inputService = new InputService();
-//        String TeamName = inputService.teamNameInput();
-////        InputInterface TakeTeamNameInput = new TeamNameInput();
-////        String TeamName = TakeTeamNameInput.collectInput();
-//        Team team = TeamMap.getTeamMap().getTeam(TeamName);
-//        team.setTeamName(TeamName);
-//        if(TeamMap.getTeamMap().containsTeam(TeamName)==false)
-//            team.updateNumberOfEachPlayers();
-//        else
-//
         return team;
     }
-    public void setTeamsForTheGame(){
+
+    public void setTeamsForTheGame() {
         team1 = setTeamForTheGame(team1);
         team2 = setTeamForTheGame(team2);
     }

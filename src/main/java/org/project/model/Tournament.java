@@ -1,8 +1,6 @@
 package org.project.model;
 
 
-import org.project.service.CricketGameService;
-
 public class Tournament {
     String tournamentName;
 
@@ -14,9 +12,4 @@ public class Tournament {
         return tournamentName;
     }
 
-    public void playTournament() {
-        CricketGameService CricketGame = new CricketGameService();
-        //CricketGame.play(tournamentName);
-        //CricketGame.play(tournamentName);
-    }
 }

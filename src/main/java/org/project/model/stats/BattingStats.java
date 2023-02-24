@@ -1,14 +1,15 @@
 package org.project.model.stats;
 
-public class BattingStats implements Stats{
+public class BattingStats implements Stats {
 
-    public BattingStats(){
+    public BattingStats() {
         score = 0;
         ballsPlayed = 0;
         battingStrikeRate = 0;
         numberOfFours = 0;
         numberOfSixes = 0;
     }
+
     private int score;
     private int ballsPlayed;
     private double battingStrikeRate;
@@ -20,10 +21,10 @@ public class BattingStats implements Stats{
     }
 
     public void setStrikeRate() {
-        battingStrikeRate = ballsPlayed == 0? 0 : (score * 100.0) / ballsPlayed;
+        battingStrikeRate = ballsPlayed == 0 ? 0 : (score * 100.0) / ballsPlayed;
     }
 
-    public void setNumberOfFours(int numberOfFours){
+    public void setNumberOfFours(int numberOfFours) {
         this.numberOfFours = numberOfFours;
     }
 
@@ -33,9 +34,9 @@ public class BattingStats implements Stats{
 
     public void setBoundaries(int runs) {
         if (runs == 4)
-            setNumberOfFours(numberOfFours+1);
+            setNumberOfFours(numberOfFours + 1);
         else if (runs == 6)
-            setNumberOfSixes(numberOfSixes+1);
+            setNumberOfSixes(numberOfSixes + 1);
     }
 
     public int getScore() {
@@ -61,18 +62,19 @@ public class BattingStats implements Stats{
     public double getBattingStrikeRate() {
         return battingStrikeRate;
     }
+
     public void updateBattingStats(int runs) {
         if (runs == 7) {
-            setBallsPlayed(ballsPlayed+1);
+            setBallsPlayed(ballsPlayed + 1);
             return;
         }
         setScore(runs);
-        setBallsPlayed(ballsPlayed+1);
+        setBallsPlayed(ballsPlayed + 1);
         setStrikeRate();
         setBoundaries(runs);
     }
 
-    public void updateStats(int runs){
+    public void updateStats(int runs) {
         updateBattingStats(runs);
     }
 }

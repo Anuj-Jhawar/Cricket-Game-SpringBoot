@@ -2,17 +2,18 @@ package org.project.model.scorecard;
 
 
 import org.project.model.CricketGame;
+import org.project.model.Team;
 import org.project.model.player.Player;
 import org.project.model.stats.BattingStats;
 import org.project.repo.BattingStatsDB;
 import org.project.service.statsbuilder.BattingStatsBuilder;
-import org.project.model.Team;
 
 public class BattingScoreCard implements InningScoreCard {
     Player[] players;
     CricketGame game;
     Team battingTeam;
-    public BattingScoreCard(CricketGame game,Team battingTeam) {
+
+    public BattingScoreCard(CricketGame game, Team battingTeam) {
         this.game = game;
         players = battingTeam.getPlayers();
         this.battingTeam = battingTeam;
@@ -37,7 +38,7 @@ public class BattingScoreCard implements InningScoreCard {
         */
         printHeadings();
         for (Player batsman : players) {
-            BattingStatsDB battingStatsDB = BattingStatsBuilder.getBattingStatsObject(game.getTournamentName(), game.getTeam1().getTeamName(),game.getTeam2().getTeamName(),batsman,game.getBattingTeamIndex(),battingTeam.getTeamName());
+            BattingStatsDB battingStatsDB = BattingStatsBuilder.getBattingStatsObject(game.getTournamentName(), game.getTeam1().getTeamName(), game.getTeam2().getTeamName(), batsman, game.getBattingTeamIndex(), battingTeam.getTeamName());
             BattingStats battingStats = battingStatsDB.getBattingStats();
             if (battingStats.getBallsPlayed() > 0) {
                 System.out.printf("%-20s %10s %10s %10s %10s %10.2f %n", batsman.getName(), battingStats.getScore(), battingStats.getBallsPlayed(),

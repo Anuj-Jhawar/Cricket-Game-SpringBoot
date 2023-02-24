@@ -1,8 +1,7 @@
 package org.project.model.stats;
 
 
-
-public class BowlingStats implements Stats{
+public class BowlingStats implements Stats {
     private int runConceded;
 
     private int wickets;
@@ -12,6 +11,7 @@ public class BowlingStats implements Stats{
     private double bowlingStrikeRate;
 
     private double bowlingAverage;
+
     public BowlingStats() {
         runConceded = 0;
         wickets = 0;
@@ -21,7 +21,7 @@ public class BowlingStats implements Stats{
     }
 
     public void setBowlingAverage() {
-        bowlingAverage = wickets==0? 0 : (runConceded * 1.0) / (wickets);
+        bowlingAverage = wickets == 0 ? 0 : (runConceded * 1.0) / (wickets);
     }
 
     public void setWickets(int wickets) {
@@ -56,16 +56,16 @@ public class BowlingStats implements Stats{
         /*
             Function to invoke all the batting stats of the bowler.
         */
-        System.out.println(ballsBowled);
-        setBallsBowled(ballsBowled+1);
-        if (outcomeOfTheBall==7)
-            setWickets(wickets+1);
+        setBallsBowled(ballsBowled + 1);
+        if (outcomeOfTheBall == 7)
+            setWickets(wickets + 1);
         else
             setRunsConceded(outcomeOfTheBall);
         setBowlingAverage();
         updateBowlingStrikeRate();
     }
-    public void updateStats(int runs){
+
+    public void updateStats(int runs) {
         updateBowlingStats(runs);
     }
 }

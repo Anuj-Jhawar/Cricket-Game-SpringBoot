@@ -16,7 +16,11 @@ public class GetBowlingScoreCardOfAnInning {
         this.teamId = teamId;
         this.matchId = matchId;
     }
+
     public ArrayList<ScoreCardForPlayer> getBowlingScoreCardOfAnInning(Connection connection) {
+        /*
+            Return bowling scorecard for a given match
+        */
         ArrayList<ScoreCardForPlayer> bowlingStats = new ArrayList<ScoreCardForPlayer>();
         ResultSet resultSet;
         if (connection != null) {

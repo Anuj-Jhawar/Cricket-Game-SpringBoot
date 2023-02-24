@@ -7,13 +7,16 @@ import org.project.repo.PlayerDB;
 import org.project.repo.TeamDB;
 
 public class BattingStatsBuilder {
-    public static BattingStatsDB getBattingStatsObject(String tournamentName, String team1Name, String team2Name, Player player, int battingIndex, String teamName){
+    public static BattingStatsDB getBattingStatsObject(String tournamentName, String team1Name, String team2Name, Player player, int battingIndex, String teamName) {
+        /*
+            Create a BattingStatsDB object and return it.
+        */
         MatchDB matchDB = new MatchDB();
         TeamDB teamDB = new TeamDB(teamName);
         PlayerDB playerDB = new PlayerDB();
-        int matchId = matchDB.getMatchId(tournamentName,team1Name,team2Name,battingIndex);
+        int matchId = matchDB.getMatchId(tournamentName, team1Name, team2Name, battingIndex);
         int teamId = teamDB.getTeamId();
         int playerId = playerDB.getPlayerId(player.getName());
-        return new BattingStatsDB(matchId,teamId,playerId);
+        return new BattingStatsDB(matchId, teamId, playerId);
     }
 }

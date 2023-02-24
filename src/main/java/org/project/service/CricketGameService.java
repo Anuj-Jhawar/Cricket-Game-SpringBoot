@@ -1,10 +1,10 @@
 package org.project.service;
 
-import org.bson.Document;
-import org.project.model.CricketGame;
 import org.project.model.Ball;
+import org.project.model.CricketGame;
 import org.project.model.Team;
 import org.project.model.scorecard.ScoreCard;
+import org.project.repo.MatchDB;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,12 +20,12 @@ public class CricketGameService {
         System.out.println("Time for toss");
         int teamWhoWonTheToss = game.initiateToss();
         String Team1 = "Team1";
-        if(teamWhoWonTheToss==1){
+        if (teamWhoWonTheToss == 1) {
             return game.getTeam1().getTeamName();
-        }
-        else
+        } else
             return game.getTeam2().getTeamName();
     }
+
     int initializeNumberOfOvers(CricketGame game) {
         /*
             Decide number of overs based on the format of the game.
@@ -114,19 +114,25 @@ public class CricketGameService {
         */
         int numberOfAvailableBowlingOption = 11;
         int indexOfChosenBowler = 10 - (int) (Math.random() * (numberOfAvailableBowlingOption));
-        while(lastBowler==indexOfChosenBowler){
+        while (lastBowler == indexOfChosenBowler) {
             indexOfChosenBowler = 10 - (int) (Math.random() * (numberOfAvailableBowlingOption));
         }
         return indexOfChosenBowler;
     }
-    void assignWinnerOfTheGame(CricketGame Game) {
+
+    void assignWinnerOfTheGame(CricketGame game) {
         /*
             Function to assign Winner of the Game.
         */
-        if (Game.getTeam1().getRunsScored() > Game.getTeam2().getRunsScored())
-            Game.setWinner(Game.getTeam1().getTeamName());
-        else
-            Game.setWinner(Game.getTeam2().getTeamName());
+        MatchDB matchDB = new MatchDB();
+        int matchId = matchDB.getMatchId(game.getTournamentName(), game.getTeam1().getTeamName(), game.getTeam2().getTeamName(), game.getBattingTeamIndex());
+        if (game.getTeam1().getRunsScored() > game.getTeam2().getRunsScored()) {
+            game.setWinner(game.getTeam1().getTeamName());
+            matchDB.updateResult(1, matchId);
+        } else {
+            game.setWinner(game.getTeam2().getTeamName());
+            matchDB.updateResult(2, matchId);
+        }
     }
 
     boolean checkIfInningIsOver(CricketGame game, int wickets, int target) {
@@ -146,17 +152,17 @@ public class CricketGameService {
         game.updateBowlingStatsOfBowler(teamIndex, currentBowler, newBall.getOutcomeOfTheBall());
     }
 
-    Ball playTheBall(CricketGame game, int teamIndex, int batsmanOnStrikeIndex, int currentBowler,int inningNo) {
+    Ball playTheBall(CricketGame game, int teamIndex, int batsmanOnStrikeIndex, int currentBowler, int inningNo) {
         /*
             Playing and assigning every outcome of the ball.
         */
         Ball newBall = new Ball();
         newBall.assignBallOutcome();
-        Team battingTeam = teamIndex==1?game.getTeam1():game.getTeam2();
-        Team bowlingTeam = teamIndex==1?game.getTeam2():game.getTeam1();
+        Team battingTeam = teamIndex == 1 ? game.getTeam1() : game.getTeam2();
+        Team bowlingTeam = teamIndex == 1 ? game.getTeam2() : game.getTeam1();
         newBall.setBowlerName(bowlingTeam.getPlayer(currentBowler).getName());
         newBall.setBatsmanName(battingTeam.getPlayer(batsmanOnStrikeIndex).getName());
-        game.signalOutcomeOfTheBall(newBall,inningNo);
+        game.signalOutcomeOfTheBall(newBall, inningNo);
         updateBattingAndBowlingStatsAfterEachBall(game, teamIndex, batsmanOnStrikeIndex, currentBowler, newBall);
         return newBall;
     }
@@ -165,7 +171,7 @@ public class CricketGameService {
         /*
             Function to play a Inning.
         */
-        int batsmanOnStrikeIndex = 0,batsman2=0,wickets=0;
+        int batsmanOnStrikeIndex = 0, batsman2 = 0, wickets = 0;
         Ball lastBall = new Ball();
         lastBall.setOutcomeOfTheBall('0');
         int lastBowler = -1;
@@ -176,7 +182,7 @@ public class CricketGameService {
                 ArrayList<Integer> batsmanOrder = assignBatsman(batsmanOnStrikeIndex, batsman2, lastBallOutcome, k == 0 ? 1 : 0);
                 batsmanOnStrikeIndex = batsmanOrder.get(0);
                 batsman2 = batsmanOrder.get(0);
-                Ball NewBall = playTheBall(game, i, batsmanOnStrikeIndex, currentBowler,target==-1?0:1);
+                Ball NewBall = playTheBall(game, i, batsmanOnStrikeIndex, currentBowler, target == -1 ? 0 : 1);
                 if (NewBall.getOutcomeOfTheBall() == 7)
                     wickets++;
                 lastBall = NewBall;
@@ -197,7 +203,7 @@ public class CricketGameService {
         int initializeNumberOfOvers = initializeNumberOfOvers(game);
         int target = -1;
         for (int i = 0; i < 2; i++) {
-            playAInning(game, target, initializeNumberOfOvers, i==0? game.getBattingTeamIndex() : game.getBowlingTeamIndex());
+            playAInning(game, target, initializeNumberOfOvers, i == 0 ? game.getBattingTeamIndex() : game.getBowlingTeamIndex());
             target = game.getScoreOfTeam(game.getBattingTeamIndex());
             System.out.println("Innings Break");
         }
@@ -212,9 +218,12 @@ public class CricketGameService {
         newScoreCard.printScoreCard();
     }
 
-    public void play(String tournamentName,Team team1,Team team2,String venue,String format) {
+    public void play(String tournamentName, Team team1, Team team2, String venue, String format) {
+        /*
+            Start playing cricket game.
+        */
         Scanner scn = new Scanner(System.in);
-        CricketGame game = new CricketGame(tournamentName,team1,team2,venue,format);
+        CricketGame game = new CricketGame(tournamentName, team1, team2, venue, format);
         game.setTeamsForTheGame();
         System.out.println("Game Start");
         String teamWhoWonTheToss = completeToss(game);
@@ -225,18 +234,18 @@ public class CricketGameService {
         letsPlayTheGame(game);
         System.out.println("Team Who won the match is " + game.getWinner());
         printScoreCard(game);
-        TeamMap teamMap = TeamMap.getTeamMap();
-        teamMap.addTeam(game.getTeam1().getTeamName(),game.getTeam1());
-        teamMap.addTeam(game.getTeam2().getTeamName(),game.getTeam2());
     }
 
-    public String setUpGame(Map<String,Object> requestBody){
-        String tournamentName = (String)requestBody.get("tournamentName");
-        String venue = (String)requestBody.get("venue");
-        String format = (String)requestBody.get("format");
-        Team team1 = TeamService.setTeam( (Map<String,Object>) requestBody.get("team1"));
-        Team team2 = TeamService.setTeam( (Map<String,Object>) requestBody.get("team2"));
-        this.play(tournamentName,team1,team2,venue,format);
+    public String setUpGame(Map<String, Object> requestBody) {
+        /*
+            Organize user input and start the game.
+        */
+        String tournamentName = (String) requestBody.get("tournamentName");
+        String venue = (String) requestBody.get("venue");
+        String format = (String) requestBody.get("format");
+        Team team1 = TeamService.setTeam((Map<String, Object>) requestBody.get("team1"));
+        Team team2 = TeamService.setTeam((Map<String, Object>) requestBody.get("team2"));
+        this.play(tournamentName, team1, team2, venue, format);
         return "";
     }
 }

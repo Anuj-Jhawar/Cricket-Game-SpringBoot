@@ -1,21 +1,17 @@
 package org.project.service;
 
-import org.project.repo.TournamentDB;
 import org.project.model.Tournament;
-
-import java.util.Scanner;
+import org.project.repo.TournamentDB;
 
 public class TournamentService {
-    public String start(String tournamentName){
+    public String start(String tournamentName) {
+        /*
+            Add tournament to database if not available.
+        */
         Tournament tournament = new Tournament();
-//        String tournamentName;
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("Please enter tournament name:");
-//        tournamentName = scanner.nextLine();
         tournament.setTournamentName(tournamentName);
         TournamentDB tournamentDB = new TournamentDB(tournamentName);
         tournament.setTournamentName(tournamentDB.addTournament());
-        //tournament.playTournament();
         return "Tournament Created";
     }
 }

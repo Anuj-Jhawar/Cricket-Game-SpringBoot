@@ -18,6 +18,9 @@ public class GetBattingScoreCardOfAnInning {
     }
 
     public ArrayList<ScoreCardForPlayer> getBattingScoreCardOfAnInning(Connection connection) {
+        /*
+            Return batting scorecard for a given match
+        */
         ArrayList<ScoreCardForPlayer> battingStats = new ArrayList<ScoreCardForPlayer>();
         ResultSet resultSet;
         if (connection != null) {

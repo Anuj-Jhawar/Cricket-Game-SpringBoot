@@ -1,7 +1,6 @@
 package org.project.model.player;
 
 
-
 import org.project.model.stats.BattingStats;
 import org.project.model.stats.BowlingStats;
 import org.project.model.stats.Stats;
@@ -14,17 +13,19 @@ public class Player {
     private ArrayList<Stats> battingStats = new ArrayList<Stats>();
     private ArrayList<Stats> bowlingStats = new ArrayList<Stats>();
 
-    public Player(){
+    public Player() {
         battingStats.add(new BattingStats());
         bowlingStats.add(new BowlingStats());
     }
-    public static void incrementPlayerCount(){
+
+    public static void incrementPlayerCount() {
         /*
             Increment the total number of object created of class Player.
         */
         playerCount++;
     }
-    public static int getPlayerCount(){
+
+    public static int getPlayerCount() {
         return playerCount;
     }
 
@@ -43,14 +44,14 @@ public class Player {
         battingStats.get(battingStats.size() - 1).updateStats(runs);
     }
 
-    public BattingStats getBattingStats(){
+    public BattingStats getBattingStats() {
         /*
             Return Batting Stats of the player for the current match.
         */
         return (BattingStats) battingStats.get(battingStats.size() - 1);
     }
 
-    public BowlingStats getBowlingStats(){
+    public BowlingStats getBowlingStats() {
         /*
             Return Bowling Stats of the player for the current match.
         */
@@ -63,13 +64,15 @@ public class Player {
         */
         bowlingStats.get(bowlingStats.size() - 1).updateStats(outcomeOfTheBall);
     }
-    public void addBattingStatsObject(){
+
+    public void addBattingStatsObject() {
         /*
             Adding new object of Batting Stats.
         */
         battingStats.add(new BattingStats());
     }
-    public void addBowlingStatsObject(){
+
+    public void addBowlingStatsObject() {
         /*
             Adding new object of Bowling Stats.
         */

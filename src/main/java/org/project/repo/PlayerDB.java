@@ -6,65 +6,72 @@ import java.sql.ResultSet;
 
 public class PlayerDB {
     Connection connection;
-    public PlayerDB(){
+
+    public PlayerDB() {
         this.connection = JdbcConnection.getConnection();
     }
-    public void addPlayer(String playerName,int age){
-        if(this.getPlayerId(playerName)!=0)
+
+    public void addPlayer(String playerName, int age) {
+        /*
+            Add player details to database.
+        */
+        if (this.getPlayerId(playerName) != 0)
             return;
-        if(connection!=null){
+        if (connection != null) {
             PreparedStatement statement;
-            try{
+            try {
                 String sqlCommandToInsertTeamInTeamTable = "INSERT INTO Players(Name,Age) VALUES (?,?)";
                 statement = connection.prepareStatement(sqlCommandToInsertTeamInTeamTable);
                 statement.setString(1, playerName);
-                statement.setInt(2,1);
+                statement.setInt(2, 1);
                 try {
                     statement.executeUpdate();
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     System.out.println(e);
                     System.out.println("Query not completed in org.repo.PlayerDb.addPlayer");
                 }
 
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Statement not created in org.repo.PlayerDb.addPlayer");
             }
-        }
-        else{
+        } else {
             System.out.println("Connection not established in org.repo.PlayerDb.addPlayer");
         }
     }
-    public int getPlayerId(String playerName){
-        if(connection!=null){
+
+    public int getPlayerId(String playerName) {
+        /*
+            Return player id.
+        */
+        if (connection != null) {
             PreparedStatement statement;
-            try{
+            try {
                 String sqlCommandToGetPlayerId = "SELECT * FROM Players WHERE Name = ?";
                 statement = connection.prepareStatement(sqlCommandToGetPlayerId);
-                statement.setString(1,playerName);
+                statement.setString(1, playerName);
                 try {
                     ResultSet resultSet = statement.executeQuery();
-                    if(resultSet.next())
+                    if (resultSet.next())
                         return resultSet.getInt("id");
                     else return 0;
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     System.out.println(e + "FindPlayer");
                     System.out.println("Query not completed in org.repo.PlayerDb.getPlayerId");
                 }
 
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Statement not created in org.repo.PlayerDb.getPlayerId");
             }
-        }
-        else{
+        } else {
             System.out.println("Connection not established in org.repo.PlayerDb.getPlayerId");
         }
         return 1;
     }
-    public String getPlayerName(int playerId){
+
+    public String getPlayerName(int playerId) {
+        /*
+            Return player name.
+        */
         if (connection != null) {
             PreparedStatement statement;
             String sqlCommandToGetPlayerName = "SELECT Name from Players WHERE id = ?";

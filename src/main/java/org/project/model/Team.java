@@ -2,16 +2,18 @@ package org.project.model;
 
 import org.project.model.player.Batsman;
 import org.project.model.player.Player;
-import org.project.service.InputService;
 
 public class Team {
     private static int teamCount = 0;
-    public static void incrementTeamCount(){
+
+    public static void incrementTeamCount() {
         teamCount++;
     }
-    public static int getTeamCount(){
+
+    public static int getTeamCount() {
         return teamCount;
     }
+
     private Player[] players = new Player[11];
     private int numberOfBatsman;
     private int numberOfBowler;
@@ -35,12 +37,15 @@ public class Team {
     public String getTeamName() {
         return name;
     }
-    public Player[] getPlayers(){
+
+    public Player[] getPlayers() {
         return players;
     }
-    public void setPlayers(Player[] players){
+
+    public void setPlayers(Player[] players) {
         this.players = players;
     }
+
     public int GetNumberOfBatsman() {
         return numberOfBatsman;
     }
@@ -61,13 +66,14 @@ public class Team {
         return wicketsFallen;
     }
 
-    public Player getPlayer(int index){
+    public Player getPlayer(int index) {
         return players[index];
     }
 
     public void setTeamName(String nameForTeam) {
         name = nameForTeam;
     }
+
     public void setRunsScored(int runsScoredTillNow) {
         runsScored += runsScoredTillNow;
     }
@@ -76,7 +82,7 @@ public class Team {
         wicketsFallen += 1;
     }
 
-    public void setPlayers(int playerIndex, Player newPlayer){
+    public void setPlayers(int playerIndex, Player newPlayer) {
         players[playerIndex] = newPlayer;
     }
 
@@ -84,35 +90,36 @@ public class Team {
         /*
             Counting the number of Batsmen,Bowlers and AllRounders in the team.
         */
-        for(int i = 0;i<11;i++){
-            if(players[i] instanceof Batsman){
+        for (int i = 0; i < 11; i++) {
+            if (players[i] instanceof Batsman) {
                 this.numberOfBatsman++;
                 //System.out.println("Number of Batsman : " + NumberOfBatsman);
-            }
-            else{
+            } else {
                 //System.out.println("Number of Bowler : " + NumberOfBowler);
                 this.numberOfBowler++;
             }
         }
     }
 
-    public void updateBattingStatsOfPlayer(int playerIndex, int runs){
+    public void updateBattingStatsOfPlayer(int playerIndex, int runs) {
         /*
             Updating the batting stats of player.
         */
         players[playerIndex].updateBattingStats(runs);
     }
-    public void updateBowlingStatsOfPlayer(int playerIndex, int outComeOfTheBall){
+
+    public void updateBowlingStatsOfPlayer(int playerIndex, int outComeOfTheBall) {
         /*
             Updating the bowling stats of player.
         */
         players[playerIndex].updateBowlingStats(outComeOfTheBall);
     }
-    public void addBattingAndBowlingStatsForEachPlayer(){
+
+    public void addBattingAndBowlingStatsForEachPlayer() {
         /*
             Adding the batting and bowling stats objects to each player.
         */
-        for(int i = 0;i<11;i++){
+        for (int i = 0; i < 11; i++) {
             players[i].addBattingStatsObject();
             players[i].addBowlingStatsObject();
         }
