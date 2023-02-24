@@ -6,6 +6,7 @@ import org.project.model.stats.BattingStats;
 import java.sql.ResultSet;
 
 public class GetBattingStatsFromDatabase {
+
     public BattingStats createBattingStats(ResultSet resultSet) {
         /*
             Create and return BattingStats object from the resultSet.

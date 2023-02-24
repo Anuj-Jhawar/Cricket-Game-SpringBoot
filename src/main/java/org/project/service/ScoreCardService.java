@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class ScoreCardService {
+
     int tournamentId;
     int team1Id;
     int team2Id;
@@ -42,14 +43,18 @@ public class ScoreCardService {
     }
 
     public ArrayList<ScoreCardForPlayer> getBattingScoreCard(int teamId, int matchId, Connection connection) {
-        GetBattingScoreCardOfAnInning getBattingScoreCardOfAnInning = new GetBattingScoreCardOfAnInning(teamId, matchId);
-        ArrayList<ScoreCardForPlayer> teamBattingStats = getBattingScoreCardOfAnInning.getBattingScoreCardOfAnInning(connection);
+        GetBattingScoreCardOfAnInning getBattingScoreCardOfAnInning = new GetBattingScoreCardOfAnInning(teamId,
+                matchId);
+        ArrayList<ScoreCardForPlayer> teamBattingStats = getBattingScoreCardOfAnInning.getBattingScoreCardOfAnInning(
+                connection);
         return teamBattingStats;
     }
 
     public ArrayList<ScoreCardForPlayer> getBowlingScoreCard(int teamId, int matchId, Connection connection) {
-        GetBowlingScoreCardOfAnInning getBowlingScoreCardOfAnInning = new GetBowlingScoreCardOfAnInning(teamId, matchId);
-        ArrayList<ScoreCardForPlayer> teamBowlingStats = getBowlingScoreCardOfAnInning.getBowlingScoreCardOfAnInning(connection);
+        GetBowlingScoreCardOfAnInning getBowlingScoreCardOfAnInning = new GetBowlingScoreCardOfAnInning(teamId,
+                matchId);
+        ArrayList<ScoreCardForPlayer> teamBowlingStats = getBowlingScoreCardOfAnInning.getBowlingScoreCardOfAnInning(
+                connection);
         return teamBowlingStats;
     }
 

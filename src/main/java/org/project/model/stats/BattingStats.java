@@ -33,10 +33,11 @@ public class BattingStats implements Stats {
     }
 
     public void setBoundaries(int runs) {
-        if (runs == 4)
+        if (runs == 4) {
             setNumberOfFours(numberOfFours + 1);
-        else if (runs == 6)
+        } else if (runs == 6) {
             setNumberOfSixes(numberOfSixes + 1);
+        }
     }
 
     public int getScore() {

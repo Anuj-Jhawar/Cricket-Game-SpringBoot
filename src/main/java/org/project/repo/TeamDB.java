@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class TeamDB {
+
     String teamName;
     Connection connection;
 
@@ -39,15 +40,17 @@ public class TeamDB {
         /*
             Add team details to data base.
         */
-        if (this.getTeamId() != 0)
+        if (this.getTeamId() != 0) {
             return "";
+        }
         if (connection != null) {
             Statement statement;
             try {
                 statement = connection.createStatement();
                 int size = this.tableSize();
                 String modifiedTeamName = teamName + "_" + size;
-                String sqlCommandToInsertTeamInTeamTable = "INSERT INTO Teams (Name) VALUES ('" + modifiedTeamName + "')";
+                String sqlCommandToInsertTeamInTeamTable = "INSERT INTO Teams (Name) VALUES ('" + modifiedTeamName +
+                                                           "')";
                 try {
                     statement.executeUpdate(sqlCommandToInsertTeamInTeamTable);
                     return modifiedTeamName;
@@ -75,10 +78,11 @@ public class TeamDB {
                 String sqlCommandToGetTeamId = "SELECT * FROM Teams WHERE Name = '" + teamName + "'";
                 try {
                     ResultSet resultSet = statement.executeQuery(sqlCommandToGetTeamId);
-                    if (resultSet.next())
+                    if (resultSet.next()) {
                         return resultSet.getInt("id");
-                    else
+                    } else {
                         return 0;
+                    }
                 } catch (Exception e) {
                     System.out.println(e);
                     System.out.println("Query not completed in org.repo.TeamDB.getTeamId");

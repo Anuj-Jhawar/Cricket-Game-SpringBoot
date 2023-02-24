@@ -7,14 +7,16 @@ import org.project.model.player.Player;
 import java.util.Scanner;
 
 public class InputService {
+
     public void playerNameInput(Player player) {
         Scanner scn = new Scanner(System.in);
         Player.incrementPlayerCount();
         int count = Player.getPlayerCount();
-        if (count > 11 && count % 11 != 0)
+        if (count > 11 && count % 11 != 0) {
             count = count % 11;
-        else if (count % 11 == 0)
+        } else if (count % 11 == 0) {
             count = 11;
+        }
         System.out.println("Please Enter Player " + (count) + " Name: ");
         String PlayerName = scn.nextLine();
         player.setName(PlayerName);

@@ -11,8 +11,10 @@ import java.util.Map;
 
 @RestController
 public class GetApis {
+
     @PostMapping("/scorecard")
-    public ArrayList<ArrayList<ScoreCardForPlayer>> getScoreCardForGivenMatch(@RequestBody Map<String, Object> requestBody) {
+    public ArrayList<ArrayList<ScoreCardForPlayer>> getScoreCardForGivenMatch(
+            @RequestBody Map<String, Object> requestBody) {
         /*
             Four request variable that's why converted it to the post request.
         */

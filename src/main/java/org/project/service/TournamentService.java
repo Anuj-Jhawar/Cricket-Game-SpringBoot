@@ -4,6 +4,7 @@ import org.project.model.Tournament;
 import org.project.repo.TournamentDB;
 
 public class TournamentService {
+
     public String start(String tournamentName) {
         /*
             Add tournament to database if not available.

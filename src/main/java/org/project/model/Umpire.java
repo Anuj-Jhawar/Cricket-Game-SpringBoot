@@ -3,6 +3,7 @@ package org.project.model;
 import org.project.service.CommentaryService;
 
 public class Umpire {
+
     private final String name;
 
     public Umpire() {
@@ -70,14 +71,15 @@ public class Umpire {
         */
         int OutcomeOfTheBall = ball.getOutcomeOfTheBall();
         String commentaryText = "";
-        if (OutcomeOfTheBall == 7)
+        if (OutcomeOfTheBall == 7) {
             commentaryText = wicket();
-        else if (OutcomeOfTheBall == 4)
+        } else if (OutcomeOfTheBall == 4) {
             commentaryText = four();
-        else if (OutcomeOfTheBall == 6)
+        } else if (OutcomeOfTheBall == 6) {
             commentaryText = six();
-        else
+        } else {
             commentaryText = runs(OutcomeOfTheBall);
+        }
         CommentaryService commentaryService = new CommentaryService();
         commentaryService.addCommentary(ball, game, commentaryText, inningNo);
     }

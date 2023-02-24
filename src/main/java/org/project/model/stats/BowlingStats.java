@@ -2,6 +2,7 @@ package org.project.model.stats;
 
 
 public class BowlingStats implements Stats {
+
     private int runConceded;
 
     private int wickets;
@@ -57,10 +58,11 @@ public class BowlingStats implements Stats {
             Function to invoke all the batting stats of the bowler.
         */
         setBallsBowled(ballsBowled + 1);
-        if (outcomeOfTheBall == 7)
+        if (outcomeOfTheBall == 7) {
             setWickets(wickets + 1);
-        else
+        } else {
             setRunsConceded(outcomeOfTheBall);
+        }
         setBowlingAverage();
         updateBowlingStrikeRate();
     }

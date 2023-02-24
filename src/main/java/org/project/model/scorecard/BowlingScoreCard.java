@@ -9,6 +9,7 @@ import org.project.repo.BowlingStatsDB;
 import org.project.service.statsbuilder.BowlingStatsBuilder;
 
 public class BowlingScoreCard implements InningScoreCard {
+
     Player[] players = new Player[11];
     CricketGame game;
     Team bowlingTeam;
@@ -36,10 +37,13 @@ public class BowlingScoreCard implements InningScoreCard {
         */
         printHeadings();
         for (Player currentBowler : players) {
-            BowlingStatsDB bowlingStatsDB = BowlingStatsBuilder.getBowlingStatsObject(game.getTournamentName(), game.getTeam1().getTeamName(), game.getTeam2().getTeamName(), currentBowler, game.getBattingTeamIndex(), bowlingTeam.getTeamName());
+            BowlingStatsDB bowlingStatsDB = BowlingStatsBuilder.getBowlingStatsObject(game.getTournamentName(),
+                    game.getTeam1().getTeamName(), game.getTeam2().getTeamName(), currentBowler,
+                    game.getBattingTeamIndex(), bowlingTeam.getTeamName());
             BowlingStats bowlingStats = bowlingStatsDB.getBowlingStats();
             if (bowlingStats.getBallsBowled() > 0) {
-                System.out.printf("%-20s %10s %10s %5s %n", currentBowler.getName(), bowlingStats.getRunConceded(), bowlingStats.getBallsBowled(), bowlingStats.getWickets());
+                System.out.printf("%-20s %10s %10s %5s %n", currentBowler.getName(), bowlingStats.getRunConceded(),
+                        bowlingStats.getBallsBowled(), bowlingStats.getWickets());
             }
         }
     }

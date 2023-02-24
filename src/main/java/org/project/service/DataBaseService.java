@@ -7,6 +7,7 @@ import org.project.model.player.Player;
 import org.project.repo.*;
 
 public class DataBaseService {
+
     CricketGame game;
 
     public DataBaseService(CricketGame game) {
@@ -26,7 +27,8 @@ public class DataBaseService {
             Add match.
         */
         MatchDB matchDB = new MatchDB();
-        matchDB.addMatch(game.getTournamentName(), game.getTeam1().getTeamName(), game.getTeam2().getTeamName(), game.getBattingTeamIndex());
+        matchDB.addMatch(game.getTournamentName(), game.getTeam1().getTeamName(), game.getTeam2().getTeamName(),
+                game.getBattingTeamIndex());
     }
 
     public void addBattingStatsToBattingStatsTable(CricketGame game, Team team) {
@@ -39,7 +41,8 @@ public class DataBaseService {
             MatchDB matchDB = new MatchDB();
             TeamDB teamDB = new TeamDB(teamName);
             PlayerDB playerDB = new PlayerDB();
-            int matchId = matchDB.getMatchId(game.getTournamentName(), game.getTeam1().getTeamName(), game.getTeam2().getTeamName(), game.getBattingTeamIndex());
+            int matchId = matchDB.getMatchId(game.getTournamentName(), game.getTeam1().getTeamName(),
+                    game.getTeam2().getTeamName(), game.getBattingTeamIndex());
             int teamId = teamDB.getTeamId();
             int playerId = playerDB.getPlayerId(players[i].getName());
             BattingStatsDB battingStatsDB = new BattingStatsDB(matchId, teamId, playerId);
@@ -57,7 +60,8 @@ public class DataBaseService {
             MatchDB matchDB = new MatchDB();
             TeamDB teamDB = new TeamDB(teamName);
             PlayerDB playerDB = new PlayerDB();
-            int matchId = matchDB.getMatchId(game.getTournamentName(), game.getTeam1().getTeamName(), game.getTeam2().getTeamName(), game.getBattingTeamIndex());
+            int matchId = matchDB.getMatchId(game.getTournamentName(), game.getTeam1().getTeamName(),
+                    game.getTeam2().getTeamName(), game.getBattingTeamIndex());
             int teamId = teamDB.getTeamId();
             int playerId = playerDB.getPlayerId(players[i].getName());
             BowlingStatsDB bowlingStatsDB = new BowlingStatsDB(matchId, teamId, playerId);

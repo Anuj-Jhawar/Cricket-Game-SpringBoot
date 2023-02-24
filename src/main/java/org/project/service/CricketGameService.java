@@ -22,8 +22,9 @@ public class CricketGameService {
         String Team1 = "Team1";
         if (teamWhoWonTheToss == 1) {
             return game.getTeam1().getTeamName();
-        } else
+        } else {
             return game.getTeam2().getTeamName();
+        }
     }
 
     int initializeNumberOfOvers(CricketGame game) {
@@ -125,7 +126,8 @@ public class CricketGameService {
             Function to assign Winner of the Game.
         */
         MatchDB matchDB = new MatchDB();
-        int matchId = matchDB.getMatchId(game.getTournamentName(), game.getTeam1().getTeamName(), game.getTeam2().getTeamName(), game.getBattingTeamIndex());
+        int matchId = matchDB.getMatchId(game.getTournamentName(), game.getTeam1().getTeamName(),
+                game.getTeam2().getTeamName(), game.getBattingTeamIndex());
         if (game.getTeam1().getRunsScored() > game.getTeam2().getRunsScored()) {
             game.setWinner(game.getTeam1().getTeamName());
             matchDB.updateResult(1, matchId);
@@ -139,7 +141,8 @@ public class CricketGameService {
         return (target != -1 && game.getScoreOfTeam(1) > target) || wickets == 10;
     }
 
-    void updateBattingAndBowlingStatsAfterEachBall(CricketGame game, int teamIndex, int batsmanOnStrikeIndex, int currentBowler, Ball newBall) {
+    void updateBattingAndBowlingStatsAfterEachBall(CricketGame game, int teamIndex, int batsmanOnStrikeIndex,
+                                                   int currentBowler, Ball newBall) {
         /*
             Updating the stats of batsman and bowler after every ball.
         */
@@ -179,20 +182,24 @@ public class CricketGameService {
             int currentBowler = assignBowler(game, i, lastBowler);
             for (int k = 0; k < 6; k++) {
                 int lastBallOutcome = lastBall.getOutcomeOfTheBall();
-                ArrayList<Integer> batsmanOrder = assignBatsman(batsmanOnStrikeIndex, batsman2, lastBallOutcome, k == 0 ? 1 : 0);
+                ArrayList<Integer> batsmanOrder = assignBatsman(batsmanOnStrikeIndex, batsman2, lastBallOutcome,
+                        k == 0 ? 1 : 0);
                 batsmanOnStrikeIndex = batsmanOrder.get(0);
                 batsman2 = batsmanOrder.get(0);
                 Ball NewBall = playTheBall(game, i, batsmanOnStrikeIndex, currentBowler, target == -1 ? 0 : 1);
-                if (NewBall.getOutcomeOfTheBall() == 7)
+                if (NewBall.getOutcomeOfTheBall() == 7) {
                     wickets++;
+                }
                 lastBall = NewBall;
                 boolean checkIfInningIsOver = checkIfInningIsOver(game, wickets, target);
-                if (checkIfInningIsOver)
+                if (checkIfInningIsOver) {
                     break;
+                }
             }
             lastBowler = currentBowler;
-            if (wickets == 10)
+            if (wickets == 10) {
                 break;
+            }
         }
     }
 
@@ -203,7 +210,8 @@ public class CricketGameService {
         int initializeNumberOfOvers = initializeNumberOfOvers(game);
         int target = -1;
         for (int i = 0; i < 2; i++) {
-            playAInning(game, target, initializeNumberOfOvers, i == 0 ? game.getBattingTeamIndex() : game.getBowlingTeamIndex());
+            playAInning(game, target, initializeNumberOfOvers,
+                    i == 0 ? game.getBattingTeamIndex() : game.getBowlingTeamIndex());
             target = game.getScoreOfTeam(game.getBattingTeamIndex());
             System.out.println("Innings Break");
         }

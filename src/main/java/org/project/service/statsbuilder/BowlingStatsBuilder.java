@@ -7,7 +7,9 @@ import org.project.repo.PlayerDB;
 import org.project.repo.TeamDB;
 
 public class BowlingStatsBuilder {
-    public static BowlingStatsDB getBowlingStatsObject(String tournamentName, String team1Name, String team2Name, Player player, int battingIndex, String teamName) {
+
+    public static BowlingStatsDB getBowlingStatsObject(String tournamentName, String team1Name, String team2Name,
+                                                       Player player, int battingIndex, String teamName) {
         /*
             Create a BowlingStatsDB object and return it.
         */

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class PlayerDB {
+
     Connection connection;
 
     public PlayerDB() {
@@ -15,8 +16,9 @@ public class PlayerDB {
         /*
             Add player details to database.
         */
-        if (this.getPlayerId(playerName) != 0)
+        if (this.getPlayerId(playerName) != 0) {
             return;
+        }
         if (connection != null) {
             PreparedStatement statement;
             try {
@@ -51,9 +53,11 @@ public class PlayerDB {
                 statement.setString(1, playerName);
                 try {
                     ResultSet resultSet = statement.executeQuery();
-                    if (resultSet.next())
+                    if (resultSet.next()) {
                         return resultSet.getInt("id");
-                    else return 0;
+                    } else {
+                        return 0;
+                    }
                 } catch (Exception e) {
                     System.out.println(e + "FindPlayer");
                     System.out.println("Query not completed in org.repo.PlayerDb.getPlayerId");
@@ -81,8 +85,9 @@ public class PlayerDB {
                 ResultSet resultSet = statement.executeQuery();
                 if (resultSet.next()) {
                     return resultSet.getString("Name");
-                } else
+                } else {
                     return "";
+                }
             } catch (Exception e) {
                 System.out.println("Statement not created org.repo.PlayerDb.getPlayerName.");
             }

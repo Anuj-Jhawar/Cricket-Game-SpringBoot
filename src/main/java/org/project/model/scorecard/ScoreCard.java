@@ -4,6 +4,7 @@ package org.project.model.scorecard;
 import org.project.model.CricketGame;
 
 public class ScoreCard {
+
     InningScoreCard[] innings = new InningScoreCard[4];
 
     public ScoreCard(CricketGame game) {

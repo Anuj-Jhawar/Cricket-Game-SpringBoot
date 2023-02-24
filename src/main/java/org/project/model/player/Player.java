@@ -8,6 +8,7 @@ import org.project.model.stats.Stats;
 import java.util.ArrayList;
 
 public class Player {
+
     static int playerCount = 0;
     protected String name;
     private ArrayList<Stats> battingStats = new ArrayList<Stats>();

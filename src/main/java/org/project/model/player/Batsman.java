@@ -2,6 +2,7 @@ package org.project.model.player;
 
 
 public class Batsman extends Player {
+
     public Batsman() {
     }
 

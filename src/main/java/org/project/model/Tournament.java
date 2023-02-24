@@ -2,6 +2,7 @@ package org.project.model;
 
 
 public class Tournament {
+
     String tournamentName;
 
     public void setTournamentName(String tournamentName) {

@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class BallCommentary {
+
     int batsmanId;
     int bowlerId;
     String commentaryText;

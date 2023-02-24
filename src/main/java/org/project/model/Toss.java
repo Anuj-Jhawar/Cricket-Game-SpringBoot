@@ -1,6 +1,7 @@
 package org.project.model;
 
 public class Toss {
+
     private int teamWhoWonTheToss;
     private int battingTeamIndex;
     private int bowlingTeamIndex;
@@ -11,9 +12,11 @@ public class Toss {
         */
         double value = Math.random();
         int tossValue = (int) (value * 2);
-        if (tossValue == 0)
+        if (tossValue == 0) {
             return 1;
-        else return 2;
+        } else {
+            return 2;
+        }
     }
 
     public int callForToss() {

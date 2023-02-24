@@ -3,6 +3,7 @@ package org.project.model;
 import org.project.model.stats.Stats;
 
 public class ScoreCardForPlayer {
+
     private String name;
     private Stats stats;
 

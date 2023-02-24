@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class MatchDB {
+
     Connection connection;
 
     public MatchDB() {
@@ -34,7 +35,8 @@ public class MatchDB {
             PreparedStatement statement;
             java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
             try {
-                String sqlCommandToInsertMatchInMatchTable = "INSERT INTO Matches(team1_id, team2_id, tournament_id, result, Date) VALUES( ?, ?, ?, ?, ?)";
+                String sqlCommandToInsertMatchInMatchTable
+                        = "INSERT INTO Matches(team1_id, team2_id, tournament_id, result, Date) VALUES( ?, ?, ?, ?, ?)";
                 statement = connection.prepareStatement(sqlCommandToInsertMatchInMatchTable);
                 statement.setInt(1, team1Id);
                 statement.setInt(2, team2Id);
@@ -75,16 +77,19 @@ public class MatchDB {
         if (connection != null) {
             PreparedStatement statement;
             try {
-                String sqlCommandToGetMatchId = "SELECT * FROM Matches WHERE team1_id = ? AND team2_id = ? AND tournament_id = ?";
+                String sqlCommandToGetMatchId
+                        = "SELECT * FROM Matches WHERE team1_id = ? AND team2_id = ? AND tournament_id = ?";
                 try {
                     statement = connection.prepareStatement(sqlCommandToGetMatchId);
                     statement.setInt(1, team1Id);
                     statement.setInt(2, team2Id);
                     statement.setInt(3, tournamentId);
                     ResultSet resultSet = statement.executeQuery();
-                    if (resultSet.next())
+                    if (resultSet.next()) {
                         return resultSet.getInt("id");
-                    else return 0;
+                    } else {
+                        return 0;
+                    }
                 } catch (Exception e) {
                     System.out.println("Query not completed in org.repo.MatchDb.getMatchId");
                 }
@@ -104,7 +109,8 @@ public class MatchDB {
         if (connection != null) {
             PreparedStatement statement;
             try {
-                String sqlCommandToGetMatchId = "SELECT * FROM Matches WHERE (team1_id = ? AND team2_id = ? AND tournament_id = ? AND date = ?) OR (team1_id = ? AND team2_id = ? AND tournament_id = ? AND date = ?)";
+                String sqlCommandToGetMatchId
+                        = "SELECT * FROM Matches WHERE (team1_id = ? AND team2_id = ? AND tournament_id = ? AND date = ?) OR (team1_id = ? AND team2_id = ? AND tournament_id = ? AND date = ?)";
                 try {
                     statement = connection.prepareStatement(sqlCommandToGetMatchId);
                     statement.setInt(1, team1Id);
@@ -117,9 +123,11 @@ public class MatchDB {
                     statement.setDate(8, date);
                     ResultSet resultSet = statement.executeQuery();
                     //System.out.println(team1Id + " " + team2Id + " " + tournamentId + " " + date);
-                    if (resultSet.next())
+                    if (resultSet.next()) {
                         return resultSet.getInt("id");
-                    else return 0;
+                    } else {
+                        return 0;
+                    }
                 } catch (Exception e) {
                     System.out.println("Query not completed in org.repo.MatchDb.getMatchIdByDate");
                 }
@@ -145,10 +153,11 @@ public class MatchDB {
                     statement = connection.prepareStatement(sqlCommandToGetBattingFirstTeamId);
                     statement.setInt(1, matchId);
                     ResultSet resultSet = statement.executeQuery();
-                    if (resultSet.next())
+                    if (resultSet.next()) {
                         return resultSet.getInt("team1_id");
-                    else
+                    } else {
                         return 0;
+                    }
                 } catch (Exception e) {
                     System.out.println("Statement not created in org.repo.MatchDb.FindBattingFirstTeamId.");
                 }

@@ -10,6 +10,7 @@ import org.project.model.BallCommentary;
 import java.util.ArrayList;
 
 public class CommentaryDB {
+
     private static final MongoClient mongoClient = MongoClients.create();
     private static final String DATABASE_NAME = "CommentaryDB";
     private static final String COLLECTION_NAME = "Commentary";

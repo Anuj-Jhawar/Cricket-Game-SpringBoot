@@ -8,6 +8,7 @@ import java.util.Map;
 
 
 public class TeamService {
+
     public static Team setTeam(Map<String, Object> document) {
         /*
             Create team from the user input and return it.

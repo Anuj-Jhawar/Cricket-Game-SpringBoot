@@ -4,6 +4,7 @@ import org.project.model.player.Batsman;
 import org.project.model.player.Player;
 
 public class Team {
+
     private static int teamCount = 0;
 
     public static void incrementTeamCount() {
@@ -23,10 +24,10 @@ public class Team {
     private String name;
 
     public Team() {
-//        InputService inputService = new InputService();
-//        inputService.playerTypeInput(this);
-//        InputInterface TakePlayerTypeInput = new PlayerTypeInput(this);
-//        TakePlayerTypeInput.collectInput();
+        //        InputService inputService = new InputService();
+        //        inputService.playerTypeInput(this);
+        //        InputInterface TakePlayerTypeInput = new PlayerTypeInput(this);
+        //        TakePlayerTypeInput.collectInput();
         runsScored = 0;
         wicketsFallen = 0;
         numberOfAllRounder = 0;

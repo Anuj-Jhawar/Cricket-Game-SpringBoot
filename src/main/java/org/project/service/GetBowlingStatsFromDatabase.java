@@ -5,6 +5,7 @@ import org.project.model.stats.BowlingStats;
 import java.sql.ResultSet;
 
 public class GetBowlingStatsFromDatabase {
+
     public BowlingStats createBowlingStats(ResultSet resultSet) {
         /*
             Create and return BowlingStats object from the resultSet.

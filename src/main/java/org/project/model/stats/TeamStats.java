@@ -1,6 +1,7 @@
 package org.project.model.stats;
 
 public class TeamStats implements Stats {
+
     private int runsScored;
     private int runsConceded;
     private int wicketsTaken;

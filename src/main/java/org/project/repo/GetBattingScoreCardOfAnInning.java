@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class GetBattingScoreCardOfAnInning {
+
     int teamId;
     int matchId;
 
@@ -25,7 +26,8 @@ public class GetBattingScoreCardOfAnInning {
         ResultSet resultSet;
         if (connection != null) {
             PreparedStatement statement;
-            String sqlCommandToGetBattingScoreCardOfAnInning = "SELECT * FROM BattingStats WHERE team_id = ? AND match_id = ?";
+            String sqlCommandToGetBattingScoreCardOfAnInning
+                    = "SELECT * FROM BattingStats WHERE team_id = ? AND match_id = ?";
             try {
                 statement = connection.prepareStatement(sqlCommandToGetBattingScoreCardOfAnInning);
                 statement.setInt(1, teamId);
@@ -38,12 +40,14 @@ public class GetBattingScoreCardOfAnInning {
                         int playerId = resultSet.getInt("player_id");
                         PlayerDB playerDB = new PlayerDB();
                         String playerName = playerDB.getPlayerName(playerId);
-                        ScoreCardForPlayer scoreCardForPlayer = new ScoreCardForPlayer(playerName, getBattingStatsFromDatabase.createBattingStats(resultSet));
+                        ScoreCardForPlayer scoreCardForPlayer = new ScoreCardForPlayer(playerName,
+                                getBattingStatsFromDatabase.createBattingStats(resultSet));
                         battingStats.add(scoreCardForPlayer);
                     } while (resultSet.next());
                     return battingStats;
-                } else
+                } else {
                     return null;
+                }
             } catch (Exception e) {
                 System.out.println("Statement not created in org.repo.GetBattingScoreCardOfAnInning.");
             }

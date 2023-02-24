@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class BowlingStatsDB {
+
     int matchId;
     int playerId;
     int teamId;
@@ -28,7 +29,8 @@ public class BowlingStatsDB {
         if (connection != null) {
             PreparedStatement statement;
             try {
-                String sqlCommandToInsertBowlingStatsToBowlingStatsTable = "INSERT INTO BowlingStats (player_id, team_id, match_id, RunsConceded, BallsBalled,Wickets,Average) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                String sqlCommandToInsertBowlingStatsToBowlingStatsTable
+                        = "INSERT INTO BowlingStats (player_id, team_id, match_id, RunsConceded, BallsBalled,Wickets,Average) VALUES (?, ?, ?, ?, ?, ?, ?)";
                 statement = connection.prepareStatement(sqlCommandToInsertBowlingStatsToBowlingStatsTable);
                 statement.setInt(1, playerId);
                 statement.setInt(2, teamId);
@@ -58,16 +60,19 @@ public class BowlingStatsDB {
         if (connection != null) {
             PreparedStatement statement;
             try {
-                String sqlCommandToGetBowlingStatsId = "SELECT * FROM BowlingStats WHERE player_id = ? AND team_id = ?  AND match_id = ?";
+                String sqlCommandToGetBowlingStatsId
+                        = "SELECT * FROM BowlingStats WHERE player_id = ? AND team_id = ?  AND match_id = ?";
                 try {
                     statement = connection.prepareStatement(sqlCommandToGetBowlingStatsId);
                     statement.setInt(1, playerId);
                     statement.setInt(2, teamId);
                     statement.setInt(3, matchId);
                     ResultSet resultSet = statement.executeQuery();
-                    if (resultSet.next())
+                    if (resultSet.next()) {
                         return resultSet.getInt("id");
-                    else return 0;
+                    } else {
+                        return 0;
+                    }
                 } catch (Exception e) {
                     System.out.println("Query not completed in org.repo.BowlingStatsDB.getBowlingStatsId.");
                 }
@@ -128,8 +133,9 @@ public class BowlingStatsDB {
         if (connection != null) {
             PreparedStatement statement;
             double Average = runsConceded * 1.0;
-            if (wicketsTaken != 0)
+            if (wicketsTaken != 0) {
                 Average = (runsConceded * 1.0) / wicketsTaken;
+            }
             String SqlQueryToUpdateBowlingAverageOfAPlayer = "UPDATE BowlingStats SET Average = ? Where id = ?";
             try {
                 statement = connection.prepareStatement(SqlQueryToUpdateBowlingAverageOfAPlayer);
@@ -195,7 +201,8 @@ public class BowlingStatsDB {
         if (connection != null) {
             PreparedStatement statement;
             try {
-                String sqlQueryToFetchBattingStatsOfAPlayer = "SELECT * FROM BowlingStats WHERE player_id = ? AND team_id = ? AND match_id = ?";
+                String sqlQueryToFetchBattingStatsOfAPlayer
+                        = "SELECT * FROM BowlingStats WHERE player_id = ? AND team_id = ? AND match_id = ?";
                 //System.out.println(playerId + " " + teamId + " " + matchId);
                 statement = connection.prepareStatement(sqlQueryToFetchBattingStatsOfAPlayer);
                 statement.setInt(1, playerId);

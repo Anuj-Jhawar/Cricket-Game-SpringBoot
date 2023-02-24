@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class JdbcConnection {
+
     private static Connection connection;
 
     public static void initializeConnection() {

@@ -5,6 +5,7 @@ import org.project.model.player.Bowler;
 import org.project.model.player.Player;
 
 public class PlayerFactory {
+
     public Player getPlayer(String type) {
         /*
             Return player depending on the type asked.

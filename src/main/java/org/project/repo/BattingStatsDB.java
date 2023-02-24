@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class BattingStatsDB {
+
     int matchId;
     int teamId;
     int playerId;
@@ -27,7 +28,8 @@ public class BattingStatsDB {
         if (connection != null) {
             PreparedStatement statement;
             try {
-                String sqlCommandToInsertBattingStatsInBattingStatsTable = "INSERT INTO BattingStats (player_id, team_id, match_id, RunsScored, BallsPlayed,Fours,Sixes,NotOut,StrikeRate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                String sqlCommandToInsertBattingStatsInBattingStatsTable
+                        = "INSERT INTO BattingStats (player_id, team_id, match_id, RunsScored, BallsPlayed,Fours,Sixes,NotOut,StrikeRate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 statement = connection.prepareStatement(sqlCommandToInsertBattingStatsInBattingStatsTable);
                 statement.setInt(1, playerId);
                 statement.setInt(2, teamId);
@@ -59,16 +61,19 @@ public class BattingStatsDB {
         if (connection != null) {
             PreparedStatement statement;
             try {
-                String sqlCommandToGetBattingStatsId = "SELECT * FROM BattingStats WHERE player_id = ? AND team_id = ?  AND match_id = ?";
+                String sqlCommandToGetBattingStatsId
+                        = "SELECT * FROM BattingStats WHERE player_id = ? AND team_id = ?  AND match_id = ?";
                 try {
                     statement = connection.prepareStatement(sqlCommandToGetBattingStatsId);
                     statement.setInt(1, playerId);
                     statement.setInt(2, teamId);
                     statement.setInt(3, matchId);
                     ResultSet resultSet = statement.executeQuery();
-                    if (resultSet.next())
+                    if (resultSet.next()) {
                         return resultSet.getInt("id");
-                    else return 0;
+                    } else {
+                        return 0;
+                    }
                 } catch (Exception e) {
                     System.out.println("Query not completed in org.repo.BattingStats.getBattingStatsId");
                 }
@@ -106,7 +111,8 @@ public class BattingStatsDB {
         */
         if (connection != null) {
             PreparedStatement statement;
-            String SqlQueryToUpdateNumberOfBallsPlayed = "UPDATE BattingStats SET BallsPlayed = BallsPlayed+1 Where id = ?";
+            String SqlQueryToUpdateNumberOfBallsPlayed
+                    = "UPDATE BattingStats SET BallsPlayed = BallsPlayed+1 Where id = ?";
             try {
                 statement = connection.prepareStatement(SqlQueryToUpdateNumberOfBallsPlayed);
                 statement.setInt(1, battingStatsId);
@@ -170,7 +176,8 @@ public class BattingStatsDB {
         */
         if (connection != null) {
             PreparedStatement statement;
-            String SqlQueryToUpdateNumberOfRunsScored = "UPDATE BattingStats SET RunsScored = RunsScored+? Where id = ?";
+            String SqlQueryToUpdateNumberOfRunsScored
+                    = "UPDATE BattingStats SET RunsScored = RunsScored+? Where id = ?";
             try {
                 statement = connection.prepareStatement(SqlQueryToUpdateNumberOfRunsScored);
                 statement.setInt(1, runsScored);
@@ -238,7 +245,8 @@ public class BattingStatsDB {
         if (connection != null) {
             PreparedStatement statement;
             try {
-                String sqlQueryToFetchBattingStatsOfAPlayer = "SELECT * FROM BattingStats WHERE player_id = ? AND team_id = ? AND match_id = ?";
+                String sqlQueryToFetchBattingStatsOfAPlayer
+                        = "SELECT * FROM BattingStats WHERE player_id = ? AND team_id = ? AND match_id = ?";
                 statement = connection.prepareStatement(sqlQueryToFetchBattingStatsOfAPlayer);
                 statement.setInt(1, playerId);
                 statement.setInt(2, teamId);

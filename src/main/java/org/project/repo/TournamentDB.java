@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class TournamentDB {
+
     String tournamentName;
     Connection connection;
 
@@ -41,15 +42,17 @@ public class TournamentDB {
         /*
             Add tournament details to table.
         */
-        if (this.getTournamentId() != 0)
+        if (this.getTournamentId() != 0) {
             return "Tournament with this name already exists.";
+        }
         if (connection != null) {
             Statement statement;
             try {
                 statement = connection.createStatement();
                 int size = this.tableSize();
                 String modifiedTournamentName = tournamentName + "_" + size;
-                String sqlCommandToCreateTournamentTable = "INSERT INTO Tournaments (Name) VALUES ('" + modifiedTournamentName + "')";
+                String sqlCommandToCreateTournamentTable = "INSERT INTO Tournaments (Name) VALUES ('" +
+                                                           modifiedTournamentName + "')";
                 try {
                     statement.executeUpdate(sqlCommandToCreateTournamentTable);
                     return modifiedTournamentName;
@@ -78,10 +81,11 @@ public class TournamentDB {
                 statement.setString(1, tournamentName);
                 try {
                     ResultSet resultSet = statement.executeQuery();
-                    if (resultSet.next())
+                    if (resultSet.next()) {
                         return resultSet.getInt("id");
-                    else
+                    } else {
                         return 0;
+                    }
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                     System.out.println("Query not completed in org.repo.TournamentDB.getTournamentId.");
