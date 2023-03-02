@@ -153,16 +153,5 @@ public class CricketGame {
         return winner;
     }
 
-    public Team setTeamForTheGame(Team team) {
-        /*
-            Adding batting and bowling stats for each player.
-        */
-        team.addBattingAndBowlingStatsForEachPlayer();
-        return team;
-    }
 
-    public void setTeamsForTheGame() {
-        team1 = setTeamForTheGame(team1);
-        team2 = setTeamForTheGame(team2);
-    }
 }

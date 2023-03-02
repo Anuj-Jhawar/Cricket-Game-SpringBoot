@@ -116,13 +116,4 @@ public class Team {
         players[playerIndex].updateBowlingStats(outComeOfTheBall);
     }
 
-    public void addBattingAndBowlingStatsForEachPlayer() {
-        /*
-            Adding the batting and bowling stats objects to each player.
-        */
-        for (int i = 0; i < 11; i++) {
-            players[i].addBattingStatsObject();
-            players[i].addBowlingStatsObject();
-        }
-    }
 }

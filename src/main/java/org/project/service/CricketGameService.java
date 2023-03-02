@@ -232,7 +232,6 @@ public class CricketGameService {
         */
         Scanner scn = new Scanner(System.in);
         CricketGame game = new CricketGame(tournamentName, team1, team2, venue, format);
-        game.setTeamsForTheGame();
         System.out.println("Game Start");
         String teamWhoWonTheToss = completeToss(game);
         System.out.println("Toss won by" + teamWhoWonTheToss);
