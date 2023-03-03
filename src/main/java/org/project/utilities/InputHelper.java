@@ -1,13 +1,12 @@
-package org.project.service;
+package org.project.utilities;
 
 import org.project.model.CricketGame;
 import org.project.model.Team;
 import org.project.model.player.Player;
-import org.project.utilities.PlayerFactory;
 
 import java.util.Scanner;
 
-public class InputService {
+public class InputHelper {
 
     public void playerNameInput(Player player) {
         Scanner scn = new Scanner(System.in);
