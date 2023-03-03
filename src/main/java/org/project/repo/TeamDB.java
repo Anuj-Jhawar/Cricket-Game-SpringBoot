@@ -1,23 +1,20 @@
 package org.project.repo;
 
+import org.springframework.stereotype.Repository;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
+@Repository
 public class TeamDB {
 
-    String teamName;
     Connection connection;
-
-    public TeamDB(String teamName) {
-        this.teamName = teamName;
-        this.connection = JdbcConnection.getConnection();
-    }
 
     public int tableSize() {
         /*
             Return team table size.
         */
+        connection = JdbcConnection.getConnection();
         if (connection != null) {
             Statement statement;
             try {
@@ -36,11 +33,12 @@ public class TeamDB {
         return 0;
     }
 
-    public String addTeam() {
+    public String addTeam(String teamName) {
         /*
             Add team details to data base.
         */
-        if (this.getTeamId() != 0) {
+        connection = JdbcConnection.getConnection();
+        if (this.getTeamId(teamName) != 0) {
             return "";
         }
         if (connection != null) {
@@ -67,10 +65,11 @@ public class TeamDB {
         return "";
     }
 
-    public int getTeamId() {
+    public int getTeamId(String teamName) {
         /*
             Return team id.
         */
+        connection = JdbcConnection.getConnection();
         if (connection != null) {
             Statement statement;
             try {

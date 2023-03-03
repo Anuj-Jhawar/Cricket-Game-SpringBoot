@@ -22,6 +22,15 @@ public class JdbcConnection {
         }
     }
 
+    public static void closeConnection(){
+        try{
+            connection.close();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
     public static Connection getConnection() {
         /*
             Returns the connection.

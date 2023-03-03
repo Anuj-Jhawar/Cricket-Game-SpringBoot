@@ -2,29 +2,22 @@ package org.project.repo;
 
 import org.project.model.stats.BattingStats;
 import org.project.service.GetBattingStatsFromDatabase;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+@Repository
 public class BattingStatsDB {
 
-    int matchId;
-    int teamId;
-    int playerId;
     Connection connection;
-
-    public BattingStatsDB(int matchId, int teamId, int playerId) {
-        this.matchId = matchId;
-        this.teamId = teamId;
-        this.playerId = playerId;
-        this.connection = JdbcConnection.getConnection();
-    }
-
-    public void addBattingStats(BattingStats battingStats) {
+    public void addBattingStats(BattingStats battingStats,int matchId, int teamId, int playerId) {
         /*
             Adding batting stats row for a given player for a particular match.
         */
+        connection = JdbcConnection.getConnection();
         if (connection != null) {
             PreparedStatement statement;
             try {
@@ -54,10 +47,11 @@ public class BattingStatsDB {
         }
     }
 
-    public int getBattingStatsId() {
+    public int getBattingStatsId(int matchId, int teamId, int playerId) {
         /*
             Getting batting stats row of a given player for a particular match.
         */
+        connection = JdbcConnection.getConnection();
         if (connection != null) {
             PreparedStatement statement;
             try {
@@ -86,11 +80,13 @@ public class BattingStatsDB {
         return 1;
     }
 
-    public void updateBattingStats(int outComeOfTheBall, int runsScored, int ballsPlayed) {
+    public void updateBattingStats(int matchId, int teamId, int playerId,int outComeOfTheBall, int runsScored,
+                                   int ballsPlayed) {
         /*
             Adding batting stats row for a given player for a particular match.
         */
-        int battingStatsId = this.getBattingStatsId();
+        connection = JdbcConnection.getConnection();
+        int battingStatsId = this.getBattingStatsId(matchId,teamId,playerId);
         this.updateBallsPlayed(battingStatsId);
         if (outComeOfTheBall == 7) {
             this.updateNotOut(battingStatsId);
@@ -238,10 +234,11 @@ public class BattingStatsDB {
         }
     }
 
-    public BattingStats getBattingStats() {
+    public BattingStats getBattingStats(int matchId, int teamId, int playerId) {
         /*
             Return batting stats.
         */
+        connection = JdbcConnection.getConnection();
         if (connection != null) {
             PreparedStatement statement;
             try {

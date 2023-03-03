@@ -6,10 +6,12 @@ import lombok.NoArgsConstructor;
 import org.project.model.stats.BattingStats;
 import org.project.model.stats.BowlingStats;
 import org.project.model.stats.Stats;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
 @Data
+@Component
 public class Player {
 
     static int playerCount = 0;

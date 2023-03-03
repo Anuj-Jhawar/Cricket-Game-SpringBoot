@@ -6,19 +6,22 @@ import org.project.model.BallCommentary;
 import org.project.model.CricketGame;
 import org.project.repo.CommentaryDB;
 import org.project.repo.MatchDB;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-
+@Service
 public class CommentaryService {
-
+    @Autowired
+    PlayerService playerService;
+    @Autowired
+    CricketGameService cricketGameService;
     public void addCommentary(Ball ball, CricketGame game, String commentaryText, int inningNo) {
         /*
             Add commentary of the match after every ball.
         */
-        MatchDB matchDB = new MatchDB();
-        int matchId = matchDB.getMatchId(game.getTournamentName(), game.getTeam1().getTeamName(),
+        int matchId = cricketGameService.getMatchId(game.getTournamentName(), game.getTeam1().getTeamName(),
                 game.getTeam2().getTeamName(), game.getBattingTeamIndex());
-        PlayerService playerService = new PlayerService();
         int batsmanID = playerService.getPlayerId(ball.getBatsmanName());
         int bowlerId = playerService.getPlayerId(ball.getBowlerName());
         BallCommentary ballCommentary = new BallCommentary(batsmanID, bowlerId, commentaryText);

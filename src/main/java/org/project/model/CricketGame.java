@@ -3,21 +3,33 @@ package org.project.model;
 import org.project.model.player.Player;
 import org.project.repo.BattingStatsDB;
 import org.project.repo.BowlingStatsDB;
+import org.project.service.BattingStatsService;
+import org.project.service.BowlingStatsService;
 import org.project.service.statsbuilder.BattingStatsBuilder;
 import org.project.service.statsbuilder.BowlingStatsBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CricketGame {
 
     private Team team1;
     private Team team2;
     private Toss tossForGame = new Toss();
-    private Umpire umpire = new Umpire();
+    @Autowired
+    private Umpire umpire;
     private String venue;
     private String winner;
     private String format;
     private String tournamentName;
+    @Autowired
+    BattingStatsService battingStatsService;
+    @Autowired
+    BowlingStatsService bowlingStatsService;
 
-    public CricketGame(String tournamentName, Team team1, Team team2, String venue, String format) {
+    public CricketGame(){}
+
+    public void setCricketGame(String tournamentName, Team team1, Team team2, String venue, String format) {
         this.tournamentName = tournamentName;
         this.team1 = team1;
         this.team2 = team2;
@@ -102,16 +114,14 @@ public class CricketGame {
         if (teamIndex == 1) {
             team1.updateBattingStatsOfPlayer(playerIndex, runs);
             Player player = team1.getPlayer(playerIndex);
-            BattingStatsDB battingStatsDB = BattingStatsBuilder.getBattingStatsObject(tournamentName,
-                    team1.getTeamName(), team2.getTeamName(), player, this.getBattingTeamIndex(), team1.getTeamName());
-            battingStatsDB.updateBattingStats(runs, player.getBattingStats().getScore(),
+            battingStatsService.updateBattingStats(tournamentName,
+                    team1.getTeamName(), team2.getTeamName(), player, this.getBattingTeamIndex(), team1.getTeamName(),runs, player.getBattingStats().getScore(),
                     player.getBattingStats().getBallsPlayed());
         } else {
             team2.updateBattingStatsOfPlayer(playerIndex, runs);
             Player player = team2.getPlayer(playerIndex);
-            BattingStatsDB battingStatsDB = BattingStatsBuilder.getBattingStatsObject(tournamentName,
-                    team1.getTeamName(), team2.getTeamName(), player, this.getBattingTeamIndex(), team2.getTeamName());
-            battingStatsDB.updateBattingStats(runs, player.getBattingStats().getScore(),
+            battingStatsService.updateBattingStats(tournamentName,
+                    team1.getTeamName(), team2.getTeamName(), player, this.getBattingTeamIndex(), team2.getTeamName(),runs, player.getBattingStats().getScore(),
                     player.getBattingStats().getBallsPlayed());
         }
     }
@@ -123,15 +133,13 @@ public class CricketGame {
         if (teamIndex == 1) {
             team2.updateBowlingStatsOfPlayer(playerIndex, outcomeOfTheBall);
             Player player = team2.getPlayer(playerIndex);
-            BowlingStatsDB bowlingStatsDB = BowlingStatsBuilder.getBowlingStatsObject(tournamentName,
-                    team1.getTeamName(), team2.getTeamName(), player, this.getBattingTeamIndex(), team2.getTeamName());
-            bowlingStatsDB.updateBowlingStats(outcomeOfTheBall, player.getBowlingStats());
+            bowlingStatsService.updateBowlingStats(tournamentName,
+                    team1.getTeamName(), team2.getTeamName(), player, this.getBattingTeamIndex(), team2.getTeamName(),outcomeOfTheBall, player.getBowlingStats());
         } else {
             team1.updateBowlingStatsOfPlayer(playerIndex, outcomeOfTheBall);
             Player player = team1.getPlayer(playerIndex);
-            BowlingStatsDB bowlingStatsDB = BowlingStatsBuilder.getBowlingStatsObject(tournamentName,
-                    team1.getTeamName(), team2.getTeamName(), player, this.getBattingTeamIndex(), team1.getTeamName());
-            bowlingStatsDB.updateBowlingStats(outcomeOfTheBall, player.getBowlingStats());
+            bowlingStatsService.updateBowlingStats(tournamentName,
+                    team1.getTeamName(), team2.getTeamName(), player, this.getBattingTeamIndex(), team1.getTeamName(),outcomeOfTheBall, player.getBowlingStats());
         }
     }
 

@@ -1,10 +1,15 @@
 package org.project.model;
 
 import org.project.service.CommentaryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Umpire {
 
     private final String name;
+    @Autowired
+    CommentaryService commentaryService;
 
     public Umpire() {
         name = "Kumar DharmaSena.";
@@ -80,7 +85,6 @@ public class Umpire {
         } else {
             commentaryText = runs(OutcomeOfTheBall);
         }
-        CommentaryService commentaryService = new CommentaryService();
         commentaryService.addCommentary(ball, game, commentaryText, inningNo);
     }
 

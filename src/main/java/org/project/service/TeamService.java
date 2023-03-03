@@ -1,15 +1,21 @@
 package org.project.service;
 
+import lombok.NoArgsConstructor;
 import org.project.model.Team;
 import org.project.model.player.Player;
+import org.project.repo.TeamDB;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-
+@Service
+@NoArgsConstructor
 public class TeamService {
-
-    public static Team setTeam(Map<String, Object> document) {
+    @Autowired
+    TeamDB teamDB;
+    public Team setTeam(Map<String, Object> document) {
         /*
             Create team from the user input and return it.
         */
@@ -27,5 +33,14 @@ public class TeamService {
         }
         team.setPlayers(players);
         return team;
+    }
+    public String addTeamToTeamTable(Team team) {
+        /*
+            Add team.
+        */
+        return teamDB.addTeam(team.getTeamName());
+    }
+    public int getTeamId(String teamName){
+        return teamDB.getTeamId(teamName);
     }
 }

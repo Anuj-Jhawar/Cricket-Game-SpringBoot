@@ -1,18 +1,40 @@
 package org.project.service;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.project.model.Ball;
 import org.project.model.CricketGame;
 import org.project.model.Team;
 import org.project.model.scorecard.ScoreCard;
+import org.project.repo.JdbcConnection;
 import org.project.repo.MatchDB;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Scanner;
 
-public class CricketGameService {
 
+@Data
+@NoArgsConstructor
+@Service
+public class CricketGameService {
+    @Autowired
+    private TeamService teamService;
+
+    @Autowired
+    DataBaseService dataBaseService;
+    @Autowired
+    CricketGame game;
+    @Autowired
+    MatchDB matchDB;
+    @Autowired
+    ScoreCard scoreCard;
     String completeToss(CricketGame game) {
         /*
             Function to complete the toss for the game.
@@ -125,15 +147,14 @@ public class CricketGameService {
         /*
             Function to assign Winner of the Game.
         */
-        MatchDB matchDB = new MatchDB();
-        int matchId = matchDB.getMatchId(game.getTournamentName(), game.getTeam1().getTeamName(),
+        int matchId = this.getMatchId(game.getTournamentName(), game.getTeam1().getTeamName(),
                 game.getTeam2().getTeamName(), game.getBattingTeamIndex());
         if (game.getTeam1().getRunsScored() > game.getTeam2().getRunsScored()) {
             game.setWinner(game.getTeam1().getTeamName());
-            matchDB.updateResult(1, matchId);
+            this.updateResult(1, matchId);
         } else {
             game.setWinner(game.getTeam2().getTeamName());
-            matchDB.updateResult(2, matchId);
+            this.updateResult(2, matchId);
         }
     }
 
@@ -222,8 +243,8 @@ public class CricketGameService {
         /*
             Function to print Others.ScoreCard
         */
-        ScoreCard newScoreCard = new ScoreCard(game);
-        newScoreCard.printScoreCard();
+        scoreCard.setScoreCard(game);
+        scoreCard.printScoreCard();
     }
 
     public void play(String tournamentName, Team team1, Team team2, String venue, String format) {
@@ -231,12 +252,11 @@ public class CricketGameService {
             Start playing cricket game.
         */
         Scanner scn = new Scanner(System.in);
-        CricketGame game = new CricketGame(tournamentName, team1, team2, venue, format);
+        game.setCricketGame(tournamentName, team1, team2, venue, format);
         System.out.println("Game Start");
         String teamWhoWonTheToss = completeToss(game);
         System.out.println("Toss won by" + teamWhoWonTheToss);
-        DataBaseService dataBaseService = new DataBaseService(game);
-        dataBaseService.addToDataBase();
+        dataBaseService.addToDataBase(game);
         System.out.println(teamWhoWonTheToss + " decided to bat first");
         letsPlayTheGame(game);
         System.out.println("Team Who won the match is " + game.getWinner());
@@ -250,9 +270,25 @@ public class CricketGameService {
         String tournamentName = (String) requestBody.get("tournamentName");
         String venue = (String) requestBody.get("venue");
         String format = (String) requestBody.get("format");
-        Team team1 = TeamService.setTeam((Map<String, Object>) requestBody.get("team1"));
-        Team team2 = TeamService.setTeam((Map<String, Object>) requestBody.get("team2"));
+        Team team1 = teamService.setTeam((Map<String, Object>) requestBody.get("team1"));
+        Team team2 = teamService.setTeam((Map<String, Object>) requestBody.get("team2"));
         this.play(tournamentName, team1, team2, venue, format);
         return "";
+    }
+
+    public void addMatch(String tournamentName, String team1Name, String team2Name, int battingTeamIndex){
+        matchDB.addMatch(tournamentName, team1Name, team2Name, battingTeamIndex);
+    }
+    public int getMatchIdByDate(int tournamentId, int team1Id, int team2Id, Date date){
+        return matchDB.getMatchIdByDate(tournamentId, team1Id, team2Id, date);
+    }
+    public int findBattingFirstTeam(int matchId){
+        return matchDB.findBattingFirstTeam(matchId);
+    }
+    public void updateResult(int teamNo, int matchId){
+        matchDB.updateResult(teamNo, matchId);
+    }
+    public int getMatchId(String tournamentName, String team1Name, String team2Name, int battingTeamIndex){
+        return matchDB.getMatchId(tournamentName, team1Name, team2Name, battingTeamIndex);
     }
 }

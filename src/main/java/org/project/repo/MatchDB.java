@@ -1,36 +1,39 @@
 package org.project.repo;
 
+import org.project.service.TeamService;
+import org.project.service.TournamentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
+@Repository
 public class MatchDB {
 
     Connection connection;
+    @Autowired
+    TournamentService tournamentService;
+    @Autowired
+    TeamService teamService;
 
-    public MatchDB() {
-        this.connection = JdbcConnection.getConnection();
-    }
 
     public void addMatch(String tournamentName, String team1Name, String team2Name, int battingTeamIndex) {
         /*
             Add match in the database.
         */
-        TeamDB teamDB = new TeamDB(team1Name);
-        TeamDB teamDB1 = new TeamDB(team2Name);
+        connection = JdbcConnection.getConnection();
         int team1Id;
         int team2Id;
         if (battingTeamIndex == 1) {
-            team1Id = teamDB.getTeamId();
-            team2Id = teamDB1.getTeamId();
+            team1Id = teamService.getTeamId(team1Name);
+            team2Id = teamService.getTeamId(team2Name);
         } else {
-            team1Id = teamDB1.getTeamId();
-            team2Id = teamDB.getTeamId();
+            team1Id = teamService.getTeamId(team2Name);
+            team2Id = teamService.getTeamId(team1Name);
         }
-        TournamentDB tournamentDB = new TournamentDB(tournamentName);
-        System.out.println(tournamentName);
-        int tournamentId = tournamentDB.getTournamentId();
+        int tournamentId = tournamentService.getId(tournamentName);
         if (connection != null) {
             PreparedStatement statement;
             java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
@@ -62,18 +65,17 @@ public class MatchDB {
         /*
             Return match id.
         */
-        TeamDB teamDB = new TeamDB(team1Name);
-        TeamDB teamDB1 = new TeamDB(team2Name);
-        int team1Id, team2Id;
+        connection = JdbcConnection.getConnection();
+        int team1Id;
+        int team2Id;
         if (battingTeamIndex == 1) {
-            team1Id = teamDB.getTeamId();
-            team2Id = teamDB1.getTeamId();
+            team1Id = teamService.getTeamId(team1Name);
+            team2Id = teamService.getTeamId(team2Name);
         } else {
-            team1Id = teamDB1.getTeamId();
-            team2Id = teamDB.getTeamId();
+            team1Id = teamService.getTeamId(team2Name);
+            team2Id = teamService.getTeamId(team1Name);
         }
-        TournamentDB tournamentDB = new TournamentDB(tournamentName);
-        int tournamentId = tournamentDB.getTournamentId();
+        int tournamentId = tournamentService.getId(tournamentName);
         if (connection != null) {
             PreparedStatement statement;
             try {
@@ -106,6 +108,7 @@ public class MatchDB {
         /*
             Return match id after finding it by date.
         */
+        connection = JdbcConnection.getConnection();
         if (connection != null) {
             PreparedStatement statement;
             try {
@@ -145,6 +148,7 @@ public class MatchDB {
         /*
             Return batting first team.
         */
+        connection = JdbcConnection.getConnection();
         if (connection != null) {
             PreparedStatement statement;
             try {
@@ -175,6 +179,7 @@ public class MatchDB {
         /*
             Update result of the match.
         */
+        connection = JdbcConnection.getConnection();
         if (connection != null) {
             PreparedStatement statement;
             try {

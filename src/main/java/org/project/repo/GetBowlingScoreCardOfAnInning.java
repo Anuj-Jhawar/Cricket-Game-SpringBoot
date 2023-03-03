@@ -2,23 +2,21 @@ package org.project.repo;
 
 import org.project.model.ScoreCardForPlayer;
 import org.project.service.GetBowlingStatsFromDatabase;
+import org.project.service.PlayerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+@Repository
 public class GetBowlingScoreCardOfAnInning {
+    @Autowired
+    PlayerService playerService;
 
-    private int teamId;
-    private int matchId;
-
-    public GetBowlingScoreCardOfAnInning(int teamId, int matchId) {
-        this.teamId = teamId;
-        this.matchId = matchId;
-    }
-
-    public ArrayList<ScoreCardForPlayer> getBowlingScoreCardOfAnInning(Connection connection) {
+    public ArrayList<ScoreCardForPlayer> getBowlingScoreCardOfAnInning(int matchId, int teamId,Connection connection) {
         /*
             Return bowling scorecard for a given match
         */
@@ -37,8 +35,7 @@ public class GetBowlingScoreCardOfAnInning {
                     do {
                         GetBowlingStatsFromDatabase getBowlingStatsFromDatabase = new GetBowlingStatsFromDatabase();
                         int playerId = resultSet.getInt("player_id");
-                        PlayerDB playerDB = new PlayerDB();
-                        String playerName = playerDB.getPlayerName(playerId);
+                        String playerName = playerService.getPlayerName(playerId);
                         ScoreCardForPlayer scoreCardForPlayer = new ScoreCardForPlayer(playerName,
                                 getBowlingStatsFromDatabase.createBowlingStats(resultSet));
                         bowlingStats.add(scoreCardForPlayer);

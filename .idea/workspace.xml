@@ -7,9 +7,8 @@
     <list default="true" id="3083c863-6d26-46ca-9094-c6702de0e0d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/project/model/CricketGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/CricketGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/model/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/Team.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/model/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/player/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/CricketGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/CricketGameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/DataBaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/DataBaseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/TeamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/TeamService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

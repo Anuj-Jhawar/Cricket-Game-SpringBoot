@@ -6,15 +6,23 @@ import org.project.model.Team;
 import org.project.model.player.Player;
 import org.project.model.stats.BowlingStats;
 import org.project.repo.BowlingStatsDB;
+import org.project.service.BowlingStatsService;
 import org.project.service.statsbuilder.BowlingStatsBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class BowlingScoreCard implements InningScoreCard {
-
+    @Autowired
     Player[] players = new Player[11];
+    @Autowired
     CricketGame game;
+    @Autowired
     Team bowlingTeam;
+    @Autowired
+    BowlingStatsService bowlingStatsService;
 
-    public BowlingScoreCard(CricketGame game, Team bowlingTeam) {
+    public void setBowlingScoreCard(CricketGame game, Team bowlingTeam) {
         this.game = game;
         players = bowlingTeam.getPlayers();
         this.bowlingTeam = bowlingTeam;
@@ -37,14 +45,14 @@ public class BowlingScoreCard implements InningScoreCard {
         */
         printHeadings();
         for (Player currentBowler : players) {
-            BowlingStatsDB bowlingStatsDB = BowlingStatsBuilder.getBowlingStatsObject(game.getTournamentName(),
+            BowlingStats bowlingStats = bowlingStatsService.getBowlingStats(game.getTournamentName(),
                     game.getTeam1().getTeamName(), game.getTeam2().getTeamName(), currentBowler,
                     game.getBattingTeamIndex(), bowlingTeam.getTeamName());
-            BowlingStats bowlingStats = bowlingStatsDB.getBowlingStats();
             if (bowlingStats.getBallsBowled() > 0) {
                 System.out.printf("%-20s %10s %10s %5s %n", currentBowler.getName(), bowlingStats.getRunConceded(),
                         bowlingStats.getBallsBowled(), bowlingStats.getWickets());
             }
         }
     }
+
 }

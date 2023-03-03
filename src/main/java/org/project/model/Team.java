@@ -2,7 +2,9 @@ package org.project.model;
 
 import org.project.model.player.Batsman;
 import org.project.model.player.Player;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Team {
 
     private static int teamCount = 0;

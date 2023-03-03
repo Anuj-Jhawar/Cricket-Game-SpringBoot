@@ -2,28 +2,41 @@ package org.project.model.scorecard;
 
 
 import org.project.model.CricketGame;
+import org.project.service.BattingStatsService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ScoreCard {
 
-    InningScoreCard[] innings = new InningScoreCard[4];
 
-    public ScoreCard(CricketGame game) {
+    @Autowired
+    BattingScoreCard battingScoreCard;
+    @Autowired
+    BattingScoreCard battingScoreCard2;
+    @Autowired
+    BowlingScoreCard bowlingScoreCard;
+    @Autowired
+    BowlingScoreCard bowlingScoreCard2;
+
+    public void setScoreCard(CricketGame game) {
         if (game.getBattingTeamIndex() == 1) {
-            innings[0] = new BattingScoreCard(game, game.getTeam1());
-            innings[1] = new BowlingScoreCard(game, game.getTeam2());
-            innings[2] = new BattingScoreCard(game, game.getTeam2());
-            innings[3] = new BowlingScoreCard(game, game.getTeam1());
+            battingScoreCard.setBattingScoreCard(game,game.getTeam1());
+            battingScoreCard2.setBattingScoreCard(game,game.getTeam2());
+            bowlingScoreCard.setBowlingScoreCard(game,game.getTeam2());
+            bowlingScoreCard.setBowlingScoreCard(game,game.getTeam1());
         } else {
-            innings[0] = new BattingScoreCard(game, game.getTeam2());
-            innings[1] = new BowlingScoreCard(game, game.getTeam1());
-            innings[2] = new BattingScoreCard(game, game.getTeam1());
-            innings[3] = new BowlingScoreCard(game, game.getTeam2());
+            battingScoreCard.setBattingScoreCard(game,game.getTeam2());
+            battingScoreCard2.setBattingScoreCard(game,game.getTeam1());
+            bowlingScoreCard.setBowlingScoreCard(game,game.getTeam1());
+            bowlingScoreCard.setBowlingScoreCard(game,game.getTeam2());
         }
     }
 
     public void printScoreCard() {
-        for (InningScoreCard stats : innings) {
-            stats.showStats();
-        }
+        battingScoreCard.showStats();
+        battingScoreCard2.showStats();
+        bowlingScoreCard.showStats();
+        bowlingScoreCard2.showStats();
     }
 }

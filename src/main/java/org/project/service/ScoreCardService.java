@@ -5,6 +5,9 @@ import org.project.repo.GetBattingScoreCardOfAnInning;
 import org.project.repo.GetBowlingScoreCardOfAnInning;
 import org.project.repo.JdbcConnection;
 import org.project.repo.MatchDB;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -13,14 +16,21 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Map;
 
+@Service
 public class ScoreCardService {
 
     int tournamentId;
     int team1Id;
     int team2Id;
     Date date;
+    @Autowired
+    CricketGameService cricketGameService;
+    @Autowired
+    GetBattingScoreCardOfAnInning getBattingScoreCardOfAnInning;
+    @Autowired
+    GetBowlingScoreCardOfAnInning getBowlingScoreCardOfAnInning;
 
-    public ScoreCardService(Map<String, Object> requestBody) {
+    public void setScoreCardService(Map<String, Object> requestBody) {
         tournamentId = Integer.parseInt((String) requestBody.get("tournamentId"));
         team1Id = Integer.parseInt((String) requestBody.get("team1Id"));
         team2Id = Integer.parseInt((String) requestBody.get("team2Id"));
@@ -37,37 +47,32 @@ public class ScoreCardService {
 
 
     public int getMatchId(int tournamentId, int team1Id, int team2Id, Date date, Connection connection) {
-        MatchDB matchDB = new MatchDB();
-        int matchId = matchDB.getMatchIdByDate(tournamentId, team1Id, team2Id, date);
+        int matchId = cricketGameService.getMatchIdByDate(tournamentId,team1Id,team2Id,date);
         return matchId;
     }
 
     public ArrayList<ScoreCardForPlayer> getBattingScoreCard(int teamId, int matchId, Connection connection) {
-        GetBattingScoreCardOfAnInning getBattingScoreCardOfAnInning = new GetBattingScoreCardOfAnInning(teamId,
-                matchId);
         ArrayList<ScoreCardForPlayer> teamBattingStats = getBattingScoreCardOfAnInning.getBattingScoreCardOfAnInning(
-                connection);
+                matchId,teamId,connection);
         return teamBattingStats;
     }
 
     public ArrayList<ScoreCardForPlayer> getBowlingScoreCard(int teamId, int matchId, Connection connection) {
-        GetBowlingScoreCardOfAnInning getBowlingScoreCardOfAnInning = new GetBowlingScoreCardOfAnInning(teamId,
-                matchId);
         ArrayList<ScoreCardForPlayer> teamBowlingStats = getBowlingScoreCardOfAnInning.getBowlingScoreCardOfAnInning(
-                connection);
+                matchId,teamId,connection);
         return teamBowlingStats;
     }
 
-    public ArrayList<ArrayList<ScoreCardForPlayer>> get() {
+    public ArrayList<ArrayList<ScoreCardForPlayer>> get(Map<String, Object> requestBody) {
         /*
             Return scorecard for a given match.
         */
+        this.setScoreCardService(requestBody);
         JdbcConnection.initializeConnection();
         ArrayList<ArrayList<ScoreCardForPlayer>> stats = new ArrayList<>();
         Connection connection = JdbcConnection.getConnection();
         int matchId = getMatchId(tournamentId, team1Id, team2Id, date, connection);
-        MatchDB matchDB = new MatchDB();
-        int battingFirstTeamId = matchDB.findBattingFirstTeam(matchId);
+        int battingFirstTeamId = cricketGameService.findBattingFirstTeam(matchId);
         int battingSecondTeamId = battingFirstTeamId == team1Id ? team2Id : team1Id;
 
         stats.add(getBattingScoreCard(battingFirstTeamId, matchId, connection));

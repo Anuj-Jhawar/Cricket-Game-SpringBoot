@@ -1,21 +1,21 @@
 package org.project.repo;
 
+import org.springframework.stereotype.Repository;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
+@Repository
 public class PlayerDB {
 
     Connection connection;
 
-    public PlayerDB() {
-        this.connection = JdbcConnection.getConnection();
-    }
 
     public void addPlayer(String playerName, int age) {
         /*
             Add player details to database.
         */
+        connection = JdbcConnection.getConnection();
         if (this.getPlayerId(playerName) != 0) {
             return;
         }
@@ -45,6 +45,7 @@ public class PlayerDB {
         /*
             Return player id.
         */
+        connection = JdbcConnection.getConnection();
         if (connection != null) {
             PreparedStatement statement;
             try {
@@ -76,6 +77,7 @@ public class PlayerDB {
         /*
             Return player name.
         */
+        connection = JdbcConnection.getConnection();
         if (connection != null) {
             PreparedStatement statement;
             String sqlCommandToGetPlayerName = "SELECT Name from Players WHERE id = ?";

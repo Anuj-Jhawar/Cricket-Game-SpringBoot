@@ -6,9 +6,10 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.project.model.BallCommentary;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-
+@Repository
 public class CommentaryDB {
 
     private static final MongoClient mongoClient = MongoClients.create();

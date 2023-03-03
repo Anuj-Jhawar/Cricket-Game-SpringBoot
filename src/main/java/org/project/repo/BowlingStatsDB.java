@@ -3,29 +3,20 @@ package org.project.repo;
 
 import org.project.model.stats.BowlingStats;
 import org.project.service.GetBowlingStatsFromDatabase;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+@Repository
 public class BowlingStatsDB {
-
-    int matchId;
-    int playerId;
-    int teamId;
     Connection connection;
-
-    public BowlingStatsDB(int matchId, int teamId, int playerId) {
-        this.matchId = matchId;
-        this.teamId = teamId;
-        this.playerId = playerId;
-        this.connection = JdbcConnection.getConnection();
-    }
-
-    public void addBowlingStats(BowlingStats bowlingStats) {
+    public void addBowlingStats(BowlingStats bowlingStats,int matchId, int teamId, int playerId) {
         /*
             Add bowling stats for a given match for a player.
         */
+        connection = JdbcConnection.getConnection();
         if (connection != null) {
             PreparedStatement statement;
             try {
@@ -53,10 +44,11 @@ public class BowlingStatsDB {
         }
     }
 
-    public int getBowlingStatsId() {
+    public int getBowlingStatsId(int matchId, int teamId, int playerId) {
         /*
             Return bowling stats id for a given player for a given match.
         */
+        connection = JdbcConnection.getConnection();
         if (connection != null) {
             PreparedStatement statement;
             try {
@@ -86,14 +78,16 @@ public class BowlingStatsDB {
         return 0;
     }
 
-    public void updateBowlingStats(int outComeOfTheBall, BowlingStats bowlingStats) {
+    public void updateBowlingStats(int matchId, int teamId, int playerId,int outComeOfTheBall,
+                                   BowlingStats bowlingStats) {
         /*
             Update bowling stats for a given match for given player.
         */
+        connection = JdbcConnection.getConnection();
         int runsConceded = bowlingStats.getRunConceded();
         int wickets = bowlingStats.getWickets();
         int ballsBalled = bowlingStats.getBallsBowled();
-        int bowlingStatsId = this.getBowlingStatsId();
+        int bowlingStatsId = this.getBowlingStatsId(matchId,teamId,playerId);
         this.updateBallsBalled(bowlingStatsId, ballsBalled);
         if (outComeOfTheBall == 7) {
             this.updateWicketsTaken(bowlingStatsId);
@@ -194,10 +188,11 @@ public class BowlingStatsDB {
         }
     }
 
-    public BowlingStats getBowlingStats() {
+    public BowlingStats getBowlingStats(int matchId, int teamId, int playerId) {
         /*
             Return bowlingStats.
         */
+        connection = JdbcConnection.getConnection();
         if (connection != null) {
             PreparedStatement statement;
             try {

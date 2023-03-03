@@ -1,17 +1,17 @@
 package org.project.repo;
 
+import org.springframework.stereotype.Repository;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
+@Repository
 public class TournamentDB {
 
-    String tournamentName;
     Connection connection;
 
-    public TournamentDB(String tournamentName) {
-        this.tournamentName = tournamentName;
+    public TournamentDB() {
         JdbcConnection.initializeConnection();
         this.connection = JdbcConnection.getConnection();
     }
@@ -38,11 +38,11 @@ public class TournamentDB {
         return 0;
     }
 
-    public String addTournament() {
+    public String addTournament(String tournamentName) {
         /*
             Add tournament details to table.
         */
-        if (this.getTournamentId() != 0) {
+        if (this.getTournamentId(tournamentName) != 0) {
             return "Tournament with this name already exists.";
         }
         if (connection != null) {
@@ -69,7 +69,7 @@ public class TournamentDB {
         return "";
     }
 
-    public int getTournamentId() {
+    public int getTournamentId(String tournamentName) {
         /*
             Return tournament id.
         */
