@@ -23,19 +23,19 @@ public class ScoreCard {
             battingScoreCard.setBattingScoreCard(game,game.getTeam1());
             battingScoreCard2.setBattingScoreCard(game,game.getTeam2());
             bowlingScoreCard.setBowlingScoreCard(game,game.getTeam2());
-            bowlingScoreCard.setBowlingScoreCard(game,game.getTeam1());
+            bowlingScoreCard2.setBowlingScoreCard(game,game.getTeam1());
         } else {
             battingScoreCard.setBattingScoreCard(game,game.getTeam2());
             battingScoreCard2.setBattingScoreCard(game,game.getTeam1());
             bowlingScoreCard.setBowlingScoreCard(game,game.getTeam1());
-            bowlingScoreCard.setBowlingScoreCard(game,game.getTeam2());
+            bowlingScoreCard2.setBowlingScoreCard(game,game.getTeam2());
         }
     }
 
     public void printScoreCard() {
         battingScoreCard.showStats();
-        battingScoreCard2.showStats();
         bowlingScoreCard.showStats();
+        battingScoreCard2.showStats();
         bowlingScoreCard2.showStats();
     }
 }

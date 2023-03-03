@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 @Repository
-public class PlayerDB {
+public class Players {
 
     Connection connection;
 

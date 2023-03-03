@@ -1,7 +1,6 @@
 package org.project.repo;
 
 
-import org.project.model.stats.BowlingStats;
 import org.project.utilities.GetBowlingStatsFromDatabase;
 import org.springframework.stereotype.Repository;
 
@@ -10,9 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 @Repository
-public class BowlingStatsDB {
+public class BowlingStats {
     Connection connection;
-    public void addBowlingStats(BowlingStats bowlingStats,int matchId, int teamId, int playerId) {
+    public void addBowlingStats(org.project.model.stats.BowlingStats bowlingStats, int matchId, int teamId, int playerId) {
         /*
             Add bowling stats for a given match for a player.
         */
@@ -79,7 +78,7 @@ public class BowlingStatsDB {
     }
 
     public void updateBowlingStats(int matchId, int teamId, int playerId,int outComeOfTheBall,
-                                   BowlingStats bowlingStats) {
+                                   org.project.model.stats.BowlingStats bowlingStats) {
         /*
             Update bowling stats for a given match for given player.
         */
@@ -188,7 +187,7 @@ public class BowlingStatsDB {
         }
     }
 
-    public BowlingStats getBowlingStats(int matchId, int teamId, int playerId) {
+    public org.project.model.stats.BowlingStats getBowlingStats(int matchId, int teamId, int playerId) {
         /*
             Return bowlingStats.
         */

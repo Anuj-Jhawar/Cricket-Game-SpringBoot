@@ -7,7 +7,7 @@ import org.project.model.CricketGame;
 import org.project.model.Team;
 import org.project.model.scorecard.ScoreCard;
 import org.project.repo.JdbcConnection;
-import org.project.repo.MatchDB;
+import org.project.repo.Matches;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +33,7 @@ public class CricketGameService {
     @Autowired
     private CricketGame game;
     @Autowired
-    private MatchDB matchDB;
+    private Matches matches;
     @Autowired
     private ScoreCard scoreCard;
     String completeToss(CricketGame game) {
@@ -300,18 +300,18 @@ public class CricketGameService {
     }
 
     public void addMatch(String tournamentName, String team1Name, String team2Name, int battingTeamIndex){
-        matchDB.addMatch(tournamentName, team1Name, team2Name, battingTeamIndex);
+        matches.addMatch(tournamentName, team1Name, team2Name, battingTeamIndex);
     }
     public int getMatchIdByDate(int tournamentId, int team1Id, int team2Id, Date date){
-        return matchDB.getMatchIdByDate(tournamentId, team1Id, team2Id, date);
+        return matches.getMatchIdByDate(tournamentId, team1Id, team2Id, date);
     }
     public int findBattingFirstTeam(int matchId){
-        return matchDB.findBattingFirstTeam(matchId);
+        return matches.findBattingFirstTeam(matchId);
     }
     public void updateResult(int teamNo, int matchId){
-        matchDB.updateResult(teamNo, matchId);
+        matches.updateResult(teamNo, matchId);
     }
     public int getMatchId(String tournamentName, String team1Name, String team2Name, int battingTeamIndex){
-        return matchDB.getMatchId(tournamentName, team1Name, team2Name, battingTeamIndex);
+        return matches.getMatchId(tournamentName, team1Name, team2Name, battingTeamIndex);
     }
 }

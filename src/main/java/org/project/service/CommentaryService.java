@@ -4,7 +4,7 @@ import org.bson.Document;
 import org.project.model.Ball;
 import org.project.model.BallCommentary;
 import org.project.model.CricketGame;
-import org.project.repo.CommentaryDB;
+import org.project.repo.Commentary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,15 +24,15 @@ public class CommentaryService {
         int batsmanID = playerService.getPlayerId(ball.getBatsmanName());
         int bowlerId = playerService.getPlayerId(ball.getBowlerName());
         BallCommentary ballCommentary = new BallCommentary(batsmanID, bowlerId, commentaryText);
-        CommentaryDB commentaryDB = new CommentaryDB();
-        commentaryDB.updateCommentary(matchId, ballCommentary, inningNo);
+        Commentary commentary = new Commentary();
+        commentary.updateCommentary(matchId, ballCommentary, inningNo);
     }
 
     public ArrayList<ArrayList<Document>> getCommentary(int matchId) {
         /*
             Return commentary of the given match.
         */
-        CommentaryDB commentaryDB = new CommentaryDB();
-        return commentaryDB.getCommentary(matchId);
+        Commentary commentary = new Commentary();
+        return commentary.getCommentary(matchId);
     }
 }

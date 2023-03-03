@@ -10,7 +10,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 @Repository
-public class MatchDB {
+public class Matches {
 
     Connection connection;
     @Autowired

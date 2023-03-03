@@ -1,6 +1,5 @@
 package org.project.repo;
 
-import org.project.model.stats.BattingStats;
 import org.project.utilities.GetBattingStatsFromDatabase;
 import org.springframework.stereotype.Repository;
 
@@ -9,10 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 @Repository
-public class BattingStatsDB {
+public class BattingStats {
 
     Connection connection;
-    public void addBattingStats(BattingStats battingStats,int matchId, int teamId, int playerId) {
+    public void addBattingStats(org.project.model.stats.BattingStats battingStats, int matchId, int teamId, int playerId) {
         /*
             Adding batting stats row for a given player for a particular match.
         */
@@ -233,7 +232,7 @@ public class BattingStatsDB {
         }
     }
 
-    public BattingStats getBattingStats(int matchId, int teamId, int playerId) {
+    public org.project.model.stats.BattingStats getBattingStats(int matchId, int teamId, int playerId) {
         /*
             Return batting stats.
         */
