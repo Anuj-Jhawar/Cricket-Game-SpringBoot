@@ -5,9 +5,7 @@ import org.project.model.CricketGame;
 import org.project.model.Team;
 import org.project.model.player.Player;
 import org.project.model.stats.BattingStats;
-import org.project.repo.BattingStatsDB;
 import org.project.service.BattingStatsService;
-import org.project.service.statsbuilder.BattingStatsBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

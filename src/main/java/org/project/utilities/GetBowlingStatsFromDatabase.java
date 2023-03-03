@@ -1,4 +1,4 @@
-package org.project.service;
+package org.project.utilities;
 
 import org.project.model.stats.BowlingStats;
 

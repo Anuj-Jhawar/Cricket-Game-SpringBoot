@@ -2,7 +2,6 @@ package org.project.model.scorecard;
 
 
 import org.project.model.CricketGame;
-import org.project.service.BattingStatsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

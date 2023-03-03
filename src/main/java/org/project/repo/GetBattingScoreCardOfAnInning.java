@@ -1,7 +1,7 @@
 package org.project.repo;
 
 import org.project.model.ScoreCardForPlayer;
-import org.project.service.GetBattingStatsFromDatabase;
+import org.project.utilities.GetBattingStatsFromDatabase;
 import org.project.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

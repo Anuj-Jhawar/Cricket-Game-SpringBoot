@@ -1,4 +1,4 @@
-package org.project.service;
+package org.project.utilities;
 
 import org.project.model.player.Batsman;
 import org.project.model.player.Bowler;

@@ -4,10 +4,8 @@ import org.project.model.ScoreCardForPlayer;
 import org.project.repo.GetBattingScoreCardOfAnInning;
 import org.project.repo.GetBowlingScoreCardOfAnInning;
 import org.project.repo.JdbcConnection;
-import org.project.repo.MatchDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.sql.Connection;
 import java.sql.Date;

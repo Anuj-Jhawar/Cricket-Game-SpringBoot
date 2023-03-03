@@ -36,7 +36,7 @@ public class MatchDB {
         int tournamentId = tournamentService.getId(tournamentName);
         if (connection != null) {
             PreparedStatement statement;
-            java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
+            Date date = new Date(System.currentTimeMillis());
             try {
                 String sqlCommandToInsertMatchInMatchTable
                         = "INSERT INTO Matches(team1_id, team2_id, tournament_id, result, Date) VALUES( ?, ?, ?, ?, ?)";

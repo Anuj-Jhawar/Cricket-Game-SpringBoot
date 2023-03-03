@@ -1,8 +1,7 @@
 package org.project.repo;
 
 import org.project.model.stats.BattingStats;
-import org.project.service.GetBattingStatsFromDatabase;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.project.utilities.GetBattingStatsFromDatabase;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;

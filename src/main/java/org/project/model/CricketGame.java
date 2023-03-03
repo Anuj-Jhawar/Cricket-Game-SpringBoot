@@ -1,21 +1,17 @@
 package org.project.model;
 
 import org.project.model.player.Player;
-import org.project.repo.BattingStatsDB;
-import org.project.repo.BowlingStatsDB;
 import org.project.service.BattingStatsService;
 import org.project.service.BowlingStatsService;
-import org.project.service.statsbuilder.BattingStatsBuilder;
-import org.project.service.statsbuilder.BowlingStatsBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CricketGame {
 
-    private Team team1;
-    private Team team2;
-    private Toss tossForGame = new Toss();
+    private org.project.model.Team team1;
+    private org.project.model.Team team2;
+    private org.project.model.Toss tossForGame = new Toss();
     @Autowired
     private Umpire umpire;
     private String venue;
@@ -29,7 +25,7 @@ public class CricketGame {
 
     public CricketGame(){}
 
-    public void setCricketGame(String tournamentName, Team team1, Team team2, String venue, String format) {
+    public void setCricketGame(String tournamentName, org.project.model.Team team1, org.project.model.Team team2, String venue, String format) {
         this.tournamentName = tournamentName;
         this.team1 = team1;
         this.team2 = team2;
@@ -37,7 +33,7 @@ public class CricketGame {
         this.format = format;
     }
 
-    public Team getTeam1() {
+    public org.project.model.Team getTeam1() {
         return team1;
     }
 

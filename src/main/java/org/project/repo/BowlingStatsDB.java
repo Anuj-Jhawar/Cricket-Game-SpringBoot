@@ -2,7 +2,7 @@ package org.project.repo;
 
 
 import org.project.model.stats.BowlingStats;
-import org.project.service.GetBowlingStatsFromDatabase;
+import org.project.utilities.GetBowlingStatsFromDatabase;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;

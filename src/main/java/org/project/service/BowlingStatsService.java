@@ -1,9 +1,10 @@
 package org.project.service;
 
+import org.project.model.CricketGame;
+import org.project.model.Team;
 import org.project.model.player.Player;
 import org.project.model.stats.BowlingStats;
 import org.project.repo.BowlingStatsDB;
-import org.project.repo.MatchDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,5 +44,18 @@ public class BowlingStatsService {
         int playerId = playerService.getPlayerId(player.getName());
         return this.getBowlingStats(matchId,teamId,playerId);
     }
-
+    public void addBowlingStatsToBowlingStatsTable(CricketGame game, Team team) {
+        /*
+            Add bowling stats for match.
+        */
+        String teamName = team.getTeamName();
+        Player[] players = team.getPlayers();
+        for (int i = 0; i < 11; i++) {
+            int matchId = cricketGameService.getMatchId(game.getTournamentName(), game.getTeam1().getTeamName(),
+                    game.getTeam2().getTeamName(), game.getBattingTeamIndex());
+            int teamId = teamService.getTeamId(teamName);
+            int playerId = playerService.getPlayerId(players[i].getName());
+            this.addBowlingStats(players[i].getBowlingStats(),matchId,teamId,playerId);
+        }
+    }
 }

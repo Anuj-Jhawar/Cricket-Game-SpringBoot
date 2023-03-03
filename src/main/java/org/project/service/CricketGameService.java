@@ -9,9 +9,7 @@ import org.project.model.scorecard.ScoreCard;
 import org.project.repo.JdbcConnection;
 import org.project.repo.MatchDB;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -26,15 +24,18 @@ import java.util.Scanner;
 public class CricketGameService {
     @Autowired
     private TeamService teamService;
-
     @Autowired
-    DataBaseService dataBaseService;
+    private BowlingStatsService bowlingStatsService;
     @Autowired
-    CricketGame game;
+    private BattingStatsService battingStatsService;
     @Autowired
-    MatchDB matchDB;
+    private PlayerService playerService;
     @Autowired
-    ScoreCard scoreCard;
+    private CricketGame game;
+    @Autowired
+    private MatchDB matchDB;
+    @Autowired
+    private ScoreCard scoreCard;
     String completeToss(CricketGame game) {
         /*
             Function to complete the toss for the game.
@@ -256,7 +257,7 @@ public class CricketGameService {
         System.out.println("Game Start");
         String teamWhoWonTheToss = completeToss(game);
         System.out.println("Toss won by" + teamWhoWonTheToss);
-        dataBaseService.addToDataBase(game);
+        this.addToDataBase(game);
         System.out.println(teamWhoWonTheToss + " decided to bat first");
         letsPlayTheGame(game);
         System.out.println("Team Who won the match is " + game.getWinner());
@@ -274,6 +275,28 @@ public class CricketGameService {
         Team team2 = teamService.setTeam((Map<String, Object>) requestBody.get("team2"));
         this.play(tournamentName, team1, team2, venue, format);
         return "";
+    }
+
+    public void addToDataBase(CricketGame game) {
+        /*
+            Add respective things to their respective databases.
+        */
+        JdbcConnection.initializeConnection();
+        game.getTeam1().setTeamName(teamService.addTeamToTeamTable(game.getTeam1()));
+        game.getTeam2().setTeamName(teamService.addTeamToTeamTable(game.getTeam2()));
+        this.addMatchToMatchTable(game);
+        playerService.addPlayerToPlayerTable(game);
+        bowlingStatsService.addBowlingStatsToBowlingStatsTable(game, game.getTeam1());
+        bowlingStatsService.addBowlingStatsToBowlingStatsTable(game, game.getTeam2());
+        battingStatsService.addBattingStatsToBattingStatsTable(game, game.getTeam1());
+        battingStatsService.addBattingStatsToBattingStatsTable(game, game.getTeam2());
+    }
+    public void addMatchToMatchTable(CricketGame game) {
+        /*
+            Add match.
+        */
+        this.addMatch(game.getTournamentName(), game.getTeam1().getTeamName(), game.getTeam2().getTeamName(),
+                game.getBattingTeamIndex());
     }
 
     public void addMatch(String tournamentName, String team1Name, String team2Name, int battingTeamIndex){
