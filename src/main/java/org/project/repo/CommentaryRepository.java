@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 @Repository
-public class Commentary {
+public class CommentaryRepository {
 
     private static final MongoClient mongoClient = MongoClients.create();
     private static final String DATABASE_NAME = "CommentaryDB";

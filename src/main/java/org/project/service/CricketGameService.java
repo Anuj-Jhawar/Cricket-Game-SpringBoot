@@ -7,7 +7,7 @@ import org.project.model.CricketGame;
 import org.project.model.Team;
 import org.project.model.scorecard.ScoreCard;
 import org.project.repo.JdbcConnection;
-import org.project.repo.Matches;
+import org.project.repo.MatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +33,7 @@ public class CricketGameService {
     @Autowired
     private CricketGame game;
     @Autowired
-    private Matches matches;
+    private MatchRepository matchRepository;
     @Autowired
     private ScoreCard scoreCard;
     String completeToss(CricketGame game) {
@@ -271,8 +271,8 @@ public class CricketGameService {
         String tournamentName = (String) requestBody.get("tournamentName");
         String venue = (String) requestBody.get("venue");
         String format = (String) requestBody.get("format");
-        Team team1 = teamService.setTeam((Map<String, Object>) requestBody.get("team1"));
-        Team team2 = teamService.setTeam((Map<String, Object>) requestBody.get("team2"));
+        Team team1 = teamService.setTeamRepository((Map<String, Object>) requestBody.get("team1"));
+        Team team2 = teamService.setTeamRepository((Map<String, Object>) requestBody.get("team2"));
         this.play(tournamentName, team1, team2, venue, format);
         return "";
     }
@@ -300,18 +300,18 @@ public class CricketGameService {
     }
 
     public void addMatch(String tournamentName, String team1Name, String team2Name, int battingTeamIndex){
-        matches.addMatch(tournamentName, team1Name, team2Name, battingTeamIndex);
+        matchRepository.addMatch(tournamentName, team1Name, team2Name, battingTeamIndex);
     }
     public int getMatchIdByDate(int tournamentId, int team1Id, int team2Id, Date date){
-        return matches.getMatchIdByDate(tournamentId, team1Id, team2Id, date);
+        return matchRepository.getMatchIdByDate(tournamentId, team1Id, team2Id, date);
     }
     public int findBattingFirstTeam(int matchId){
-        return matches.findBattingFirstTeam(matchId);
+        return matchRepository.findBattingFirstTeam(matchId);
     }
     public void updateResult(int teamNo, int matchId){
-        matches.updateResult(teamNo, matchId);
+        matchRepository.updateResult(teamNo, matchId);
     }
     public int getMatchId(String tournamentName, String team1Name, String team2Name, int battingTeamIndex){
-        return matches.getMatchId(tournamentName, team1Name, team2Name, battingTeamIndex);
+        return matchRepository.getMatchId(tournamentName, team1Name, team2Name, battingTeamIndex);
     }
 }

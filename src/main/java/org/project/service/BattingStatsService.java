@@ -3,7 +3,7 @@ package org.project.service;
 import org.project.model.CricketGame;
 import org.project.model.Team;
 import org.project.model.player.Player;
-import org.project.repo.BattingStats;
+import org.project.repo.BattingStatsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,15 +16,15 @@ public class BattingStatsService {
     @Autowired
     CricketGameService cricketGameService;
     @Autowired
-    BattingStats battingStats;
+    BattingStatsRepository battingStatsRepository;
     public void addBattingStats(org.project.model.stats.BattingStats battingStats, int matchId, int teamId, int playerId){
-        this.battingStats.addBattingStats(battingStats,matchId,teamId,playerId);
+        this.battingStatsRepository.addBattingStats(battingStats,matchId,teamId,playerId);
     }
     public int getBattingStatsId(int matchId,int teamId,int playerId){
-        return battingStats.getBattingStatsId( matchId,teamId,playerId);
+        return battingStatsRepository.getBattingStatsId( matchId,teamId,playerId);
     }
     public void updateBattingStats(int matchId,int teamId,int playerId,int outComeOfTheBall, int runsScored, int ballsPlayed){
-        battingStats.updateBattingStats(matchId,teamId,playerId,outComeOfTheBall,runsScored,ballsPlayed);
+        battingStatsRepository.updateBattingStats(matchId,teamId,playerId,outComeOfTheBall,runsScored,ballsPlayed);
     }
     public void updateBattingStats(String tournamentName, String team1Name, String team2Name,
                                    Player player, int battingIndex, String teamName,int runs,int runsScored,int balls){
@@ -34,7 +34,7 @@ public class BattingStatsService {
         this.updateBattingStats(matchId,teamId,playerId,runs,runsScored,balls);
     }
     public org.project.model.stats.BattingStats getBattingStats(int matchId, int teamId, int playerId){
-        return battingStats.getBattingStats(matchId,teamId,playerId);
+        return battingStatsRepository.getBattingStats(matchId,teamId,playerId);
     }
     public org.project.model.stats.BattingStats getBattingStats(String tournamentName, String team1Name, String team2Name,
                                                                 Player player, int battingIndex, String teamName){

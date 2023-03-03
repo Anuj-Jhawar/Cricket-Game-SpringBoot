@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 @Repository
-public class BattingStats {
+public class BattingStatsRepository {
 
     Connection connection;
     public void addBattingStats(org.project.model.stats.BattingStats battingStats, int matchId, int teamId, int playerId) {

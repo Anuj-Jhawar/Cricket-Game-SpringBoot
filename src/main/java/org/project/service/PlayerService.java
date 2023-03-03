@@ -2,25 +2,25 @@ package org.project.service;
 
 import org.project.model.CricketGame;
 import org.project.model.Team;
-import org.project.repo.Players;
+import org.project.repo.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PlayerService {
     @Autowired
-    Players players;
+    PlayerRepository playerRepository;
     public int getPlayerId(String playerName) {
         /*
             Return player id from database.
         */
-        return players.getPlayerId(playerName);
+        return playerRepository.getPlayerId(playerName);
     }
     public String getPlayerName(int playerID){
-        return players.getPlayerName(playerID);
+        return playerRepository.getPlayerName(playerID);
     }
     public void addPlayer(String playerName,int age){
-        players.addPlayer(playerName,age);
+        playerRepository.addPlayer(playerName,age);
     }
     public void addPlayerToPlayerTable(CricketGame game) {
         /*

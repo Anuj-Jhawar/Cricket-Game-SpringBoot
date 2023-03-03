@@ -6,19 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="3083c863-6d26-46ca-9094-c6702de0e0d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/model/scorecard/ScoreCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/scorecard/ScoreCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/repo/BattingStatsDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/BattingStats.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/repo/BowlingStatsDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/BowlingStats.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/repo/CommentaryDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/Commentary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/repo/MatchDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/Matches.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/repo/PlayerDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/Players.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/repo/TeamDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/Teams.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/repo/TournamentDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/Tournaments.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/repo/BattingStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/BattingStatsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/repo/BowlingStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/BowlingStatsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/repo/Commentary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/CommentaryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/repo/GetBattingScoreCardOfAnInning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/BattingScoreCardRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/repo/GetBowlingScoreCardOfAnInning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/BowlingScoreCardRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/repo/Matches.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/MatchRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/repo/Players.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/PlayerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/repo/Teams.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/TeamRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/repo/Tournaments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/TournamentRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/BattingStatsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/BattingStatsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/BowlingStatsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/BowlingStatsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/CommentaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/CommentaryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/CricketGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/CricketGameService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/PlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/PlayerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/ScoreCardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/ScoreCardService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/TeamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/TeamService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/TournamentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/TournamentService.java" afterDir="false" />
     </list>

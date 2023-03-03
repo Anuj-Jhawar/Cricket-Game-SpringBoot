@@ -2,7 +2,7 @@ package org.project.service;
 
 import lombok.NoArgsConstructor;
 import org.project.model.player.Player;
-import org.project.repo.Teams;
+import org.project.repo.TeamRepository;
 import org.project.utilities.PlayerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +14,8 @@ import java.util.Map;
 @NoArgsConstructor
 public class TeamService {
     @Autowired
-    Teams team;
-    public org.project.model.Team setTeam(Map<String, Object> document) {
+    TeamRepository teamRepository;
+    public org.project.model.Team setTeamRepository(Map<String, Object> document) {
         /*
             Create team from the user input and return it.
         */
@@ -38,9 +38,9 @@ public class TeamService {
         /*
             Add team.
         */
-        return this.team.addTeam(team.getTeamName());
+        return this.teamRepository.addTeam(team.getTeamName());
     }
     public int getTeamId(String teamName){
-        return team.getTeamId(teamName);
+        return teamRepository.getTeamId(teamName);
     }
 }

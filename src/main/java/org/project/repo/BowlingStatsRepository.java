@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 @Repository
-public class BowlingStats {
+public class BowlingStatsRepository {
     Connection connection;
     public void addBowlingStats(org.project.model.stats.BowlingStats bowlingStats, int matchId, int teamId, int playerId) {
         /*

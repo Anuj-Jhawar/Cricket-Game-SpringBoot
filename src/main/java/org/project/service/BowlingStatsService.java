@@ -3,7 +3,7 @@ package org.project.service;
 import org.project.model.CricketGame;
 import org.project.model.Team;
 import org.project.model.player.Player;
-import org.project.repo.BowlingStats;
+import org.project.repo.BowlingStatsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,15 +16,15 @@ public class BowlingStatsService {
     @Autowired
     CricketGameService cricketGameService;
     @Autowired
-    BowlingStats bowlingStats;
+    BowlingStatsRepository bowlingStatsRepository;
     public void addBowlingStats(org.project.model.stats.BowlingStats bowlingStats, int matchId, int teamId, int playerId){
-        this.bowlingStats.addBowlingStats(bowlingStats,matchId,teamId,playerId);
+        this.bowlingStatsRepository.addBowlingStats(bowlingStats,matchId,teamId,playerId);
     }
     public int getBowlingStatsId(int matchId,int teamId,int playerId){
-        return bowlingStats.getBowlingStatsId(matchId,teamId,playerId);
+        return bowlingStatsRepository.getBowlingStatsId(matchId,teamId,playerId);
     }
     public void updateBowlingStats(int matchId,int teamId,int playerId,int outComeOfTheBall, org.project.model.stats.BowlingStats bowlingStats){
-        this.bowlingStats.updateBowlingStats(matchId,teamId,playerId,outComeOfTheBall,bowlingStats);
+        this.bowlingStatsRepository.updateBowlingStats(matchId,teamId,playerId,outComeOfTheBall,bowlingStats);
     }
     public void updateBowlingStats(String tournamentName, String team1Name, String team2Name,
                                    Player player, int battingIndex, String teamName, int outcomeOfTheBall,
@@ -35,7 +35,7 @@ public class BowlingStatsService {
         this.updateBowlingStats(matchId,teamId,playerId,outcomeOfTheBall,bowlingStats);
     }
     public org.project.model.stats.BowlingStats getBowlingStats(int matchId, int teamId, int playerId){
-        return bowlingStats.getBowlingStats(matchId,teamId,playerId);
+        return bowlingStatsRepository.getBowlingStats(matchId,teamId,playerId);
     }
     public org.project.model.stats.BowlingStats getBowlingStats(String tournamentName, String team1Name, String team2Name,
                                                                 Player player, int battingIndex, String teamName){

@@ -7,11 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 @Repository
-public class Tournaments {
+public class TournamentRepository {
 
     Connection connection;
 
-    public Tournaments() {
+    public TournamentRepository() {
         JdbcConnection.initializeConnection();
         this.connection = JdbcConnection.getConnection();
     }

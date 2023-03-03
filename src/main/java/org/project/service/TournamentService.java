@@ -1,13 +1,13 @@
 package org.project.service;
 
-import org.project.repo.Tournaments;
+import org.project.repo.TournamentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TournamentService {
     @Autowired
-    Tournaments tournaments;
+    TournamentRepository tournamentRepository;
 
     public String start(String tournamentName) {
         /*
@@ -15,10 +15,10 @@ public class TournamentService {
         */
         org.project.model.Tournament tournament = new org.project.model.Tournament();
         tournament.setTournamentName(tournamentName);
-        tournament.setTournamentName(this.tournaments.addTournament(tournamentName));
+        tournament.setTournamentName(this.tournamentRepository.addTournament(tournamentName));
         return "Tournament Created";
     }
     public int getId(String tournamentName){
-        return tournaments.getTournamentId(tournamentName);
+        return tournamentRepository.getTournamentId(tournamentName);
     }
 }

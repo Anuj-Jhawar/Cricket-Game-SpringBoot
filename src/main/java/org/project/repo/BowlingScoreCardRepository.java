@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 @Repository
-public class GetBowlingScoreCardOfAnInning {
+public class BowlingScoreCardRepository {
     @Autowired
     PlayerService playerService;
 

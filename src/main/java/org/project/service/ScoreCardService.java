@@ -1,8 +1,8 @@
 package org.project.service;
 
 import org.project.model.ScoreCardForPlayer;
-import org.project.repo.GetBattingScoreCardOfAnInning;
-import org.project.repo.GetBowlingScoreCardOfAnInning;
+import org.project.repo.BattingScoreCardRepository;
+import org.project.repo.BowlingScoreCardRepository;
 import org.project.repo.JdbcConnection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,9 +24,9 @@ public class ScoreCardService {
     @Autowired
     CricketGameService cricketGameService;
     @Autowired
-    GetBattingScoreCardOfAnInning getBattingScoreCardOfAnInning;
+    BattingScoreCardRepository battingScoreCardRepository;
     @Autowired
-    GetBowlingScoreCardOfAnInning getBowlingScoreCardOfAnInning;
+    BowlingScoreCardRepository bowlingScoreCardRepository;
 
     public void setScoreCardService(Map<String, Object> requestBody) {
         tournamentId = Integer.parseInt((String) requestBody.get("tournamentId"));
@@ -50,13 +50,13 @@ public class ScoreCardService {
     }
 
     public ArrayList<ScoreCardForPlayer> getBattingScoreCard(int teamId, int matchId, Connection connection) {
-        ArrayList<ScoreCardForPlayer> teamBattingStats = getBattingScoreCardOfAnInning.getBattingScoreCardOfAnInning(
+        ArrayList<ScoreCardForPlayer> teamBattingStats = battingScoreCardRepository.getBattingScoreCardOfAnInning(
                 matchId,teamId,connection);
         return teamBattingStats;
     }
 
     public ArrayList<ScoreCardForPlayer> getBowlingScoreCard(int teamId, int matchId, Connection connection) {
-        ArrayList<ScoreCardForPlayer> teamBowlingStats = getBowlingScoreCardOfAnInning.getBowlingScoreCardOfAnInning(
+        ArrayList<ScoreCardForPlayer> teamBowlingStats = bowlingScoreCardRepository.getBowlingScoreCardOfAnInning(
                 matchId,teamId,connection);
         return teamBowlingStats;
     }
