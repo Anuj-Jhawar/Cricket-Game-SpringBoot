@@ -22,7 +22,7 @@ public class ScoreCardService {
     private int team2Id;
     private Date date;
     @Autowired
-    private CricketGameService cricketGameService;
+    private MatchService matchService;
     @Autowired
     private BattingStatsRepository battingStatsRepository;
     @Autowired
@@ -37,7 +37,7 @@ public class ScoreCardService {
         ArrayList<ArrayList<ScoreCardForPlayer>> stats = new ArrayList<>();
         Connection connection = JdbcConnection.getConnection();
         int matchId = getMatchId(tournamentId, team1Id, team2Id, date, connection);
-        int battingFirstTeamId = cricketGameService.findBattingFirstTeam(matchId);
+        int battingFirstTeamId = matchService.findBattingFirstTeam(matchId);
         int battingSecondTeamId = battingFirstTeamId == team1Id ? team2Id : team1Id;
 
         stats.add(getBattingScoreCard(battingFirstTeamId, matchId, connection));
@@ -63,7 +63,7 @@ public class ScoreCardService {
     }
 
     public int getMatchId(int tournamentId, int team1Id, int team2Id, Date date, Connection connection) {
-        int matchId = cricketGameService.getMatchIdByDate(tournamentId, team1Id, team2Id, date);
+        int matchId = matchService.getMatchIdByDate(tournamentId, team1Id, team2Id, date);
         return matchId;
     }
 

@@ -21,7 +21,7 @@ import java.util.Scanner;
 @Data
 @NoArgsConstructor
 @Service
-public class CricketGameService {
+public class MatchService {
 
     @Autowired
     private TeamService teamService;

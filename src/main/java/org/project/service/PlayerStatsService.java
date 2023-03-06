@@ -24,14 +24,14 @@ public class PlayerStatsService {
     @Autowired
     private BowlingStatsService bowlingStatsService;
     @Autowired
-    private CricketGameService cricketGameService;
+    private MatchService matchService;
 
     public Stats[] get(Map<String, Object> requestBody) {
         /*
             Return player stats for a specific match.
         */
         this.setPlayerStatsService(requestBody);
-        int matchId = cricketGameService.getMatchIdByDate(tournamentId, team1Id, team2Id, date);
+        int matchId = matchService.getMatchIdByDate(tournamentId, team1Id, team2Id, date);
         BattingStats battingStats = battingStatsService.getBattingStats(matchId, team1Id, playerId);
         BowlingStats bowlingStats = bowlingStatsService.getBowlingStats(matchId, team1Id, playerId);
         Stats[] stats = new Stats[2];

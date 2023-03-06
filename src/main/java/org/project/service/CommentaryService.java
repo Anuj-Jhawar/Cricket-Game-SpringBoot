@@ -16,7 +16,7 @@ public class CommentaryService {
     @Autowired
     private PlayerService playerService;
     @Autowired
-    private CricketGameService cricketGameService;
+    private MatchService matchService;
     @Autowired
     private CommentaryRepository commentaryRepository;
 
@@ -24,7 +24,7 @@ public class CommentaryService {
         /*
             Add commentary of the match after every ball.
         */
-        int matchId = cricketGameService.getMatchId(game.getTournamentName(), game.getTeam1().getTeamName(),
+        int matchId = matchService.getMatchId(game.getTournamentName(), game.getTeam1().getTeamName(),
                 game.getTeam2().getTeamName(), game.getBattingTeamIndex());
         int batsmanID = playerService.getPlayerId(ball.getBatsmanName());
         int bowlerId = playerService.getPlayerId(ball.getBowlerName());

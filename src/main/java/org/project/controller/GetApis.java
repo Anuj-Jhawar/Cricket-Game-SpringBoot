@@ -17,7 +17,7 @@ public class GetApis {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GetApis.class);
     @Autowired
-    private CricketGameService cricketGameService;
+    private MatchService matchService;
     @Autowired
     private TournamentService tournamentService;
     @Autowired
@@ -65,6 +65,6 @@ public class GetApis {
     public String startGame(@RequestBody Map<String, Object> requestBody) {
         LOGGER.info("Request for starting a match between team1_id {} and team2_id {} in tournament_id {}",
                 requestBody.get("team1Id"), requestBody.get("team2Id"), requestBody.get("tournamentId"));
-        return cricketGameService.setUpGame(requestBody);
+        return matchService.setUpGame(requestBody);
     }
 }

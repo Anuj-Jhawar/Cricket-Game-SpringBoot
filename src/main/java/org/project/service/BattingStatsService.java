@@ -15,7 +15,7 @@ public class BattingStatsService {
     @Autowired
     private PlayerService playerService;
     @Autowired
-    private CricketGameService cricketGameService;
+    private MatchService matchService;
     @Autowired
     private BattingStatsRepository battingStatsRepository;
 
@@ -25,7 +25,7 @@ public class BattingStatsService {
 
     public void updateBattingStats(String tournamentName, String team1Name, String team2Name, Player player,
                                    int battingIndex, String teamName, int runs, int runsScored, int balls) {
-        int matchId = cricketGameService.getMatchId(tournamentName, team1Name, team2Name, battingIndex);
+        int matchId = matchService.getMatchId(tournamentName, team1Name, team2Name, battingIndex);
         int teamId = teamService.getTeamId(teamName);
         int playerId = playerService.getPlayerId(player.getName());
         this.updateBattingStats(matchId, teamId, playerId, runs, runsScored, balls);
@@ -39,7 +39,7 @@ public class BattingStatsService {
     public org.project.model.stats.BattingStats getBattingStats(String tournamentName, String team1Name,
                                                                 String team2Name, Player player, int battingIndex,
                                                                 String teamName) {
-        int matchId = cricketGameService.getMatchId(tournamentName, team1Name, team2Name, battingIndex);
+        int matchId = matchService.getMatchId(tournamentName, team1Name, team2Name, battingIndex);
         int teamId = teamService.getTeamId(teamName);
         int playerId = playerService.getPlayerId(player.getName());
         return this.getBattingStats(matchId, teamId, playerId);
@@ -56,7 +56,7 @@ public class BattingStatsService {
         String teamName = team.getTeamName();
         Player[] players = team.getPlayers();
         for (int i = 0; i < 11; i++) {
-            int matchId = cricketGameService.getMatchId(game.getTournamentName(), game.getTeam1().getTeamName(),
+            int matchId = matchService.getMatchId(game.getTournamentName(), game.getTeam1().getTeamName(),
                     game.getTeam2().getTeamName(), game.getBattingTeamIndex());
             int teamId = teamService.getTeamId(teamName);
             int playerId = playerService.getPlayerId(players[i].getName());
