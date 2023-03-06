@@ -1,5 +1,7 @@
 package org.project.repo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -10,6 +12,7 @@ import java.sql.Statement;
 public class TournamentRepository {
 
     private Connection connection;
+    private static final Logger LOGGER = LoggerFactory.getLogger(TournamentRepository.class);
 
     public TournamentRepository() {
         JdbcConnection.initializeConnection();
@@ -32,7 +35,7 @@ public class TournamentRepository {
                     return 0;
                 }
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                LOGGER.info(e.getMessage());
             }
         }
         return 0;
@@ -57,14 +60,14 @@ public class TournamentRepository {
                     statement.executeUpdate(sqlCommandToCreateTournamentTable);
                     return modifiedTournamentName;
                 } catch (Exception e) {
-                    System.out.println("Query not completed in org.repo.TournamentDB.addTournament");
+                    LOGGER.info(e.getMessage());
                 }
 
             } catch (Exception e) {
-                System.out.println("Statement not created in org.repo.TournamentDB.addTournament");
+                LOGGER.info(e.getMessage());
             }
         } else {
-            System.out.println("Connection not established in org.repo.TournamentDB.addTournament");
+            LOGGER.info("Connection not established in org.repo.TournamentDB.addTournament");
         }
         return "";
     }
@@ -87,14 +90,13 @@ public class TournamentRepository {
                         return 0;
                     }
                 } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                    System.out.println("Query not completed in org.repo.TournamentDB.getTournamentId.");
+                    LOGGER.info(e.getMessage());
                 }
             } catch (Exception e) {
-                System.out.println("Statement not created in org.repo.TournamentDB.getTournamentId.");
+                LOGGER.info(e.getMessage());
             }
         } else {
-            System.out.println("Connection not established in org.repo.TournamentDB.getTournamentId.");
+            LOGGER.info("Connection not established in org.repo.TournamentDB.getTournamentId.");
         }
         return 1;
     }

@@ -1,6 +1,8 @@
 package org.project.repo;
 
 import org.project.utilities.GetBattingStatsFromDatabase;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -11,6 +13,7 @@ import java.sql.ResultSet;
 public class BattingStatsRepository {
 
     private Connection connection;
+    private static final Logger LOGGER = LoggerFactory.getLogger(BattingStatsRepository.class);
     public void addBattingStats(org.project.model.stats.BattingStats battingStats, int matchId, int teamId, int playerId) {
         /*
             Adding batting stats row for a given player for a particular match.
@@ -34,14 +37,14 @@ public class BattingStatsRepository {
                 try {
                     statement.executeUpdate();
                 } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                    System.out.println("Query not completed in org.repo.BattingStats.addBattingStats");
+                    LOGGER.info(e.getMessage());
+                    LOGGER.info("Query not completed in org.repo.BattingStats.addBattingStats");
                 }
             } catch (Exception e) {
-                System.out.println("Statement not created in org.repo.BattingStats.addBattingStats");
+                LOGGER.info(e.getMessage());
             }
         } else {
-            System.out.println("Connection not established in org.repo.BattingStats.addBattingStats");
+            LOGGER.info("Connection not established in org.repo.BattingStats.addBattingStats");
         }
     }
 
@@ -67,13 +70,13 @@ public class BattingStatsRepository {
                         return 0;
                     }
                 } catch (Exception e) {
-                    System.out.println("Query not completed in org.repo.BattingStats.getBattingStatsId");
+                    LOGGER.info(e.getMessage());
                 }
             } catch (Exception e) {
-                System.out.println("Statement not created in org.repo.BattingStats.getBattingStatsId");
+                LOGGER.info(e.getMessage());
             }
         } else {
-            System.out.println("Connection not established in org.repo.BattingStats.getBattingStatsId");
+            LOGGER.info("Connection not established in org.repo.BattingStats.getBattingStatsId");
         }
         return 1;
     }
@@ -113,11 +116,10 @@ public class BattingStatsRepository {
                 statement.executeUpdate();
 
             } catch (Exception e) {
-                System.out.println("Statement not prepared in org.repo.BattingStats.updateBallsPlayed");
-                System.out.println(e);
+                LOGGER.info(e.getMessage());
             }
         } else {
-            System.out.println("Connection not established in org.repo.BattingStats.updateBallsPlayed");
+            LOGGER.info("Connection not established in org.repo.BattingStats.updateBallsPlayed");
         }
     }
 
@@ -135,11 +137,10 @@ public class BattingStatsRepository {
                 statement.executeUpdate();
 
             } catch (Exception e) {
-                System.out.println("Statement not prepared in org.repo.BattingStats.updateFoursScored");
-                System.out.println(e);
+                LOGGER.info(e.getMessage());
             }
         } else {
-            System.out.println("Connection not established in org.repo.BattingStats.updateFoursScored");
+            LOGGER.info("Connection not established in org.repo.BattingStats.updateFoursScored");
         }
     }
 
@@ -156,11 +157,10 @@ public class BattingStatsRepository {
                 statement.executeUpdate();
 
             } catch (Exception e) {
-                System.out.println("Statement not prepared in org.repo.BattingStats.updateNotOut");
-                System.out.println(e);
+                LOGGER.info(e.getMessage());
             }
         } else {
-            System.out.println("Connection not established in org.repo.BattingStats.updateNotOut");
+            LOGGER.info("Connection not established in org.repo.BattingStats.updateNotOut");
         }
     }
 
@@ -179,11 +179,10 @@ public class BattingStatsRepository {
                 statement.executeUpdate();
 
             } catch (Exception e) {
-                System.out.println("Statement not prepared in org.repo.BattingStats.updateRunsScored");
-                System.out.println(e);
+                LOGGER.info(e.getMessage());
             }
         } else {
-            System.out.println("Connection not established in org.repo.BattingStats.updateRunsScored");
+            LOGGER.info("Connection not established in org.repo.BattingStats.updateRunsScored");
         }
     }
 
@@ -201,11 +200,10 @@ public class BattingStatsRepository {
                 statement.executeUpdate();
 
             } catch (Exception e) {
-                System.out.println("Statement not prepared in org.repo.BattingStats.updateSixesScored");
-                System.out.println(e);
+                LOGGER.info(e.getMessage());
             }
         } else {
-            System.out.println("Connection not established in org.repo.BattingStats.updateSixesScored");
+            LOGGER.info("Connection not established in org.repo.BattingStats.updateSixesScored");
         }
     }
 
@@ -224,11 +222,10 @@ public class BattingStatsRepository {
                 statement.executeUpdate();
 
             } catch (Exception e) {
-                System.out.println("Statement not prepared in org.repo.BattingStats.updateStrikeRate");
-                System.out.println(e);
+                LOGGER.info(e.getMessage());
             }
         } else {
-            System.out.println("Connection not established in org.repo.BattingStats.updateStrikeRate");
+            LOGGER.info("Connection not established in org.repo.BattingStats.updateStrikeRate");
         }
     }
 
@@ -254,11 +251,10 @@ public class BattingStatsRepository {
                     return null;
                 }
             } catch (Exception e) {
-                System.out.println(e);
-                System.out.println("Not able to fetch the batting stats from database");
+                LOGGER.info(e.getMessage());
             }
         } else {
-            System.out.println("Connection not established in org.repo.BattingStats.getBattingStats");
+            LOGGER.info("Connection not established in org.repo.BattingStats.getBattingStats");
         }
         return null;
     }

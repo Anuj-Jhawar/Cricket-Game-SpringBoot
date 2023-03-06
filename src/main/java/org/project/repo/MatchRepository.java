@@ -2,6 +2,8 @@ package org.project.repo;
 
 import org.project.service.TeamService;
 import org.project.service.TournamentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +19,7 @@ public class MatchRepository {
     private TournamentService tournamentService;
     @Autowired
     private TeamService teamService;
+    private static final Logger LOGGER = LoggerFactory.getLogger(MatchRepository.class);
 
 
     public void addMatch(String tournamentName, String team1Name, String team2Name, int battingTeamIndex) {
@@ -49,15 +52,13 @@ public class MatchRepository {
                 try {
                     statement.executeUpdate();
                 } catch (Exception e) {
-                    System.out.println(e);
-                    System.out.println("Query not completed in org.repo.MatchDb.addMatch.");
+                    LOGGER.info(e.getMessage());
                 }
             } catch (Exception e) {
-                System.out.println(e);
-                System.out.println("Statement not created in org.repo.MatchDb.addMatch");
+                LOGGER.info(e.getMessage());
             }
         } else {
-            System.out.println("Connection not established in org.repo.MatchDb.addMatch");
+            LOGGER.info("Connection not established in org.repo.MatchDb.addMatch");
         }
     }
 
@@ -93,13 +94,13 @@ public class MatchRepository {
                         return 0;
                     }
                 } catch (Exception e) {
-                    System.out.println("Query not completed in org.repo.MatchDb.getMatchId");
+                    LOGGER.info(e.getMessage());
                 }
             } catch (Exception e) {
-                System.out.println("Statement not created in org.repo.MatchDb.getMatchId");
+                LOGGER.info(e.getMessage());
             }
         } else {
-            System.out.println("Connection not established in org.repo.MatchDb.getMatchId");
+            LOGGER.info("Connection not established in org.repo.MatchDb.getMatchId");
         }
         return 0;
     }
@@ -132,14 +133,14 @@ public class MatchRepository {
                         return 0;
                     }
                 } catch (Exception e) {
-                    System.out.println("Query not completed in org.repo.MatchDb.getMatchIdByDate");
+                    LOGGER.info(e.getMessage());
                 }
 
             } catch (Exception e) {
-                System.out.println("Statement not created in org.repo.MatchDb.getMatchIdByDate");
+                LOGGER.info(e.getMessage());
             }
         } else {
-            System.out.println("Connection not established in org.repo.MatchDb.getMatchIdByDate");
+            LOGGER.info("Connection not established in org.repo.MatchDb.getMatchIdByDate");
         }
         return 0;
     }
@@ -163,14 +164,14 @@ public class MatchRepository {
                         return 0;
                     }
                 } catch (Exception e) {
-                    System.out.println("Statement not created in org.repo.MatchDb.FindBattingFirstTeamId.");
+                    LOGGER.info(e.getMessage());
                 }
 
             } catch (Exception e) {
-                System.out.println("Query not executed in org.repo.MatchDb.FindBattingFirstTeamId");
+                LOGGER.info(e.getMessage());
             }
         } else {
-            System.out.println("Connection not established in org.repo.MatchDb.FindBattingFirstTeamId.");
+            LOGGER.info("Connection not established in org.repo.MatchDb.FindBattingFirstTeamId.");
         }
         return 0;
     }
@@ -189,11 +190,10 @@ public class MatchRepository {
                 statement.setInt(2, matchId);
                 statement.executeUpdate();
             } catch (Exception e) {
-                System.out.println("Query not executed in org.repo.MatchDb.updateResult");
-                System.out.println(e.getMessage());
+                LOGGER.info(e.getMessage());
             }
         } else {
-            System.out.println("Connection not established in org.repo.MatchDb.updateResult.");
+            LOGGER.info("Connection not established in org.repo.MatchDb.updateResult.");
         }
     }
 }

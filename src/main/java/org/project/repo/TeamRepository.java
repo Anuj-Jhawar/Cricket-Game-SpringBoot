@@ -1,7 +1,10 @@
 package org.project.repo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import java.awt.image.LookupOp;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -9,6 +12,7 @@ import java.sql.Statement;
 public class TeamRepository {
 
     private Connection connection;
+    private static final Logger LOGGER = LoggerFactory.getLogger(TeamRepository.class);
 
     public int tableSize() {
         /*
@@ -27,7 +31,7 @@ public class TeamRepository {
                     return 0;
                 }
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                LOGGER.info(e.getMessage());
             }
         }
         return 0;
@@ -53,14 +57,13 @@ public class TeamRepository {
                     statement.executeUpdate(sqlCommandToInsertTeamInTeamTable);
                     return modifiedTeamName;
                 } catch (Exception e) {
-                    System.out.println(e);
-                    System.out.println("Query not completed in org.repo.TeamDB.addTeam");
+                    LOGGER.info(e.getMessage());
                 }
             } catch (Exception e) {
-                System.out.println("Statement not created in org.repo.TeamDB.addTeam");
+                LOGGER.info(e.getMessage());
             }
         } else {
-            System.out.println("Connection not established in org.repo.TeamDB.addTeam");
+            LOGGER.info("Connection not established in org.repo.TeamDB.addTeam");
         }
         return "";
     }
@@ -83,15 +86,13 @@ public class TeamRepository {
                         return 0;
                     }
                 } catch (Exception e) {
-                    System.out.println(e);
-                    System.out.println("Query not completed in org.repo.TeamDB.getTeamId");
+                    LOGGER.info(e.getMessage());
                 }
             } catch (Exception e) {
-                System.out.println(e);
-                System.out.println("Statement not created in org.repo.TeamDB.getTeamId");
+                LOGGER.info(e.getMessage());
             }
         } else {
-            System.out.println("Connection not established in org.repo.TeamDB.getTeamId");
+            LOGGER.info("Connection not established in org.repo.TeamDB.getTeamId");
         }
         return 1;
     }

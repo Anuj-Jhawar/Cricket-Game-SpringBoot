@@ -1,11 +1,15 @@
 package org.project.repo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class JdbcConnection {
 
     private static Connection connection;
+    private static final Logger LOGGER = LoggerFactory.getLogger(JdbcConnection.class);
 
     public static void initializeConnection() {
         /*
@@ -18,7 +22,7 @@ public class JdbcConnection {
             String password = "rootroot";
             connection = DriverManager.getConnection(url, username, password);
         } catch (Exception e) {
-            System.out.println(e);
+            LOGGER.info(e.getMessage());
         }
     }
 
@@ -27,7 +31,7 @@ public class JdbcConnection {
             connection.close();
         }
         catch (Exception e){
-            System.out.println(e.getMessage());
+            LOGGER.info(e.getMessage());
         }
     }
 

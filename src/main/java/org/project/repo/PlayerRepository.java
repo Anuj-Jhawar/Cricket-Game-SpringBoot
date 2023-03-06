@@ -1,5 +1,7 @@
 package org.project.repo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -9,7 +11,7 @@ import java.sql.ResultSet;
 public class PlayerRepository {
 
     private Connection connection;
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(PlayerRepository.class);
 
     public void addPlayer(String playerName, int age) {
         /*
@@ -29,15 +31,14 @@ public class PlayerRepository {
                 try {
                     statement.executeUpdate();
                 } catch (Exception e) {
-                    System.out.println(e);
-                    System.out.println("Query not completed in org.repo.PlayerDb.addPlayer");
+                    LOGGER.info(e.getMessage());
                 }
 
             } catch (Exception e) {
-                System.out.println("Statement not created in org.repo.PlayerDb.addPlayer");
+                LOGGER.info(e.getMessage());
             }
         } else {
-            System.out.println("Connection not established in org.repo.PlayerDb.addPlayer");
+            LOGGER.info("Connection not established in org.repo.PlayerDb.addPlayer");
         }
     }
 
@@ -60,15 +61,14 @@ public class PlayerRepository {
                         return 0;
                     }
                 } catch (Exception e) {
-                    System.out.println(e + "FindPlayer");
-                    System.out.println("Query not completed in org.repo.PlayerDb.getPlayerId");
+                    LOGGER.info(e.getMessage());
                 }
 
             } catch (Exception e) {
-                System.out.println("Statement not created in org.repo.PlayerDb.getPlayerId");
+                LOGGER.info(e.getMessage());
             }
         } else {
-            System.out.println("Connection not established in org.repo.PlayerDb.getPlayerId");
+            LOGGER.info("Connection not established in org.repo.PlayerDb.getPlayerId");
         }
         return 1;
     }
@@ -91,10 +91,10 @@ public class PlayerRepository {
                     return "";
                 }
             } catch (Exception e) {
-                System.out.println("Statement not created org.repo.PlayerDb.getPlayerName.");
+                LOGGER.info(e.getMessage());
             }
         } else {
-            System.out.println("Connection not established in org.repo.PlayerDb.getPlayerName.");
+            LOGGER.info("Connection not established in org.repo.PlayerDb.getPlayerName.");
         }
         return "";
     }

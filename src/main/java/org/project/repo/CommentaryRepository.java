@@ -6,6 +6,8 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.project.model.BallCommentary;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ public class CommentaryRepository {
     private static final String COLLECTION_NAME = "Commentary";
     private static final MongoDatabase database = mongoClient.getDatabase(DATABASE_NAME);
     private static final MongoCollection<Document> collection = database.getCollection(COLLECTION_NAME);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CommentaryRepository.class);
 
     public void addCommentary(int matchId) {
         /*
