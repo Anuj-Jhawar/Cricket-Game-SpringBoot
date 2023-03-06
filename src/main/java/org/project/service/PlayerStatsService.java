@@ -14,11 +14,11 @@ import java.util.Map;
 @Service
 public class PlayerStatsService {
 
-    int tournamentId;
-    int team1Id;
-    int team2Id;
-    Date date;
-    int playerId;
+    private int tournamentId;
+    private int team1Id;
+    private int team2Id;
+    private Date date;
+    private int playerId;
     @Autowired
     private BattingStatsService battingStatsService;
     @Autowired

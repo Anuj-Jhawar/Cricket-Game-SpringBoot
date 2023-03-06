@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Player {
 
-    static int playerCount = 0;
+    private static int playerCount = 0;
     protected String name;
     private Stats battingStats = new BattingStats();
     private Stats bowlingStats = new BowlingStats();

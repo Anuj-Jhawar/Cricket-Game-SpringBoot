@@ -9,7 +9,7 @@ public class Umpire {
 
     private final String name;
     @Autowired
-    CommentaryService commentaryService;
+    private CommentaryService commentaryService;
 
     public Umpire() {
         name = "Kumar DharmaSena.";

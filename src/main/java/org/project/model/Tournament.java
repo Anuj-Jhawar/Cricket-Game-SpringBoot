@@ -3,7 +3,7 @@ package org.project.model;
 
 public class Tournament {
 
-    String tournamentName;
+    private String tournamentName;
 
     public String getTournamentName() {
         return tournamentName;

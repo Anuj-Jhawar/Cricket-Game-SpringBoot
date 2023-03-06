@@ -10,13 +10,13 @@ public class ScoreCard {
 
 
     @Autowired
-    BattingScoreCard battingScoreCard;
+    private BattingScoreCard battingScoreCard;
     @Autowired
-    BattingScoreCard battingScoreCard2;
+    private BattingScoreCard battingScoreCard2;
     @Autowired
-    BowlingScoreCard bowlingScoreCard;
+    private BowlingScoreCard bowlingScoreCard;
     @Autowired
-    BowlingScoreCard bowlingScoreCard2;
+    private BowlingScoreCard bowlingScoreCard2;
 
     public void setScoreCard(CricketGame game) {
         if (game.getBattingTeamIndex() == 1) {

@@ -13,13 +13,13 @@ import org.springframework.stereotype.Component;
 public class BowlingScoreCard implements InningScoreCard {
 
     @Autowired
-    Player[] players = new Player[11];
+    private Player[] players = new Player[11];
     @Autowired
-    CricketGame game;
+    private CricketGame game;
     @Autowired
-    Team bowlingTeam;
+    private Team bowlingTeam;
     @Autowired
-    BowlingStatsService bowlingStatsService;
+    private BowlingStatsService bowlingStatsService;
 
     public void setBowlingScoreCard(CricketGame game, Team bowlingTeam) {
         this.game = game;
