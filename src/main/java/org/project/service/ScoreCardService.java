@@ -51,7 +51,6 @@ public class ScoreCardService {
         tournamentId = Integer.parseInt((String) requestBody.get("tournamentId"));
         team1Id = Integer.parseInt((String) requestBody.get("team1Id"));
         team2Id = Integer.parseInt((String) requestBody.get("team2Id"));
-        //System.out.println(tournamentId + " " + team1Id + " " + team2Id);
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date sqlDate = new Date(System.currentTimeMillis());
         try {

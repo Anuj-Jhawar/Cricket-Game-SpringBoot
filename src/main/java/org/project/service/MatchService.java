@@ -38,21 +38,6 @@ public class MatchService {
     @Autowired
     private ScoreCard scoreCard;
 
-    Team[] assignBattingTeam(CricketGame game, int i) {
-        /*
-            Assigning the batting team for the inning.
-        */
-        Team[] teamOrder = new Team[2];
-        if (i == 0) {
-            teamOrder[0] = game.getTeam1();
-            teamOrder[1] = game.getTeam2();
-        } else {
-            teamOrder[0] = game.getTeam2();
-            teamOrder[1] = game.getTeam1();
-        }
-        return teamOrder;
-    }
-
     public String setUpGame(Map<String, Object> requestBody) {
         /*
             Organize user input and start the game.

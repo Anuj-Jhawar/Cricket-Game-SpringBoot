@@ -19,10 +19,6 @@ public class BattingStatsService {
     @Autowired
     private BattingStatsRepository battingStatsRepository;
 
-    public int getBattingStatsId(int matchId, int teamId, int playerId) {
-        return battingStatsRepository.getBattingStatsId(matchId, teamId, playerId);
-    }
-
     public void updateBattingStats(String tournamentName, String team1Name, String team2Name, Player player,
                                    int battingIndex, String teamName, int runs, int runsScored, int balls) {
         int matchId = matchService.getMatchId(tournamentName, team1Name, team2Name, battingIndex);

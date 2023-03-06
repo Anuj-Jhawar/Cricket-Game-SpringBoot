@@ -19,10 +19,6 @@ public class BowlingStatsService {
     @Autowired
     private BowlingStatsRepository bowlingStatsRepository;
 
-    public int getBowlingStatsId(int matchId, int teamId, int playerId) {
-        return bowlingStatsRepository.getBowlingStatsId(matchId, teamId, playerId);
-    }
-
     public void updateBowlingStats(String tournamentName, String team1Name, String team2Name, Player player,
                                    int battingIndex, String teamName, int outcomeOfTheBall,
                                    org.project.model.stats.BowlingStats bowlingStats) {
