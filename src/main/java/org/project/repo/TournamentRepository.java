@@ -39,14 +39,14 @@ public class TournamentRepository {
                     statement.executeUpdate(sqlCommandToCreateTournamentTable);
                     return modifiedTournamentName;
                 } catch (Exception e) {
-                    LOGGER.info(e.getMessage());
+                    LOGGER.error(e.getMessage());
                 }
 
             } catch (Exception e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         } else {
-            LOGGER.info("Connection not established in org.repo.TournamentDB.addTournament");
+            LOGGER.error("Connection not established in org.repo.TournamentDB.addTournament");
         }
         return "";
     }
@@ -69,13 +69,13 @@ public class TournamentRepository {
                         return 0;
                     }
                 } catch (Exception e) {
-                    LOGGER.info(e.getMessage());
+                    LOGGER.error(e.getMessage());
                 }
             } catch (Exception e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         } else {
-            LOGGER.info("Connection not established in org.repo.TournamentDB.getTournamentId.");
+            LOGGER.error("Connection not established in org.repo.TournamentDB.getTournamentId.");
         }
         return 1;
     }
@@ -96,7 +96,7 @@ public class TournamentRepository {
                     return 0;
                 }
             } catch (Exception e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         }
         return 0;

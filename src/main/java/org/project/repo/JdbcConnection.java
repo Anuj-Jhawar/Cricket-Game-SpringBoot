@@ -22,7 +22,7 @@ public class JdbcConnection {
             String password = "rootroot";
             connection = DriverManager.getConnection(url, username, password);
         } catch (Exception e) {
-            LOGGER.info(e.getMessage());
+            LOGGER.error(e.getMessage());
         }
     }
 
@@ -30,7 +30,7 @@ public class JdbcConnection {
         try {
             connection.close();
         } catch (Exception e) {
-            LOGGER.info(e.getMessage());
+            LOGGER.error(e.getMessage());
         }
     }
 

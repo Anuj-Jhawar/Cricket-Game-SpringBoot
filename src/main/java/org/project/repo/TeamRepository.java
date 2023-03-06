@@ -34,13 +34,13 @@ public class TeamRepository {
                     statement.executeUpdate(sqlCommandToInsertTeamInTeamTable);
                     return modifiedTeamName;
                 } catch (Exception e) {
-                    LOGGER.info(e.getMessage());
+                    LOGGER.error(e.getMessage());
                 }
             } catch (Exception e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         } else {
-            LOGGER.info("Connection not established in org.repo.TeamDB.addTeam");
+            LOGGER.error("Connection not established in org.repo.TeamDB.addTeam");
         }
         return "";
     }
@@ -63,13 +63,13 @@ public class TeamRepository {
                         return 0;
                     }
                 } catch (Exception e) {
-                    LOGGER.info(e.getMessage());
+                    LOGGER.error(e.getMessage());
                 }
             } catch (Exception e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         } else {
-            LOGGER.info("Connection not established in org.repo.TeamDB.getTeamId");
+            LOGGER.error("Connection not established in org.repo.TeamDB.getTeamId");
         }
         return 1;
     }
@@ -91,7 +91,7 @@ public class TeamRepository {
                     return 0;
                 }
             } catch (Exception e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         }
         return 0;

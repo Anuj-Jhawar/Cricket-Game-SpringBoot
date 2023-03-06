@@ -44,13 +44,13 @@ public class BowlingStatsRepository {
                 try {
                     statement.executeUpdate();
                 } catch (Exception e) {
-                    LOGGER.info(e.getMessage());
+                    LOGGER.error(e.getMessage());
                 }
             } catch (Exception e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         } else {
-            LOGGER.info("Connection not established in org.repo.BowlingStatsDB.addBowlingStats.");
+            LOGGER.error("Connection not established in org.repo.BowlingStatsDB.addBowlingStats.");
         }
     }
 
@@ -96,14 +96,14 @@ public class BowlingStatsRepository {
                         return 0;
                     }
                 } catch (Exception e) {
-                    LOGGER.info(e.getMessage());
+                    LOGGER.error(e.getMessage());
                 }
 
             } catch (Exception e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         } else {
-            LOGGER.info("Connection not established in org.repo.BowlingStatsDB.getBowlingStatsId.");
+            LOGGER.error("Connection not established in org.repo.BowlingStatsDB.getBowlingStatsId.");
         }
         return 0;
     }
@@ -122,10 +122,10 @@ public class BowlingStatsRepository {
                 statement.executeUpdate();
 
             } catch (Exception e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         } else {
-            LOGGER.info("Connection not established in org.repo.BowlingStatsDB.updateBallsBalled.");
+            LOGGER.error("Connection not established in org.repo.BowlingStatsDB.updateBallsBalled.");
         }
     }
 
@@ -141,10 +141,10 @@ public class BowlingStatsRepository {
                 statement.setInt(1, bowlingStatsId);
                 statement.executeUpdate();
             } catch (Exception e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         } else {
-            LOGGER.info("Connection not established in org.repo.BowlingStatsDB.updateWicketsTaken.");
+            LOGGER.error("Connection not established in org.repo.BowlingStatsDB.updateWicketsTaken.");
         }
     }
 
@@ -162,10 +162,10 @@ public class BowlingStatsRepository {
                 statement.executeUpdate();
 
             } catch (Exception e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         } else {
-            LOGGER.info("Connection not established in org.repo.BowlingStatsDB.updateRunsConceded.");
+            LOGGER.error("Connection not established in org.repo.BowlingStatsDB.updateRunsConceded.");
         }
     }
 
@@ -187,10 +187,10 @@ public class BowlingStatsRepository {
                 statement.executeUpdate();
 
             } catch (Exception e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         } else {
-            LOGGER.info("Connection not established in org.repo.BowlingStatsDB.updateBowlingAverage.");
+            LOGGER.error("Connection not established in org.repo.BowlingStatsDB.updateBowlingAverage.");
         }
     }
 
@@ -214,14 +214,14 @@ public class BowlingStatsRepository {
                     GetBowlingStatsFromDatabase getBowlingStatsFromDatabase = new GetBowlingStatsFromDatabase();
                     return getBowlingStatsFromDatabase.createBowlingStats(resultSet);
                 } else {
-                    LOGGER.info("Not able to fetch stats from org.repo.BowlingStatsDB.getBowlingStats");
+                    LOGGER.error("Not able to fetch stats from org.repo.BowlingStatsDB.getBowlingStats");
                     return null;
                 }
             } catch (Exception e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         } else {
-            LOGGER.info("Connection not established in org.repo.BowlingStatsDB.getBowlingStats.");
+            LOGGER.error("Connection not established in org.repo.BowlingStatsDB.getBowlingStats.");
         }
         return null;
     }
@@ -255,10 +255,10 @@ public class BowlingStatsRepository {
                     return null;
                 }
             } catch (Exception e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         } else {
-            LOGGER.info("Connection not established in org.repo.GetBowlingScoreCardOfAnInning.");
+            LOGGER.error("Connection not established in org.repo.GetBowlingScoreCardOfAnInning.");
         }
         return bowlingStats;
     }

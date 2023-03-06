@@ -23,10 +23,6 @@ public class ScoreCardService {
     private Date date;
     @Autowired
     private CricketGameService cricketGameService;
-    //    @Autowired
-    //    private BattingScoreCardRepository battingScoreCardRepository;
-    //    @Autowired
-    //    private BowlingScoreCardRepository bowlingScoreCardRepository;
     @Autowired
     private BattingStatsRepository battingStatsRepository;
     @Autowired

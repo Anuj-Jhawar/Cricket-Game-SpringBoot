@@ -32,14 +32,14 @@ public class PlayerRepository {
                 try {
                     statement.executeUpdate();
                 } catch (Exception e) {
-                    LOGGER.info(e.getMessage());
+                    LOGGER.error(e.getMessage());
                 }
 
             } catch (Exception e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         } else {
-            LOGGER.info("Connection not established in org.repo.PlayerDb.addPlayer");
+            LOGGER.error("Connection not established in org.repo.PlayerDb.addPlayer");
         }
     }
 
@@ -62,14 +62,14 @@ public class PlayerRepository {
                         return 0;
                     }
                 } catch (Exception e) {
-                    LOGGER.info(e.getMessage());
+                    LOGGER.error(e.getMessage());
                 }
 
             } catch (Exception e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         } else {
-            LOGGER.info("Connection not established in org.repo.PlayerDb.getPlayerId");
+            LOGGER.error("Connection not established in org.repo.PlayerDb.getPlayerId");
         }
         return 1;
     }
@@ -92,10 +92,10 @@ public class PlayerRepository {
                     return "";
                 }
             } catch (Exception e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         } else {
-            LOGGER.info("Connection not established in org.repo.PlayerDb.getPlayerName.");
+            LOGGER.error("Connection not established in org.repo.PlayerDb.getPlayerName.");
         }
         return "";
     }
