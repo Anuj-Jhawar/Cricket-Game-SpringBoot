@@ -20,11 +20,11 @@ public class PlayerStatsService {
     Date date;
     int playerId;
     @Autowired
-    BattingStatsService battingStatsService;
+    private BattingStatsService battingStatsService;
     @Autowired
-    BowlingStatsService bowlingStatsService;
+    private BowlingStatsService bowlingStatsService;
     @Autowired
-    CricketGameService cricketGameService;
+    private CricketGameService cricketGameService;
 
     public void setPlayerStatsService(Map<String, Object> requestBody) {
         tournamentId = Integer.parseInt((String) requestBody.get("tournamentId"));

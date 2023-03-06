@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class BowlingStatsService {
     @Autowired
-    TeamService teamService;
+    private TeamService teamService;
     @Autowired
-    PlayerService playerService;
+    private PlayerService playerService;
     @Autowired
-    CricketGameService cricketGameService;
+    private CricketGameService cricketGameService;
     @Autowired
-    BowlingStatsRepository bowlingStatsRepository;
+    private BowlingStatsRepository bowlingStatsRepository;
     public void addBowlingStats(org.project.model.stats.BowlingStats bowlingStats, int matchId, int teamId, int playerId){
         this.bowlingStatsRepository.addBowlingStats(bowlingStats,matchId,teamId,playerId);
     }

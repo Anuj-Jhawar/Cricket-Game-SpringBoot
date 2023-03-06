@@ -4,6 +4,8 @@ import org.bson.Document;
 import org.project.model.ScoreCardForPlayer;
 import org.project.model.stats.Stats;
 import org.project.service.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,15 +15,16 @@ import java.util.Map;
 @RestController
 public class GetApis {
     @Autowired
-    CricketGameService cricketGameService;
+    private CricketGameService cricketGameService;
     @Autowired
-    TournamentService tournamentService;
+    private TournamentService tournamentService;
     @Autowired
-    ScoreCardService scoreCardService;
+    private ScoreCardService scoreCardService;
     @Autowired
-    PlayerStatsService playerStatsService;
+    private PlayerStatsService playerStatsService;
     @Autowired
-    CommentaryService commentaryService;
+    private CommentaryService commentaryService;
+    private static final Logger logger = LoggerFactory.getLogger(GetApis.class);
     @PostMapping("/scorecard")
     public ArrayList<ArrayList<ScoreCardForPlayer>> getScoreCardForGivenMatch(
             @RequestBody Map<String, Object> requestBody) {

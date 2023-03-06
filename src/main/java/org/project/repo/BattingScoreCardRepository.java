@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class BattingScoreCardRepository {
 
     @Autowired
-    PlayerService playerService;
+    private PlayerService playerService;
 
     public ArrayList<ScoreCardForPlayer> getBattingScoreCardOfAnInning(int matchId,int teamId,Connection connection) {
         /*

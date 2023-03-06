@@ -12,11 +12,11 @@ import java.sql.ResultSet;
 @Repository
 public class MatchRepository {
 
-    Connection connection;
+    private Connection connection;
     @Autowired
-    TournamentService tournamentService;
+    private TournamentService tournamentService;
     @Autowired
-    TeamService teamService;
+    private TeamService teamService;
 
 
     public void addMatch(String tournamentName, String team1Name, String team2Name, int battingTeamIndex) {

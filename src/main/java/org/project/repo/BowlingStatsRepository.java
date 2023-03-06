@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 
 @Repository
 public class BowlingStatsRepository {
-    Connection connection;
+    private Connection connection;
     public void addBowlingStats(org.project.model.stats.BowlingStats bowlingStats, int matchId, int teamId, int playerId) {
         /*
             Add bowling stats for a given match for a player.

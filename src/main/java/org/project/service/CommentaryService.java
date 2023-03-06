@@ -12,11 +12,11 @@ import java.util.ArrayList;
 @Service
 public class CommentaryService {
     @Autowired
-    PlayerService playerService;
+    private PlayerService playerService;
     @Autowired
-    CricketGameService cricketGameService;
+    private CricketGameService cricketGameService;
     @Autowired
-    CommentaryRepository commentaryRepository;
+    private CommentaryRepository commentaryRepository;
     public void addCommentary(Ball ball, CricketGame game, String commentaryText, int inningNo) {
         /*
             Add commentary of the match after every ball.

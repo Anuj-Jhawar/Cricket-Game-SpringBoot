@@ -9,7 +9,7 @@ import java.sql.Statement;
 @Repository
 public class TournamentRepository {
 
-    Connection connection;
+    private Connection connection;
 
     public TournamentRepository() {
         JdbcConnection.initializeConnection();

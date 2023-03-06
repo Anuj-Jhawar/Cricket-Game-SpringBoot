@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 @Repository
 public class PlayerRepository {
 
-    Connection connection;
+    private Connection connection;
 
 
     public void addPlayer(String playerName, int age) {

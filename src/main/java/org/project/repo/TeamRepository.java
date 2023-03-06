@@ -8,7 +8,7 @@ import java.sql.Statement;
 @Repository
 public class TeamRepository {
 
-    Connection connection;
+    private Connection connection;
 
     public int tableSize() {
         /*

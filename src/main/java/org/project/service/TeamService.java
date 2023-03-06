@@ -14,7 +14,7 @@ import java.util.Map;
 @NoArgsConstructor
 public class TeamService {
     @Autowired
-    TeamRepository teamRepository;
+    private TeamRepository teamRepository;
     public org.project.model.Team setTeamRepository(Map<String, Object> document) {
         /*
             Create team from the user input and return it.

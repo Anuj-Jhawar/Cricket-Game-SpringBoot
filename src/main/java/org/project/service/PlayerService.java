@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PlayerService {
     @Autowired
-    PlayerRepository playerRepository;
+    private PlayerRepository playerRepository;
     public int getPlayerId(String playerName) {
         /*
             Return player id from database.

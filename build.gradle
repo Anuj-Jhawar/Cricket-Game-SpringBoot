@@ -28,6 +28,9 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+
+    implementation 'ch.qos.logback:logback-classic:1.2.5'
+    implementation 'org.slf4j:slf4j-api:1.7.32'
 }
 
 test {

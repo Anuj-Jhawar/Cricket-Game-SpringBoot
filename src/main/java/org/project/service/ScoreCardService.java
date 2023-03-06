@@ -17,16 +17,16 @@ import java.util.Map;
 @Service
 public class ScoreCardService {
 
-    int tournamentId;
-    int team1Id;
-    int team2Id;
-    Date date;
+    private int tournamentId;
+    private int team1Id;
+    private int team2Id;
+    private Date date;
     @Autowired
-    CricketGameService cricketGameService;
+    private CricketGameService cricketGameService;
     @Autowired
-    BattingScoreCardRepository battingScoreCardRepository;
+    private BattingScoreCardRepository battingScoreCardRepository;
     @Autowired
-    BowlingScoreCardRepository bowlingScoreCardRepository;
+    private BowlingScoreCardRepository bowlingScoreCardRepository;
 
     public void setScoreCardService(Map<String, Object> requestBody) {
         tournamentId = Integer.parseInt((String) requestBody.get("tournamentId"));
