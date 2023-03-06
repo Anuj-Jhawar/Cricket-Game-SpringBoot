@@ -1,9 +1,7 @@
 package org.project.service;
 
 import org.project.model.ScoreCardForPlayer;
-import org.project.repo.BattingScoreCardRepository;
-import org.project.repo.BowlingScoreCardRepository;
-import org.project.repo.JdbcConnection;
+import org.project.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,10 +21,14 @@ public class ScoreCardService {
     private Date date;
     @Autowired
     private CricketGameService cricketGameService;
+//    @Autowired
+//    private BattingScoreCardRepository battingScoreCardRepository;
+//    @Autowired
+//    private BowlingScoreCardRepository bowlingScoreCardRepository;
     @Autowired
-    private BattingScoreCardRepository battingScoreCardRepository;
+    private BattingStatsRepository battingStatsRepository;
     @Autowired
-    private BowlingScoreCardRepository bowlingScoreCardRepository;
+    private BowlingStatsRepository bowlingStatsRepository;
 
     public void setScoreCardService(Map<String, Object> requestBody) {
         tournamentId = Integer.parseInt((String) requestBody.get("tournamentId"));
@@ -50,13 +52,13 @@ public class ScoreCardService {
     }
 
     public ArrayList<ScoreCardForPlayer> getBattingScoreCard(int teamId, int matchId, Connection connection) {
-        ArrayList<ScoreCardForPlayer> teamBattingStats = battingScoreCardRepository.getBattingScoreCardOfAnInning(
+        ArrayList<ScoreCardForPlayer> teamBattingStats = battingStatsRepository.getBattingScoreCardOfAnInning(
                 matchId,teamId,connection);
         return teamBattingStats;
     }
 
     public ArrayList<ScoreCardForPlayer> getBowlingScoreCard(int teamId, int matchId, Connection connection) {
-        ArrayList<ScoreCardForPlayer> teamBowlingStats = bowlingScoreCardRepository.getBowlingScoreCardOfAnInning(
+        ArrayList<ScoreCardForPlayer> teamBowlingStats = bowlingStatsRepository.getBowlingScoreCardOfAnInning(
                 matchId,teamId,connection);
         return teamBowlingStats;
     }

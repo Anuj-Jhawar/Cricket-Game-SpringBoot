@@ -32,7 +32,7 @@ public class GetApis {
             Four request variable that's why converted it to the post request.
         */
         LOGGER.info("Request for Scorecard for tournament_id {}, team1_id {}, team2_id {}",requestBody.get(
-                "tournament_id"),requestBody.get("team1_id"),requestBody.get("team2_id"));
+                "tournamentId"),requestBody.get("team1Id"),requestBody.get("team2Id"));
         return scoreCardService.get(requestBody);
     }
 
@@ -42,7 +42,7 @@ public class GetApis {
             Four request variable that's why converted it to the post request.
         */
         LOGGER.info("Request for Player Stats for tournament_id {}, team1_id {}, team2_id {}",requestBody.get(
-                "tournament_id"),requestBody.get("team1_id"),requestBody.get("team2_id"));
+                "tournamentId"),requestBody.get("team1Id"),requestBody.get("team2Id"));
         return playerStatsService.get(requestBody);
     }
 
@@ -62,7 +62,7 @@ public class GetApis {
     @PostMapping("/startGame")
     public String startGame(@RequestBody Map<String, Object> requestBody) {
         LOGGER.info("Request for starting a match between team1_id {} and team2_id {} in tournament_id {}",
-                requestBody.get("team1_d"),requestBody.get("team2_id"),requestBody.get("tournament_id"));
+                requestBody.get("team1Id"),requestBody.get("team2Id"),requestBody.get("tournamentId"));
         return cricketGameService.setUpGame(requestBody);
     }
 }
