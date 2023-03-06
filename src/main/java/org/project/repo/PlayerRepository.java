@@ -7,11 +7,12 @@ import org.springframework.stereotype.Repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 @Repository
 public class PlayerRepository {
 
-    private Connection connection;
     private static final Logger LOGGER = LoggerFactory.getLogger(PlayerRepository.class);
+    private Connection connection;
 
     public void addPlayer(String playerName, int age) {
         /*

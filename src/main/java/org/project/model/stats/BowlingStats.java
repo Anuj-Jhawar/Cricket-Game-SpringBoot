@@ -21,26 +21,6 @@ public class BowlingStats implements Stats {
         bowlingStrikeRate = 0.0;
     }
 
-    public void setBowlingAverage() {
-        bowlingAverage = wickets == 0 ? 0 : (runConceded * 1.0) / (wickets);
-    }
-
-    public void setWickets(int wickets) {
-        this.wickets = wickets;
-    }
-
-    public void updateBowlingStrikeRate() {
-        bowlingStrikeRate = (ballsBowled * 1.0) / wickets;
-    }
-
-    public void setRunsConceded(int runs) {
-        runConceded += runs;
-    }
-
-    public void setBallsBowled(int ballsBowled) {
-        this.ballsBowled = ballsBowled;
-    }
-
     public int getRunConceded() {
         return runConceded;
     }
@@ -49,8 +29,20 @@ public class BowlingStats implements Stats {
         return ballsBowled;
     }
 
+    public void setBallsBowled(int ballsBowled) {
+        this.ballsBowled = ballsBowled;
+    }
+
     public int getWickets() {
         return wickets;
+    }
+
+    public void setWickets(int wickets) {
+        this.wickets = wickets;
+    }
+
+    public void updateStats(int runs) {
+        updateBowlingStats(runs);
     }
 
     public void updateBowlingStats(int outcomeOfTheBall) {
@@ -67,7 +59,15 @@ public class BowlingStats implements Stats {
         updateBowlingStrikeRate();
     }
 
-    public void updateStats(int runs) {
-        updateBowlingStats(runs);
+    public void setRunsConceded(int runs) {
+        runConceded += runs;
+    }
+
+    public void setBowlingAverage() {
+        bowlingAverage = wickets == 0 ? 0 : (runConceded * 1.0) / (wickets);
+    }
+
+    public void updateBowlingStrikeRate() {
+        bowlingStrikeRate = (ballsBowled * 1.0) / wickets;
     }
 }

@@ -8,37 +8,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
 @Repository
 public class TournamentRepository {
 
-    private Connection connection;
     private static final Logger LOGGER = LoggerFactory.getLogger(TournamentRepository.class);
+    private Connection connection;
 
     public TournamentRepository() {
         JdbcConnection.initializeConnection();
         this.connection = JdbcConnection.getConnection();
-    }
-
-    public int tableSize() {
-        /*
-            Return table size.
-        */
-        if (connection != null) {
-            Statement statement;
-            try {
-                statement = connection.createStatement();
-                String sqlCommandToGetSize = "SELECT COUNT(*) FROM Tournaments";
-                ResultSet resultSet = statement.executeQuery(sqlCommandToGetSize);
-                if (resultSet.next()) {
-                    return resultSet.getInt(1);
-                } else {
-                    return 0;
-                }
-            } catch (Exception e) {
-                LOGGER.info(e.getMessage());
-            }
-        }
-        return 0;
     }
 
     public String addTournament(String tournamentName) {
@@ -99,5 +78,27 @@ public class TournamentRepository {
             LOGGER.info("Connection not established in org.repo.TournamentDB.getTournamentId.");
         }
         return 1;
+    }
+
+    public int tableSize() {
+        /*
+            Return table size.
+        */
+        if (connection != null) {
+            Statement statement;
+            try {
+                statement = connection.createStatement();
+                String sqlCommandToGetSize = "SELECT COUNT(*) FROM Tournaments";
+                ResultSet resultSet = statement.executeQuery(sqlCommandToGetSize);
+                if (resultSet.next()) {
+                    return resultSet.getInt(1);
+                } else {
+                    return 0;
+                }
+            } catch (Exception e) {
+                LOGGER.info(e.getMessage());
+            }
+        }
+        return 0;
     }
 }

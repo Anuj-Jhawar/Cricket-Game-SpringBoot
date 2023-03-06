@@ -9,14 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+
 @Service
 public class CommentaryService {
+
     @Autowired
     private PlayerService playerService;
     @Autowired
     private CricketGameService cricketGameService;
     @Autowired
     private CommentaryRepository commentaryRepository;
+
     public void addCommentary(Ball ball, CricketGame game, String commentaryText, int inningNo) {
         /*
             Add commentary of the match after every ball.

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BattingStatsService {
+
     @Autowired
     private TeamService teamService;
     @Autowired
@@ -17,32 +18,37 @@ public class BattingStatsService {
     private CricketGameService cricketGameService;
     @Autowired
     private BattingStatsRepository battingStatsRepository;
-    public void addBattingStats(org.project.model.stats.BattingStats battingStats, int matchId, int teamId, int playerId){
-        this.battingStatsRepository.addBattingStats(battingStats,matchId,teamId,playerId);
+
+    public int getBattingStatsId(int matchId, int teamId, int playerId) {
+        return battingStatsRepository.getBattingStatsId(matchId, teamId, playerId);
     }
-    public int getBattingStatsId(int matchId,int teamId,int playerId){
-        return battingStatsRepository.getBattingStatsId( matchId,teamId,playerId);
-    }
-    public void updateBattingStats(int matchId,int teamId,int playerId,int outComeOfTheBall, int runsScored, int ballsPlayed){
-        battingStatsRepository.updateBattingStats(matchId,teamId,playerId,outComeOfTheBall,runsScored,ballsPlayed);
-    }
-    public void updateBattingStats(String tournamentName, String team1Name, String team2Name,
-                                   Player player, int battingIndex, String teamName,int runs,int runsScored,int balls){
+
+    public void updateBattingStats(String tournamentName, String team1Name, String team2Name, Player player,
+                                   int battingIndex, String teamName, int runs, int runsScored, int balls) {
         int matchId = cricketGameService.getMatchId(tournamentName, team1Name, team2Name, battingIndex);
         int teamId = teamService.getTeamId(teamName);
         int playerId = playerService.getPlayerId(player.getName());
-        this.updateBattingStats(matchId,teamId,playerId,runs,runsScored,balls);
+        this.updateBattingStats(matchId, teamId, playerId, runs, runsScored, balls);
     }
-    public org.project.model.stats.BattingStats getBattingStats(int matchId, int teamId, int playerId){
-        return battingStatsRepository.getBattingStats(matchId,teamId,playerId);
+
+    public void updateBattingStats(int matchId, int teamId, int playerId, int outComeOfTheBall, int runsScored,
+                                   int ballsPlayed) {
+        battingStatsRepository.updateBattingStats(matchId, teamId, playerId, outComeOfTheBall, runsScored, ballsPlayed);
     }
-    public org.project.model.stats.BattingStats getBattingStats(String tournamentName, String team1Name, String team2Name,
-                                                                Player player, int battingIndex, String teamName){
+
+    public org.project.model.stats.BattingStats getBattingStats(String tournamentName, String team1Name,
+                                                                String team2Name, Player player, int battingIndex,
+                                                                String teamName) {
         int matchId = cricketGameService.getMatchId(tournamentName, team1Name, team2Name, battingIndex);
         int teamId = teamService.getTeamId(teamName);
         int playerId = playerService.getPlayerId(player.getName());
-        return this.getBattingStats(matchId,teamId,playerId);
+        return this.getBattingStats(matchId, teamId, playerId);
     }
+
+    public org.project.model.stats.BattingStats getBattingStats(int matchId, int teamId, int playerId) {
+        return battingStatsRepository.getBattingStats(matchId, teamId, playerId);
+    }
+
     public void addBattingStatsToBattingStatsTable(CricketGame game, Team team) {
         /*
             Add batting stats for match.
@@ -54,7 +60,12 @@ public class BattingStatsService {
                     game.getTeam2().getTeamName(), game.getBattingTeamIndex());
             int teamId = teamService.getTeamId(teamName);
             int playerId = playerService.getPlayerId(players[i].getName());
-            this.addBattingStats(players[i].getBattingStats(),matchId,teamId,playerId);
+            this.addBattingStats(players[i].getBattingStats(), matchId, teamId, playerId);
         }
+    }
+
+    public void addBattingStats(org.project.model.stats.BattingStats battingStats, int matchId, int teamId,
+                                int playerId) {
+        this.battingStatsRepository.addBattingStats(battingStats, matchId, teamId, playerId);
     }
 }

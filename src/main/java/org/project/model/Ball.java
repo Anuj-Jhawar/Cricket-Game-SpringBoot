@@ -31,18 +31,18 @@ public class Ball {
         }
     }
 
-    public void setOutcomeOfTheBall(int DesiredOutcomeOfTheBall) {
-        /*
-            Setting pre-defined outcome for the ball
-        */
-        outcomeOfTheBall = DesiredOutcomeOfTheBall;
-    }
-
     public int getOutcomeOfTheBall() {
         /*
             Returning the outcome of the ball.
         */
         return outcomeOfTheBall;
+    }
+
+    public void setOutcomeOfTheBall(int DesiredOutcomeOfTheBall) {
+        /*
+            Setting pre-defined outcome for the ball
+        */
+        outcomeOfTheBall = DesiredOutcomeOfTheBall;
     }
 
 }

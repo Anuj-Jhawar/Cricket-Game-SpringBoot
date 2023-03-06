@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TournamentService {
+
     @Autowired
     private TournamentRepository tournamentRepository;
 
@@ -18,7 +19,8 @@ public class TournamentService {
         tournament.setTournamentName(this.tournamentRepository.addTournament(tournamentName));
         return "Tournament Created";
     }
-    public int getId(String tournamentName){
+
+    public int getId(String tournamentName) {
         return tournamentRepository.getTournamentId(tournamentName);
     }
 }

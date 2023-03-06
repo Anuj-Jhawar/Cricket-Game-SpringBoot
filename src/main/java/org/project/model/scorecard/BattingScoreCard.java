@@ -20,23 +20,11 @@ public class BattingScoreCard implements InningScoreCard {
     Team battingTeam;
     @Autowired
     BattingStatsService battingStatsService;
+
     public void setBattingScoreCard(CricketGame game, Team battingTeam) {
         this.game = game;
         players = battingTeam.getPlayers();
         this.battingTeam = battingTeam;
-    }
-
-    void printHeadings() {
-        /*
-            Printing the headers for the Batting part of the scorecard.
-        */
-        String batsmanName = "BatsmanName";
-        String runs = "Runs";
-        String balls = "Balls";
-        String fours = "4s";
-        String sixes = "6s";
-        String strikeRate = "S.R.";
-        System.out.printf("%-20s %10s %10s %10s %10s %10.6s %n", batsmanName, runs, balls, fours, sixes, strikeRate);
     }
 
     public void showStats() {
@@ -55,5 +43,18 @@ public class BattingScoreCard implements InningScoreCard {
             }
         }
 
+    }
+
+    void printHeadings() {
+        /*
+            Printing the headers for the Batting part of the scorecard.
+        */
+        String batsmanName = "BatsmanName";
+        String runs = "Runs";
+        String balls = "Balls";
+        String fours = "4s";
+        String sixes = "6s";
+        String strikeRate = "S.R.";
+        System.out.printf("%-20s %10s %10s %10s %10s %10.6s %n", batsmanName, runs, balls, fours, sixes, strikeRate);
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class BowlingScoreCard implements InningScoreCard {
+
     @Autowired
     Player[] players = new Player[11];
     @Autowired
@@ -24,17 +25,6 @@ public class BowlingScoreCard implements InningScoreCard {
         this.game = game;
         players = bowlingTeam.getPlayers();
         this.bowlingTeam = bowlingTeam;
-    }
-
-    void printHeadings() {
-        /*
-            Printing the headers for the Bowling part of the scorecard.
-        */
-        String bowlerNames = "BowlerName";
-        String runs = "Runs";
-        String balls = "Balls";
-        String wickets = "W";
-        System.out.printf("%-20s %10s %10s %5s %n", bowlerNames, runs, balls, wickets);
     }
 
     public void showStats() {
@@ -51,6 +41,17 @@ public class BowlingScoreCard implements InningScoreCard {
                         bowlingStats.getBallsBowled(), bowlingStats.getWickets());
             }
         }
+    }
+
+    void printHeadings() {
+        /*
+            Printing the headers for the Bowling part of the scorecard.
+        */
+        String bowlerNames = "BowlerName";
+        String runs = "Runs";
+        String balls = "Balls";
+        String wickets = "W";
+        System.out.printf("%-20s %10s %10s %5s %n", bowlerNames, runs, balls, wickets);
     }
 
 }

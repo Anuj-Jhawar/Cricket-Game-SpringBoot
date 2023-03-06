@@ -11,16 +11,16 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 @Repository
 public class MatchRepository {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(MatchRepository.class);
     private Connection connection;
     @Autowired
     private TournamentService tournamentService;
     @Autowired
     private TeamService teamService;
-    private static final Logger LOGGER = LoggerFactory.getLogger(MatchRepository.class);
-
 
     public void addMatch(String tournamentName, String team1Name, String team2Name, int battingTeamIndex) {
         /*

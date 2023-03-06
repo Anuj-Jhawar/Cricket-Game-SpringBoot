@@ -2,42 +2,17 @@ package org.project.model.stats;
 
 public class BattingStats implements Stats {
 
+    private int score;
+    private int ballsPlayed;
+    private double battingStrikeRate;
+    private int numberOfSixes;
+    private int numberOfFours;
     public BattingStats() {
         score = 0;
         ballsPlayed = 0;
         battingStrikeRate = 0;
         numberOfFours = 0;
         numberOfSixes = 0;
-    }
-
-    private int score;
-    private int ballsPlayed;
-    private double battingStrikeRate;
-    private int numberOfSixes;
-    private int numberOfFours;
-
-    public void setBallsPlayed(int ballsPlayed) {
-        this.ballsPlayed = ballsPlayed;
-    }
-
-    public void setStrikeRate() {
-        battingStrikeRate = ballsPlayed == 0 ? 0 : (score * 100.0) / ballsPlayed;
-    }
-
-    public void setNumberOfFours(int numberOfFours) {
-        this.numberOfFours = numberOfFours;
-    }
-
-    public void setNumberOfSixes(int numberOfSixes) {
-        this.numberOfSixes = numberOfSixes;
-    }
-
-    public void setBoundaries(int runs) {
-        if (runs == 4) {
-            setNumberOfFours(numberOfFours + 1);
-        } else if (runs == 6) {
-            setNumberOfSixes(numberOfSixes + 1);
-        }
     }
 
     public int getScore() {
@@ -52,16 +27,32 @@ public class BattingStats implements Stats {
         return ballsPlayed;
     }
 
+    public void setBallsPlayed(int ballsPlayed) {
+        this.ballsPlayed = ballsPlayed;
+    }
+
     public int getNumberOfSixes() {
         return numberOfSixes;
+    }
+
+    public void setNumberOfSixes(int numberOfSixes) {
+        this.numberOfSixes = numberOfSixes;
     }
 
     public int getNumberOfFours() {
         return numberOfFours;
     }
 
+    public void setNumberOfFours(int numberOfFours) {
+        this.numberOfFours = numberOfFours;
+    }
+
     public double getBattingStrikeRate() {
         return battingStrikeRate;
+    }
+
+    public void updateStats(int runs) {
+        updateBattingStats(runs);
     }
 
     public void updateBattingStats(int runs) {
@@ -75,7 +66,15 @@ public class BattingStats implements Stats {
         setBoundaries(runs);
     }
 
-    public void updateStats(int runs) {
-        updateBattingStats(runs);
+    public void setStrikeRate() {
+        battingStrikeRate = ballsPlayed == 0 ? 0 : (score * 100.0) / ballsPlayed;
+    }
+
+    public void setBoundaries(int runs) {
+        if (runs == 4) {
+            setNumberOfFours(numberOfFours + 1);
+        } else if (runs == 6) {
+            setNumberOfSixes(numberOfSixes + 1);
+        }
     }
 }

@@ -16,11 +16,13 @@ import java.util.ArrayList;
 @Repository
 public class BattingStatsRepository {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(BattingStatsRepository.class);
     private Connection connection;
     @Autowired
     private PlayerService playerService;
-    private static final Logger LOGGER = LoggerFactory.getLogger(BattingStatsRepository.class);
-    public void addBattingStats(org.project.model.stats.BattingStats battingStats, int matchId, int teamId, int playerId) {
+
+    public void addBattingStats(org.project.model.stats.BattingStats battingStats, int matchId, int teamId,
+                                int playerId) {
         /*
             Adding batting stats row for a given player for a particular match.
         */
@@ -52,6 +54,27 @@ public class BattingStatsRepository {
         } else {
             LOGGER.info("Connection not established in org.repo.BattingStats.addBattingStats");
         }
+    }
+
+    public void updateBattingStats(int matchId, int teamId, int playerId, int outComeOfTheBall, int runsScored,
+                                   int ballsPlayed) {
+        /*
+            Adding batting stats row for a given player for a particular match.
+        */
+        connection = JdbcConnection.getConnection();
+        int battingStatsId = this.getBattingStatsId(matchId, teamId, playerId);
+        this.updateBallsPlayed(battingStatsId);
+        if (outComeOfTheBall == 7) {
+            this.updateNotOut(battingStatsId);
+        } else {
+            this.updateRunsScored(outComeOfTheBall, battingStatsId);
+            if (outComeOfTheBall == 4) {
+                this.updateFoursScored(battingStatsId);
+            } else if (outComeOfTheBall == 6) {
+                this.updateSixesScored(battingStatsId);
+            }
+        }
+        this.updateStrikeRate(battingStatsId, runsScored, ballsPlayed);
     }
 
     public int getBattingStatsId(int matchId, int teamId, int playerId) {
@@ -87,27 +110,6 @@ public class BattingStatsRepository {
         return 1;
     }
 
-    public void updateBattingStats(int matchId, int teamId, int playerId,int outComeOfTheBall, int runsScored,
-                                   int ballsPlayed) {
-        /*
-            Adding batting stats row for a given player for a particular match.
-        */
-        connection = JdbcConnection.getConnection();
-        int battingStatsId = this.getBattingStatsId(matchId,teamId,playerId);
-        this.updateBallsPlayed(battingStatsId);
-        if (outComeOfTheBall == 7) {
-            this.updateNotOut(battingStatsId);
-        } else {
-            this.updateRunsScored(outComeOfTheBall, battingStatsId);
-            if (outComeOfTheBall == 4) {
-                this.updateFoursScored(battingStatsId);
-            } else if (outComeOfTheBall == 6) {
-                this.updateSixesScored(battingStatsId);
-            }
-        }
-        this.updateStrikeRate(battingStatsId, runsScored, ballsPlayed);
-    }
-
     public void updateBallsPlayed(int battingStatsId) {
         /*
             Update ballsPlayed for a given battingStats row.
@@ -126,27 +128,6 @@ public class BattingStatsRepository {
             }
         } else {
             LOGGER.info("Connection not established in org.repo.BattingStats.updateBallsPlayed");
-        }
-    }
-
-    public void updateFoursScored(int battingStatsId) {
-        /*
-            update fours scored for a given battingStats row.
-        */
-        if (connection != null) {
-            PreparedStatement statement;
-            String SqlQueryToUpdateNumberOfFoursPlayed = "UPDATE BattingStats SET Fours = Fours+? Where id = ?";
-            try {
-                statement = connection.prepareStatement(SqlQueryToUpdateNumberOfFoursPlayed);
-                statement.setInt(1, 1);
-                statement.setInt(2, battingStatsId);
-                statement.executeUpdate();
-
-            } catch (Exception e) {
-                LOGGER.info(e.getMessage());
-            }
-        } else {
-            LOGGER.info("Connection not established in org.repo.BattingStats.updateFoursScored");
         }
     }
 
@@ -189,6 +170,27 @@ public class BattingStatsRepository {
             }
         } else {
             LOGGER.info("Connection not established in org.repo.BattingStats.updateRunsScored");
+        }
+    }
+
+    public void updateFoursScored(int battingStatsId) {
+        /*
+            update fours scored for a given battingStats row.
+        */
+        if (connection != null) {
+            PreparedStatement statement;
+            String SqlQueryToUpdateNumberOfFoursPlayed = "UPDATE BattingStats SET Fours = Fours+? Where id = ?";
+            try {
+                statement = connection.prepareStatement(SqlQueryToUpdateNumberOfFoursPlayed);
+                statement.setInt(1, 1);
+                statement.setInt(2, battingStatsId);
+                statement.executeUpdate();
+
+            } catch (Exception e) {
+                LOGGER.info(e.getMessage());
+            }
+        } else {
+            LOGGER.info("Connection not established in org.repo.BattingStats.updateFoursScored");
         }
     }
 
@@ -264,6 +266,7 @@ public class BattingStatsRepository {
         }
         return null;
     }
+
     public ArrayList<ScoreCardForPlayer> getBattingScoreCardOfAnInning(int matchId, int teamId, Connection connection) {
         /*
             Return batting scorecard for a given match

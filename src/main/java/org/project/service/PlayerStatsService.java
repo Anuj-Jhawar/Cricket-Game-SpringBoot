@@ -26,6 +26,20 @@ public class PlayerStatsService {
     @Autowired
     private CricketGameService cricketGameService;
 
+    public Stats[] get(Map<String, Object> requestBody) {
+        /*
+            Return player stats for a specific match.
+        */
+        this.setPlayerStatsService(requestBody);
+        int matchId = cricketGameService.getMatchIdByDate(tournamentId, team1Id, team2Id, date);
+        BattingStats battingStats = battingStatsService.getBattingStats(matchId, team1Id, playerId);
+        BowlingStats bowlingStats = bowlingStatsService.getBowlingStats(matchId, team1Id, playerId);
+        Stats[] stats = new Stats[2];
+        stats[0] = battingStats;
+        stats[1] = bowlingStats;
+        return stats;
+    }
+
     public void setPlayerStatsService(Map<String, Object> requestBody) {
         tournamentId = Integer.parseInt((String) requestBody.get("tournamentId"));
         team1Id = Integer.parseInt((String) requestBody.get("team1Id"));
@@ -40,19 +54,5 @@ public class PlayerStatsService {
         date = sqlDate;
         playerId = Integer.parseInt((String) requestBody.get("playerId"));
         ;
-    }
-
-    public Stats[] get(Map<String, Object> requestBody) {
-        /*
-            Return player stats for a specific match.
-        */
-        this.setPlayerStatsService(requestBody);
-        int matchId = cricketGameService.getMatchIdByDate(tournamentId,team1Id,team2Id,date);
-        BattingStats battingStats = battingStatsService.getBattingStats(matchId,team1Id,playerId);
-        BowlingStats bowlingStats = bowlingStatsService.getBowlingStats(matchId,team1Id,playerId);
-        Stats[] stats = new Stats[2];
-        stats[0] = battingStats;
-        stats[1] = bowlingStats;
-        return stats;
     }
 }

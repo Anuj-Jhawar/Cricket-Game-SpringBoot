@@ -8,8 +8,8 @@ import java.sql.DriverManager;
 
 public class JdbcConnection {
 
-    private static Connection connection;
     private static final Logger LOGGER = LoggerFactory.getLogger(JdbcConnection.class);
+    private static Connection connection;
 
     public static void initializeConnection() {
         /*
@@ -26,11 +26,10 @@ public class JdbcConnection {
         }
     }
 
-    public static void closeConnection(){
-        try{
+    public static void closeConnection() {
+        try {
             connection.close();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             LOGGER.info(e.getMessage());
         }
     }

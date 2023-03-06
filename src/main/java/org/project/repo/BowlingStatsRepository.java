@@ -16,11 +16,14 @@ import java.util.ArrayList;
 
 @Repository
 public class BowlingStatsRepository {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(BowlingStatsRepository.class);
     private Connection connection;
     @Autowired
     private PlayerService playerService;
-    private static final Logger LOGGER = LoggerFactory.getLogger(BowlingStatsRepository.class);
-    public void addBowlingStats(org.project.model.stats.BowlingStats bowlingStats, int matchId, int teamId, int playerId) {
+
+    public void addBowlingStats(org.project.model.stats.BowlingStats bowlingStats, int matchId, int teamId,
+                                int playerId) {
         /*
             Add bowling stats for a given match for a player.
         */
@@ -49,6 +52,26 @@ public class BowlingStatsRepository {
         } else {
             LOGGER.info("Connection not established in org.repo.BowlingStatsDB.addBowlingStats.");
         }
+    }
+
+    public void updateBowlingStats(int matchId, int teamId, int playerId, int outComeOfTheBall,
+                                   org.project.model.stats.BowlingStats bowlingStats) {
+        /*
+            Update bowling stats for a given match for given player.
+        */
+        connection = JdbcConnection.getConnection();
+        int runsConceded = bowlingStats.getRunConceded();
+        int wickets = bowlingStats.getWickets();
+        int ballsBalled = bowlingStats.getBallsBowled();
+        int bowlingStatsId = this.getBowlingStatsId(matchId, teamId, playerId);
+        this.updateBallsBalled(bowlingStatsId, ballsBalled);
+        if (outComeOfTheBall == 7) {
+            this.updateWicketsTaken(bowlingStatsId);
+        } else {
+            this.updateRunsConceded(bowlingStatsId, runsConceded);
+        }
+        this.updateBowlingAverage(bowlingStatsId, runsConceded, wickets);
+
     }
 
     public int getBowlingStatsId(int matchId, int teamId, int playerId) {
@@ -85,26 +108,6 @@ public class BowlingStatsRepository {
         return 0;
     }
 
-    public void updateBowlingStats(int matchId, int teamId, int playerId,int outComeOfTheBall,
-                                   org.project.model.stats.BowlingStats bowlingStats) {
-        /*
-            Update bowling stats for a given match for given player.
-        */
-        connection = JdbcConnection.getConnection();
-        int runsConceded = bowlingStats.getRunConceded();
-        int wickets = bowlingStats.getWickets();
-        int ballsBalled = bowlingStats.getBallsBowled();
-        int bowlingStatsId = this.getBowlingStatsId(matchId,teamId,playerId);
-        this.updateBallsBalled(bowlingStatsId, ballsBalled);
-        if (outComeOfTheBall == 7) {
-            this.updateWicketsTaken(bowlingStatsId);
-        } else {
-            this.updateRunsConceded(bowlingStatsId, runsConceded);
-        }
-        this.updateBowlingAverage(bowlingStatsId, runsConceded, wickets);
-
-    }
-
     public void updateBallsBalled(int bowlingStatsId, int ballsBalled) {
         /*
             Update ballsBalled for a given bowlingStats row.
@@ -123,6 +126,46 @@ public class BowlingStatsRepository {
             }
         } else {
             LOGGER.info("Connection not established in org.repo.BowlingStatsDB.updateBallsBalled.");
+        }
+    }
+
+    public void updateWicketsTaken(int bowlingStatsId) {
+        /*
+            Update wicketTaken for a given bowlingStats row.
+        */
+        if (connection != null) {
+            PreparedStatement statement;
+            String SqlQueryToUpdateNumberOfWicketsTaken = "UPDATE BowlingStats SET Wickets = Wickets+1 Where id = ?";
+            try {
+                statement = connection.prepareStatement(SqlQueryToUpdateNumberOfWicketsTaken);
+                statement.setInt(1, bowlingStatsId);
+                statement.executeUpdate();
+            } catch (Exception e) {
+                LOGGER.info(e.getMessage());
+            }
+        } else {
+            LOGGER.info("Connection not established in org.repo.BowlingStatsDB.updateWicketsTaken.");
+        }
+    }
+
+    public void updateRunsConceded(int bowlingStatsId, int runsConceded) {
+        /*
+            Update runsScored for a given bowlingStats row.
+        */
+        if (connection != null) {
+            PreparedStatement statement;
+            String SqlQueryToUpdateNumberOfRunsConceded = "UPDATE BowlingStats SET RunsConceded = ? Where id = ?";
+            try {
+                statement = connection.prepareStatement(SqlQueryToUpdateNumberOfRunsConceded);
+                statement.setInt(1, runsConceded);
+                statement.setInt(2, bowlingStatsId);
+                statement.executeUpdate();
+
+            } catch (Exception e) {
+                LOGGER.info(e.getMessage());
+            }
+        } else {
+            LOGGER.info("Connection not established in org.repo.BowlingStatsDB.updateRunsConceded.");
         }
     }
 
@@ -148,46 +191,6 @@ public class BowlingStatsRepository {
             }
         } else {
             LOGGER.info("Connection not established in org.repo.BowlingStatsDB.updateBowlingAverage.");
-        }
-    }
-
-    public void updateRunsConceded(int bowlingStatsId, int runsConceded) {
-        /*
-            Update runsScored for a given bowlingStats row.
-        */
-        if (connection != null) {
-            PreparedStatement statement;
-            String SqlQueryToUpdateNumberOfRunsConceded = "UPDATE BowlingStats SET RunsConceded = ? Where id = ?";
-            try {
-                statement = connection.prepareStatement(SqlQueryToUpdateNumberOfRunsConceded);
-                statement.setInt(1, runsConceded);
-                statement.setInt(2, bowlingStatsId);
-                statement.executeUpdate();
-
-            } catch (Exception e) {
-                LOGGER.info(e.getMessage());
-            }
-        } else {
-            LOGGER.info("Connection not established in org.repo.BowlingStatsDB.updateRunsConceded.");
-        }
-    }
-
-    public void updateWicketsTaken(int bowlingStatsId) {
-        /*
-            Update wicketTaken for a given bowlingStats row.
-        */
-        if (connection != null) {
-            PreparedStatement statement;
-            String SqlQueryToUpdateNumberOfWicketsTaken = "UPDATE BowlingStats SET Wickets = Wickets+1 Where id = ?";
-            try {
-                statement = connection.prepareStatement(SqlQueryToUpdateNumberOfWicketsTaken);
-                statement.setInt(1, bowlingStatsId);
-                statement.executeUpdate();
-            } catch (Exception e) {
-                LOGGER.info(e.getMessage());
-            }
-        } else {
-            LOGGER.info("Connection not established in org.repo.BowlingStatsDB.updateWicketsTaken.");
         }
     }
 
@@ -222,6 +225,7 @@ public class BowlingStatsRepository {
         }
         return null;
     }
+
     public ArrayList<ScoreCardForPlayer> getBowlingScoreCardOfAnInning(int matchId, int teamId, Connection connection) {
         /*
             Return bowling scorecard for a given match

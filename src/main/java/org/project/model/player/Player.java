@@ -2,13 +2,10 @@ package org.project.model.player;
 
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.project.model.stats.BattingStats;
 import org.project.model.stats.BowlingStats;
 import org.project.model.stats.Stats;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
 
 @Data
 @Component
@@ -33,12 +30,12 @@ public class Player {
         return playerCount;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void updateBattingStats(int runs) {

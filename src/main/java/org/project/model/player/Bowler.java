@@ -5,10 +5,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class Bowler extends Player {
 
-    public void setName(String Name) {
-        this.name = Name;
+    public Bowler() {
     }
 
-    public Bowler() {
+    public void setName(String Name) {
+        this.name = Name;
     }
 }

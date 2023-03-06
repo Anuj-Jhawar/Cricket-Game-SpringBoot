@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BowlingStatsService {
+
     @Autowired
     private TeamService teamService;
     @Autowired
@@ -17,33 +18,38 @@ public class BowlingStatsService {
     private CricketGameService cricketGameService;
     @Autowired
     private BowlingStatsRepository bowlingStatsRepository;
-    public void addBowlingStats(org.project.model.stats.BowlingStats bowlingStats, int matchId, int teamId, int playerId){
-        this.bowlingStatsRepository.addBowlingStats(bowlingStats,matchId,teamId,playerId);
+
+    public int getBowlingStatsId(int matchId, int teamId, int playerId) {
+        return bowlingStatsRepository.getBowlingStatsId(matchId, teamId, playerId);
     }
-    public int getBowlingStatsId(int matchId,int teamId,int playerId){
-        return bowlingStatsRepository.getBowlingStatsId(matchId,teamId,playerId);
-    }
-    public void updateBowlingStats(int matchId,int teamId,int playerId,int outComeOfTheBall, org.project.model.stats.BowlingStats bowlingStats){
-        this.bowlingStatsRepository.updateBowlingStats(matchId,teamId,playerId,outComeOfTheBall,bowlingStats);
-    }
-    public void updateBowlingStats(String tournamentName, String team1Name, String team2Name,
-                                   Player player, int battingIndex, String teamName, int outcomeOfTheBall,
-                                   org.project.model.stats.BowlingStats bowlingStats){
+
+    public void updateBowlingStats(String tournamentName, String team1Name, String team2Name, Player player,
+                                   int battingIndex, String teamName, int outcomeOfTheBall,
+                                   org.project.model.stats.BowlingStats bowlingStats) {
         int matchId = cricketGameService.getMatchId(tournamentName, team1Name, team2Name, battingIndex);
         int teamId = teamService.getTeamId(teamName);
         int playerId = playerService.getPlayerId(player.getName());
-        this.updateBowlingStats(matchId,teamId,playerId,outcomeOfTheBall,bowlingStats);
+        this.updateBowlingStats(matchId, teamId, playerId, outcomeOfTheBall, bowlingStats);
     }
-    public org.project.model.stats.BowlingStats getBowlingStats(int matchId, int teamId, int playerId){
-        return bowlingStatsRepository.getBowlingStats(matchId,teamId,playerId);
+
+    public void updateBowlingStats(int matchId, int teamId, int playerId, int outComeOfTheBall,
+                                   org.project.model.stats.BowlingStats bowlingStats) {
+        this.bowlingStatsRepository.updateBowlingStats(matchId, teamId, playerId, outComeOfTheBall, bowlingStats);
     }
-    public org.project.model.stats.BowlingStats getBowlingStats(String tournamentName, String team1Name, String team2Name,
-                                                                Player player, int battingIndex, String teamName){
+
+    public org.project.model.stats.BowlingStats getBowlingStats(String tournamentName, String team1Name,
+                                                                String team2Name, Player player, int battingIndex,
+                                                                String teamName) {
         int matchId = cricketGameService.getMatchId(tournamentName, team1Name, team2Name, battingIndex);
         int teamId = teamService.getTeamId(teamName);
         int playerId = playerService.getPlayerId(player.getName());
-        return this.getBowlingStats(matchId,teamId,playerId);
+        return this.getBowlingStats(matchId, teamId, playerId);
     }
+
+    public org.project.model.stats.BowlingStats getBowlingStats(int matchId, int teamId, int playerId) {
+        return bowlingStatsRepository.getBowlingStats(matchId, teamId, playerId);
+    }
+
     public void addBowlingStatsToBowlingStatsTable(CricketGame game, Team team) {
         /*
             Add bowling stats for match.
@@ -55,7 +61,12 @@ public class BowlingStatsService {
                     game.getTeam2().getTeamName(), game.getBattingTeamIndex());
             int teamId = teamService.getTeamId(teamName);
             int playerId = playerService.getPlayerId(players[i].getName());
-            this.addBowlingStats(players[i].getBowlingStats(),matchId,teamId,playerId);
+            this.addBowlingStats(players[i].getBowlingStats(), matchId, teamId, playerId);
         }
+    }
+
+    public void addBowlingStats(org.project.model.stats.BowlingStats bowlingStats, int matchId, int teamId,
+                                int playerId) {
+        this.bowlingStatsRepository.addBowlingStats(bowlingStats, matchId, teamId, playerId);
     }
 }

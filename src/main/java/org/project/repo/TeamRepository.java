@@ -4,38 +4,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import java.awt.image.LookupOp;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
 @Repository
 public class TeamRepository {
 
-    private Connection connection;
     private static final Logger LOGGER = LoggerFactory.getLogger(TeamRepository.class);
-
-    public int tableSize() {
-        /*
-            Return team table size.
-        */
-        connection = JdbcConnection.getConnection();
-        if (connection != null) {
-            Statement statement;
-            try {
-                statement = connection.createStatement();
-                String sqlCommandToGetSize = "SELECT COUNT(*) FROM Teams";
-                ResultSet resultSet = statement.executeQuery(sqlCommandToGetSize);
-                if (resultSet.next()) {
-                    return resultSet.getInt(1);
-                } else {
-                    return 0;
-                }
-            } catch (Exception e) {
-                LOGGER.info(e.getMessage());
-            }
-        }
-        return 0;
-    }
+    private Connection connection;
 
     public String addTeam(String teamName) {
         /*
@@ -95,5 +72,28 @@ public class TeamRepository {
             LOGGER.info("Connection not established in org.repo.TeamDB.getTeamId");
         }
         return 1;
+    }
+
+    public int tableSize() {
+        /*
+            Return team table size.
+        */
+        connection = JdbcConnection.getConnection();
+        if (connection != null) {
+            Statement statement;
+            try {
+                statement = connection.createStatement();
+                String sqlCommandToGetSize = "SELECT COUNT(*) FROM Teams";
+                ResultSet resultSet = statement.executeQuery(sqlCommandToGetSize);
+                if (resultSet.next()) {
+                    return resultSet.getInt(1);
+                } else {
+                    return 0;
+                }
+            } catch (Exception e) {
+                LOGGER.info(e.getMessage());
+            }
+        }
+        return 0;
     }
 }

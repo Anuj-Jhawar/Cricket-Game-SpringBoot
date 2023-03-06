@@ -15,6 +15,42 @@ public class Umpire {
         name = "Kumar DharmaSena.";
     }
 
+    String wide() {
+        /*
+            Function which helps umpire to signal Wide.
+        */
+        String commentary = "Its a wide";
+        System.out.println(commentary);
+        return commentary;
+    }
+
+    String noBall() {
+        /*
+            Function which helps umpire to signal NoBall.
+        */
+        String commentary = "Its a NoBall and a FreeHit!!!";
+        System.out.println(commentary);
+        return commentary;
+    }
+
+    public void signal(CricketGame game, Ball ball, int inningNo) {
+        /*
+            Helps Others.Umpire decides to signal different function depending on the OutcomeOfTheBall.
+        */
+        int OutcomeOfTheBall = ball.getOutcomeOfTheBall();
+        String commentaryText = "";
+        if (OutcomeOfTheBall == 7) {
+            commentaryText = wicket();
+        } else if (OutcomeOfTheBall == 4) {
+            commentaryText = four();
+        } else if (OutcomeOfTheBall == 6) {
+            commentaryText = six();
+        } else {
+            commentaryText = runs(OutcomeOfTheBall);
+        }
+        commentaryService.addCommentary(ball, game, commentaryText, inningNo);
+    }
+
     String wicket() {
         /*
             Function which helps umpire to signal wicket.
@@ -42,24 +78,6 @@ public class Umpire {
         return commentary;
     }
 
-    String wide() {
-        /*
-            Function which helps umpire to signal Wide.
-        */
-        String commentary = "Its a wide";
-        System.out.println(commentary);
-        return commentary;
-    }
-
-    String noBall() {
-        /*
-            Function which helps umpire to signal NoBall.
-        */
-        String commentary = "Its a NoBall and a FreeHit!!!";
-        System.out.println(commentary);
-        return commentary;
-    }
-
     String runs(int RunsScored) {
         /*
             Runs scored other than 4 or 6.
@@ -68,24 +86,6 @@ public class Umpire {
         System.out.println(commentary);
         return commentary;
 
-    }
-
-    public void signal(CricketGame game, Ball ball, int inningNo) {
-        /*
-            Helps Others.Umpire decides to signal different function depending on the OutcomeOfTheBall.
-        */
-        int OutcomeOfTheBall = ball.getOutcomeOfTheBall();
-        String commentaryText = "";
-        if (OutcomeOfTheBall == 7) {
-            commentaryText = wicket();
-        } else if (OutcomeOfTheBall == 4) {
-            commentaryText = four();
-        } else if (OutcomeOfTheBall == 6) {
-            commentaryText = six();
-        } else {
-            commentaryText = runs(OutcomeOfTheBall);
-        }
-        commentaryService.addCommentary(ball, game, commentaryText, inningNo);
     }
 
 }

@@ -9,6 +9,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class CricketGame {
 
+    @Autowired
+    BattingStatsService battingStatsService;
+    @Autowired
+    BowlingStatsService bowlingStatsService;
     private org.project.model.Team team1;
     private org.project.model.Team team2;
     private org.project.model.Toss tossForGame = new Toss();
@@ -18,14 +22,12 @@ public class CricketGame {
     private String winner;
     private String format;
     private String tournamentName;
-    @Autowired
-    BattingStatsService battingStatsService;
-    @Autowired
-    BowlingStatsService bowlingStatsService;
 
-    public CricketGame(){}
+    public CricketGame() {
+    }
 
-    public void setCricketGame(String tournamentName, org.project.model.Team team1, org.project.model.Team team2, String venue, String format) {
+    public void setCricketGame(String tournamentName, org.project.model.Team team1, org.project.model.Team team2,
+                               String venue, String format) {
         this.tournamentName = tournamentName;
         this.team1 = team1;
         this.team2 = team2;
@@ -61,10 +63,6 @@ public class CricketGame {
         umpire.signal(this, ball, inningNo);
     }
 
-    public void setWinner(String winningTeam) {
-        winner = winningTeam;
-    }
-
     public void updateTeamBattingStats(int index, int outComeOfTheBall) {
         /*
             Updating the Team Batting Stats.
@@ -87,16 +85,12 @@ public class CricketGame {
         }
     }
 
-    public void setTournamentName(String tournamentName) {
-        this.tournamentName = tournamentName;
-    }
-
     public String getTournamentName() {
         return tournamentName;
     }
 
-    public int getBattingTeamIndex() {
-        return tossForGame.getBattingTeamIndex();
+    public void setTournamentName(String tournamentName) {
+        this.tournamentName = tournamentName;
     }
 
     public int getBowlingTeamIndex() {
@@ -110,16 +104,20 @@ public class CricketGame {
         if (teamIndex == 1) {
             team1.updateBattingStatsOfPlayer(playerIndex, runs);
             Player player = team1.getPlayer(playerIndex);
-            battingStatsService.updateBattingStats(tournamentName,
-                    team1.getTeamName(), team2.getTeamName(), player, this.getBattingTeamIndex(), team1.getTeamName(),runs, player.getBattingStats().getScore(),
+            battingStatsService.updateBattingStats(tournamentName, team1.getTeamName(), team2.getTeamName(), player,
+                    this.getBattingTeamIndex(), team1.getTeamName(), runs, player.getBattingStats().getScore(),
                     player.getBattingStats().getBallsPlayed());
         } else {
             team2.updateBattingStatsOfPlayer(playerIndex, runs);
             Player player = team2.getPlayer(playerIndex);
-            battingStatsService.updateBattingStats(tournamentName,
-                    team1.getTeamName(), team2.getTeamName(), player, this.getBattingTeamIndex(), team2.getTeamName(),runs, player.getBattingStats().getScore(),
+            battingStatsService.updateBattingStats(tournamentName, team1.getTeamName(), team2.getTeamName(), player,
+                    this.getBattingTeamIndex(), team2.getTeamName(), runs, player.getBattingStats().getScore(),
                     player.getBattingStats().getBallsPlayed());
         }
+    }
+
+    public int getBattingTeamIndex() {
+        return tossForGame.getBattingTeamIndex();
     }
 
     public void updateBowlingStatsOfBowler(int teamIndex, int playerIndex, int outcomeOfTheBall) {
@@ -129,13 +127,13 @@ public class CricketGame {
         if (teamIndex == 1) {
             team2.updateBowlingStatsOfPlayer(playerIndex, outcomeOfTheBall);
             Player player = team2.getPlayer(playerIndex);
-            bowlingStatsService.updateBowlingStats(tournamentName,
-                    team1.getTeamName(), team2.getTeamName(), player, this.getBattingTeamIndex(), team2.getTeamName(),outcomeOfTheBall, player.getBowlingStats());
+            bowlingStatsService.updateBowlingStats(tournamentName, team1.getTeamName(), team2.getTeamName(), player,
+                    this.getBattingTeamIndex(), team2.getTeamName(), outcomeOfTheBall, player.getBowlingStats());
         } else {
             team1.updateBowlingStatsOfPlayer(playerIndex, outcomeOfTheBall);
             Player player = team1.getPlayer(playerIndex);
-            bowlingStatsService.updateBowlingStats(tournamentName,
-                    team1.getTeamName(), team2.getTeamName(), player, this.getBattingTeamIndex(), team1.getTeamName(),outcomeOfTheBall, player.getBowlingStats());
+            bowlingStatsService.updateBowlingStats(tournamentName, team1.getTeamName(), team2.getTeamName(), player,
+                    this.getBattingTeamIndex(), team1.getTeamName(), outcomeOfTheBall, player.getBowlingStats());
         }
     }
 
@@ -155,6 +153,10 @@ public class CricketGame {
             Returning the winner of the game.
         */
         return winner;
+    }
+
+    public void setWinner(String winningTeam) {
+        winner = winningTeam;
     }
 
 

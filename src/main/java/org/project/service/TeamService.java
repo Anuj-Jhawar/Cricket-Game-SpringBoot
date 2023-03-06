@@ -13,8 +13,10 @@ import java.util.Map;
 @Service
 @NoArgsConstructor
 public class TeamService {
+
     @Autowired
     private TeamRepository teamRepository;
+
     public org.project.model.Team setTeamRepository(Map<String, Object> document) {
         /*
             Create team from the user input and return it.
@@ -34,13 +36,15 @@ public class TeamService {
         team.setPlayers(players);
         return team;
     }
+
     public String addTeamToTeamTable(org.project.model.Team team) {
         /*
             Add team.
         */
         return this.teamRepository.addTeam(team.getTeamName());
     }
-    public int getTeamId(String teamName){
+
+    public int getTeamId(String teamName) {
         return teamRepository.getTeamId(teamName);
     }
 }

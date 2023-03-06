@@ -8,15 +8,6 @@ import org.springframework.stereotype.Component;
 public class Team {
 
     private static int teamCount = 0;
-
-    public static void incrementTeamCount() {
-        teamCount++;
-    }
-
-    public static int getTeamCount() {
-        return teamCount;
-    }
-
     private Player[] players = new Player[11];
     private int numberOfBatsman;
     private int numberOfBowler;
@@ -24,7 +15,6 @@ public class Team {
     private int runsScored;
     private int wicketsFallen;
     private String name;
-
     public Team() {
         //        InputService inputService = new InputService();
         //        inputService.playerTypeInput(this);
@@ -37,8 +27,20 @@ public class Team {
         numberOfBowler = 0;
     }
 
+    public static void incrementTeamCount() {
+        teamCount++;
+    }
+
+    public static int getTeamCount() {
+        return teamCount;
+    }
+
     public String getTeamName() {
         return name;
+    }
+
+    public void setTeamName(String nameForTeam) {
+        name = nameForTeam;
     }
 
     public Player[] getPlayers() {
@@ -65,20 +67,16 @@ public class Team {
         return runsScored;
     }
 
+    public void setRunsScored(int runsScoredTillNow) {
+        runsScored += runsScoredTillNow;
+    }
+
     public int getWicketsFallen() {
         return wicketsFallen;
     }
 
     public Player getPlayer(int index) {
         return players[index];
-    }
-
-    public void setTeamName(String nameForTeam) {
-        name = nameForTeam;
-    }
-
-    public void setRunsScored(int runsScoredTillNow) {
-        runsScored += runsScoredTillNow;
     }
 
     public void setWicketsFallen() {
