@@ -61,10 +61,10 @@ public class GetApis {
         return commentaryService.getCommentary(matchId);
     }
 
-    @PostMapping("/startGame")
-    public String startGame(@RequestBody Map<String, Object> requestBody) {
+    @PostMapping("/startMatch")
+    public String startMatch(@RequestBody Map<String, Object> requestBody) {
         LOGGER.info("Request for starting a match between team1_id {} and team2_id {} in tournament_id {}",
                 requestBody.get("team1Id"), requestBody.get("team2Id"), requestBody.get("tournamentId"));
-        return matchService.setUpGame(requestBody);
+        return matchService.setUpMatch(requestBody);
     }
 }

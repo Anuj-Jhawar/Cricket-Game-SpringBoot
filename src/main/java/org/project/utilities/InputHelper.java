@@ -1,6 +1,6 @@
 package org.project.utilities;
 
-import org.project.model.CricketGame;
+import org.project.model.Match;
 import org.project.model.Team;
 import org.project.model.player.Player;
 
@@ -22,19 +22,19 @@ public class InputHelper {
         player.setName(PlayerName);
     }
 
-    public void formatInput(CricketGame game) {
+    public void formatInput(Match match) {
         Scanner scn = new Scanner(System.in);
-        System.out.println("Please Enter the format of the Game from the following:");
+        System.out.println("Please Enter the format of the match from the following:");
         System.out.println("T10, T20, ODI");
-        String FormatOfTheGame = scn.nextLine();
-        game.setFormatForTheGame(FormatOfTheGame);
+        String FormatOfThematch = scn.nextLine();
+        match.setFormatForThematch(FormatOfThematch);
     }
 
-    public void venueInput(CricketGame game) {
+    public void venueInput(Match match) {
         Scanner scn = new Scanner(System.in);
-        System.out.println("Please Enter the Venue of the Game: ");
-        String VenueOfTheGame = scn.nextLine();
-        game.setVenueForTheGame(VenueOfTheGame);
+        System.out.println("Please Enter the Venue of the match: ");
+        String VenueOfThematch = scn.nextLine();
+        match.setVenueForThematch(VenueOfThematch);
     }
 
     public void playerTypeInput(Team team) {

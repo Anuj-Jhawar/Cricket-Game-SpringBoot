@@ -3,7 +3,7 @@ package org.project.service;
 import org.bson.Document;
 import org.project.model.Ball;
 import org.project.model.BallCommentary;
-import org.project.model.CricketGame;
+import org.project.model.Match;
 import org.project.repo.CommentaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,12 +20,12 @@ public class CommentaryService {
     @Autowired
     private CommentaryRepository commentaryRepository;
 
-    public void addCommentary(Ball ball, CricketGame game, String commentaryText, int inningNo) {
+    public void addCommentary(Ball ball, Match match, String commentaryText, int inningNo) {
         /*
             Add commentary of the match after every ball.
         */
-        int matchId = matchService.getMatchId(game.getTournamentName(), game.getTeam1().getTeamName(),
-                game.getTeam2().getTeamName(), game.getBattingTeamIndex());
+        int matchId = matchService.getMatchId(match.getTournamentName(), match.getTeam1().getTeamName(),
+                match.getTeam2().getTeamName(), match.getBattingTeamIndex());
         int batsmanID = playerService.getPlayerId(ball.getBatsmanName());
         int bowlerId = playerService.getPlayerId(ball.getBowlerName());
         BallCommentary ballCommentary = new BallCommentary(batsmanID, bowlerId, commentaryText);

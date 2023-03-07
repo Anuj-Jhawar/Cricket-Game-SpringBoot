@@ -1,7 +1,7 @@
 package org.project.model.scorecard;
 
 
-import org.project.model.CricketGame;
+import org.project.model.Match;
 import org.project.model.Team;
 import org.project.model.player.Player;
 import org.project.model.stats.BattingStats;
@@ -15,14 +15,14 @@ public class BattingScoreCard implements InningScoreCard {
     @Autowired
     private Player[] players;
     @Autowired
-    private CricketGame game;
+    private Match match;
     @Autowired
     private Team battingTeam;
     @Autowired
     private BattingStatsService battingStatsService;
 
-    public void setBattingScoreCard(CricketGame game, Team battingTeam) {
-        this.game = game;
+    public void setBattingScoreCard(Match match, Team battingTeam) {
+        this.match = match;
         players = battingTeam.getPlayers();
         this.battingTeam = battingTeam;
     }
@@ -33,8 +33,8 @@ public class BattingScoreCard implements InningScoreCard {
         */
         printHeadings();
         for (Player batsman : players) {
-            BattingStats battingStats = battingStatsService.getBattingStats(game.getTournamentName(),
-                    game.getTeam1().getTeamName(), game.getTeam2().getTeamName(), batsman, game.getBattingTeamIndex(),
+            BattingStats battingStats = battingStatsService.getBattingStats(match.getTournamentName(),
+                    match.getTeam1().getTeamName(), match.getTeam2().getTeamName(), batsman, match.getBattingTeamIndex(),
                     battingTeam.getTeamName());
             if (battingStats.getBallsPlayed() > 0) {
                 System.out.printf("%-20s %10s %10s %10s %10s %10.2f %n", batsman.getName(), battingStats.getScore(),

@@ -1,6 +1,6 @@
 package org.project.service;
 
-import org.project.model.CricketGame;
+import org.project.model.Match;
 import org.project.model.Team;
 import org.project.model.player.Player;
 import org.project.repo.BowlingStatsRepository;
@@ -46,15 +46,15 @@ public class BowlingStatsService {
         return bowlingStatsRepository.getBowlingStats(matchId, teamId, playerId);
     }
 
-    public void addBowlingStatsToBowlingStatsTable(CricketGame game, Team team) {
+    public void addBowlingStatsToBowlingStatsTable(Match match, Team team) {
         /*
             Add bowling stats for match.
         */
         String teamName = team.getTeamName();
         Player[] players = team.getPlayers();
         for (int i = 0; i < 11; i++) {
-            int matchId = matchService.getMatchId(game.getTournamentName(), game.getTeam1().getTeamName(),
-                    game.getTeam2().getTeamName(), game.getBattingTeamIndex());
+            int matchId = matchService.getMatchId(match.getTournamentName(), match.getTeam1().getTeamName(),
+                    match.getTeam2().getTeamName(), match.getBattingTeamIndex());
             int teamId = teamService.getTeamId(teamName);
             int playerId = playerService.getPlayerId(players[i].getName());
             this.addBowlingStats(players[i].getBowlingStats(), matchId, teamId, playerId);

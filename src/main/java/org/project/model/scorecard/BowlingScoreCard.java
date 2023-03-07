@@ -1,7 +1,7 @@
 package org.project.model.scorecard;
 
 
-import org.project.model.CricketGame;
+import org.project.model.Match;
 import org.project.model.Team;
 import org.project.model.player.Player;
 import org.project.model.stats.BowlingStats;
@@ -15,14 +15,14 @@ public class BowlingScoreCard implements InningScoreCard {
     @Autowired
     private Player[] players = new Player[11];
     @Autowired
-    private CricketGame game;
+    private Match match;
     @Autowired
     private Team bowlingTeam;
     @Autowired
     private BowlingStatsService bowlingStatsService;
 
-    public void setBowlingScoreCard(CricketGame game, Team bowlingTeam) {
-        this.game = game;
+    public void setBowlingScoreCard(Match match, Team bowlingTeam) {
+        this.match = match;
         players = bowlingTeam.getPlayers();
         this.bowlingTeam = bowlingTeam;
     }
@@ -33,9 +33,9 @@ public class BowlingScoreCard implements InningScoreCard {
         */
         printHeadings();
         for (Player currentBowler : players) {
-            BowlingStats bowlingStats = bowlingStatsService.getBowlingStats(game.getTournamentName(),
-                    game.getTeam1().getTeamName(), game.getTeam2().getTeamName(), currentBowler,
-                    game.getBattingTeamIndex(), bowlingTeam.getTeamName());
+            BowlingStats bowlingStats = bowlingStatsService.getBowlingStats(match.getTournamentName(),
+                    match.getTeam1().getTeamName(), match.getTeam2().getTeamName(), currentBowler,
+                    match.getBattingTeamIndex(), bowlingTeam.getTeamName());
             if (bowlingStats.getBallsBowled() > 0) {
                 System.out.printf("%-20s %10s %10s %5s %n", currentBowler.getName(), bowlingStats.getRunConceded(),
                         bowlingStats.getBallsBowled(), bowlingStats.getWickets());

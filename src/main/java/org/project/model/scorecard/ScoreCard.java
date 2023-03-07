@@ -1,7 +1,7 @@
 package org.project.model.scorecard;
 
 
-import org.project.model.CricketGame;
+import org.project.model.Match;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,17 +18,17 @@ public class ScoreCard {
     @Autowired
     private BowlingScoreCard bowlingScoreCard2;
 
-    public void setScoreCard(CricketGame game) {
-        if (game.getBattingTeamIndex() == 1) {
-            battingScoreCard.setBattingScoreCard(game, game.getTeam1());
-            battingScoreCard2.setBattingScoreCard(game, game.getTeam2());
-            bowlingScoreCard.setBowlingScoreCard(game, game.getTeam2());
-            bowlingScoreCard2.setBowlingScoreCard(game, game.getTeam1());
+    public void setScoreCard(Match match) {
+        if (match.getBattingTeamIndex() == 1) {
+            battingScoreCard.setBattingScoreCard(match, match.getTeam1());
+            battingScoreCard2.setBattingScoreCard(match, match.getTeam2());
+            bowlingScoreCard.setBowlingScoreCard(match, match.getTeam2());
+            bowlingScoreCard2.setBowlingScoreCard(match, match.getTeam1());
         } else {
-            battingScoreCard.setBattingScoreCard(game, game.getTeam2());
-            battingScoreCard2.setBattingScoreCard(game, game.getTeam1());
-            bowlingScoreCard.setBowlingScoreCard(game, game.getTeam1());
-            bowlingScoreCard2.setBowlingScoreCard(game, game.getTeam2());
+            battingScoreCard.setBattingScoreCard(match, match.getTeam2());
+            battingScoreCard2.setBattingScoreCard(match, match.getTeam1());
+            bowlingScoreCard.setBowlingScoreCard(match, match.getTeam1());
+            bowlingScoreCard2.setBowlingScoreCard(match, match.getTeam2());
         }
     }
 

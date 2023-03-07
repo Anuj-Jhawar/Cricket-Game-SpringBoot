@@ -33,7 +33,7 @@ public class Umpire {
         return commentary;
     }
 
-    public void signal(CricketGame game, Ball ball, int inningNo) {
+    public void signal(Match match, Ball ball, int inningNo) {
         /*
             Helps Others.Umpire decides to signal different function depending on the OutcomeOfTheBall.
         */
@@ -48,7 +48,7 @@ public class Umpire {
         } else {
             commentaryText = runs(OutcomeOfTheBall);
         }
-        commentaryService.addCommentary(ball, game, commentaryText, inningNo);
+        commentaryService.addCommentary(ball, match, commentaryText, inningNo);
     }
 
     String wicket() {

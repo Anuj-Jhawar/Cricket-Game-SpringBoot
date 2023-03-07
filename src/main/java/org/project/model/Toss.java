@@ -20,7 +20,7 @@ public class Toss {
 
     public int AssignBattingTeam() {
         /*
-            Assigning the batting team to the game.
+            Assigning the batting team to the match.
         */
         double value = Math.random();
         int tossValue = (int) (value * 2);
