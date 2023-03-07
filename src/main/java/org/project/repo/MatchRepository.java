@@ -42,7 +42,8 @@ public class MatchRepository {
             Date date = new Date(System.currentTimeMillis());
             try {
                 String sqlCommandToInsertMatchInMatchTable
-                        = "INSERT INTO Matches(team1_id, team2_id, tournament_id, result, Date) VALUES( ?, ?, ?, ?, ?)";
+                        = "INSERT INTO Matches(team1_id, team2_id, tournament_id, result, Date,is_deleted) VALUES( ?," +
+                          " ?, ?, ?, ?,0)";
                 statement = connection.prepareStatement(sqlCommandToInsertMatchInMatchTable);
                 statement.setInt(1, team1Id);
                 statement.setInt(2, team2Id);

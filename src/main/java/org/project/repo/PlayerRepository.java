@@ -14,7 +14,7 @@ public class PlayerRepository {
     private static final Logger LOGGER = LoggerFactory.getLogger(PlayerRepository.class);
     private Connection connection;
 
-    public void addPlayer(String playerName, int age) {
+    public void addPlayer(String playerName,String type, int age) {
         /*
             Add player details to database.
         */
@@ -25,10 +25,10 @@ public class PlayerRepository {
         if (connection != null) {
             PreparedStatement statement;
             try {
-                String sqlCommandToInsertTeamInTeamTable = "INSERT INTO Players(Name,Age) VALUES (?,?)";
+                String sqlCommandToInsertTeamInTeamTable = "INSERT INTO Players(Name,Type,Age,is_deleted) VALUES (?,?,0,0)";
                 statement = connection.prepareStatement(sqlCommandToInsertTeamInTeamTable);
                 statement.setString(1, playerName);
-                statement.setInt(2, 1);
+                statement.setString(2, type);
                 try {
                     statement.executeUpdate();
                 } catch (Exception e) {

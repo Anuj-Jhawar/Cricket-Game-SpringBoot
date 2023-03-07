@@ -33,8 +33,8 @@ public class TournamentRepository {
                 statement = connection.createStatement();
                 int size = this.tableSize();
                 String modifiedTournamentName = tournamentName + "_" + size;
-                String sqlCommandToCreateTournamentTable = "INSERT INTO Tournaments (Name) VALUES ('" +
-                                                           modifiedTournamentName + "')";
+                String sqlCommandToCreateTournamentTable = "INSERT INTO Tournaments (Name,is_deleted) VALUES ('" +
+                                                           modifiedTournamentName + "',0)";
                 try {
                     statement.executeUpdate(sqlCommandToCreateTournamentTable);
                     return modifiedTournamentName;

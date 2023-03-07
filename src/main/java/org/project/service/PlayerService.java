@@ -2,6 +2,7 @@ package org.project.service;
 
 import org.project.model.Match;
 import org.project.model.Team;
+import org.project.model.player.Bowler;
 import org.project.repo.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,12 +32,13 @@ public class PlayerService {
             Team team = i == 0 ? match.getTeam1() : match.getTeam2();
             org.project.model.player.Player[] players = team.getPlayers();
             for (int j = 0; j < 11; j++) {
-                this.addPlayer(players[j].getName(), 1);
+                String type = players[j] instanceof Bowler ? "Bowler" : "Batsman";
+                this.addPlayer(players[j].getName(),type, 1);
             }
         }
     }
 
-    public void addPlayer(String playerName, int age) {
-        playerRepository.addPlayer(playerName, age);
+    public void addPlayer(String playerName,String type, int age) {
+        playerRepository.addPlayer(playerName,type, age);
     }
 }

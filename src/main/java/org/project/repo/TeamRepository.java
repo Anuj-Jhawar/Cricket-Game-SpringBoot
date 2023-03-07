@@ -28,8 +28,9 @@ public class TeamRepository {
                 statement = connection.createStatement();
                 int size = this.tableSize();
                 String modifiedTeamName = teamName + "_" + size;
-                String sqlCommandToInsertTeamInTeamTable = "INSERT INTO Teams (Name) VALUES ('" + modifiedTeamName +
-                                                           "')";
+                String sqlCommandToInsertTeamInTeamTable =
+                        "INSERT INTO Teams (Name,is_deleted) VALUES ('" + modifiedTeamName +
+                                                           "',0)";
                 try {
                     statement.executeUpdate(sqlCommandToInsertTeamInTeamTable);
                     return modifiedTeamName;

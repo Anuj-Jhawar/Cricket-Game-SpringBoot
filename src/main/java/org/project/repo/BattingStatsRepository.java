@@ -31,7 +31,8 @@ public class BattingStatsRepository {
             PreparedStatement statement;
             try {
                 String sqlCommandToInsertBattingStatsInBattingStatsTable
-                        = "INSERT INTO BattingStats (player_id, team_id, match_id, RunsScored, BallsPlayed,Fours,Sixes,NotOut,StrikeRate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        = "INSERT INTO BattingStats (player_id, team_id, match_id, RunsScored, BallsPlayed,Fours," +
+                          "Sixes,NotOut,StrikeRate,is_deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,0)";
                 statement = connection.prepareStatement(sqlCommandToInsertBattingStatsInBattingStatsTable);
                 statement.setInt(1, playerId);
                 statement.setInt(2, teamId);
