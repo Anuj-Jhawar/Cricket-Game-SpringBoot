@@ -24,9 +24,6 @@ public class TournamentRepository {
         /*
             Add tournament details to table.
         */
-        if (this.getTournamentId(tournamentName) != 0) {
-            return "Tournament with this name already exists.";
-        }
         if (connection != null) {
             Statement statement;
             try {
@@ -58,7 +55,7 @@ public class TournamentRepository {
         if (connection != null) {
             PreparedStatement statement;
             try {
-                String sqlCommandToGetTournamentId = "SELECT * FROM Tournaments WHERE Name = ?";
+                String sqlCommandToGetTournamentId = "SELECT * FROM Tournaments WHERE Name = ? AND is_deleted != 1";
                 statement = connection.prepareStatement(sqlCommandToGetTournamentId);
                 statement.setString(1, tournamentName);
                 try {

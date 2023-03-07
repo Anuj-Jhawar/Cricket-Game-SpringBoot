@@ -82,7 +82,8 @@ public class MatchRepository {
             PreparedStatement statement;
             try {
                 String sqlCommandToGetMatchId
-                        = "SELECT * FROM Matches WHERE team1_id = ? AND team2_id = ? AND tournament_id = ?";
+                        = "SELECT * FROM Matches WHERE team1_id = ? AND team2_id = ? AND tournament_id = ? AND " +
+                          "is_deleted != 1";
                 try {
                     statement = connection.prepareStatement(sqlCommandToGetMatchId);
                     statement.setInt(1, team1Id);
@@ -115,7 +116,9 @@ public class MatchRepository {
             PreparedStatement statement;
             try {
                 String sqlCommandToGetMatchId
-                        = "SELECT * FROM Matches WHERE (team1_id = ? AND team2_id = ? AND tournament_id = ? AND date = ?) OR (team1_id = ? AND team2_id = ? AND tournament_id = ? AND date = ?)";
+                        = "SELECT * FROM Matches WHERE (team1_id = ? AND team2_id = ? AND tournament_id = ? AND date " +
+                          "= ?) OR (team1_id = ? AND team2_id = ? AND tournament_id = ? AND date = ?) AND is_deleted " +
+                          "!= 1";
                 try {
                     statement = connection.prepareStatement(sqlCommandToGetMatchId);
                     statement.setInt(1, team1Id);
@@ -154,7 +157,8 @@ public class MatchRepository {
         if (connection != null) {
             PreparedStatement statement;
             try {
-                String sqlCommandToGetBattingFirstTeamId = "SELECT team1_id FROM Matches WHERE id = ?";
+                String sqlCommandToGetBattingFirstTeamId = "SELECT team1_id FROM Matches WHERE id = ? AND is_deleted " +
+                                                           "!= 1";
                 try {
                     statement = connection.prepareStatement(sqlCommandToGetBattingFirstTeamId);
                     statement.setInt(1, matchId);

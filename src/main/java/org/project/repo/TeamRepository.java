@@ -19,9 +19,6 @@ public class TeamRepository {
             Add team details to data base.
         */
         connection = JdbcConnection.getConnection();
-        if (this.getTeamId(teamName) != 0) {
-            return "";
-        }
         if (connection != null) {
             Statement statement;
             try {
@@ -55,7 +52,7 @@ public class TeamRepository {
             Statement statement;
             try {
                 statement = connection.createStatement();
-                String sqlCommandToGetTeamId = "SELECT * FROM Teams WHERE Name = '" + teamName + "'";
+                String sqlCommandToGetTeamId = "SELECT * FROM Teams WHERE Name = '" + teamName + "' AND is_deleted!=1";
                 try {
                     ResultSet resultSet = statement.executeQuery(sqlCommandToGetTeamId);
                     if (resultSet.next()) {

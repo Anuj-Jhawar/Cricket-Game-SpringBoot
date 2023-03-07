@@ -84,7 +84,8 @@ public class BowlingStatsRepository {
             PreparedStatement statement;
             try {
                 String sqlCommandToGetBowlingStatsId
-                        = "SELECT * FROM BowlingStats WHERE player_id = ? AND team_id = ?  AND match_id = ?";
+                        = "SELECT * FROM BowlingStats WHERE player_id = ? AND team_id = ?  AND match_id = ? AND " +
+                          "is_deleted != 1";
                 try {
                     statement = connection.prepareStatement(sqlCommandToGetBowlingStatsId);
                     statement.setInt(1, playerId);
@@ -204,7 +205,8 @@ public class BowlingStatsRepository {
             PreparedStatement statement;
             try {
                 String sqlQueryToFetchBattingStatsOfAPlayer
-                        = "SELECT * FROM BowlingStats WHERE player_id = ? AND team_id = ? AND match_id = ?";
+                        = "SELECT * FROM BowlingStats WHERE player_id = ? AND team_id = ? AND match_id = ? AND " +
+                          "is_deleted != 1";
                 //System.out.println(playerId + " " + teamId + " " + matchId);
                 statement = connection.prepareStatement(sqlQueryToFetchBattingStatsOfAPlayer);
                 statement.setInt(1, playerId);
@@ -236,7 +238,7 @@ public class BowlingStatsRepository {
         if (connection != null) {
             PreparedStatement statement;
             String sqlCommandToGetBowlingScoreCardOfAnInning
-                    = "SELECT * FROM BowlingStats WHERE team_id = ? AND match_id = ?";
+                    = "SELECT * FROM BowlingStats WHERE team_id = ? AND match_id = ? AND is_deleted != 1";
             try {
                 statement = connection.prepareStatement(sqlCommandToGetBowlingScoreCardOfAnInning);
                 statement.setInt(1, teamId);

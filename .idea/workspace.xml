@@ -12,7 +12,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/org/project/repo/PlayerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/PlayerRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/project/repo/TeamRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/TeamRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/project/repo/TournamentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/repo/TournamentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/PlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/PlayerService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

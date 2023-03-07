@@ -87,7 +87,8 @@ public class BattingStatsRepository {
             PreparedStatement statement;
             try {
                 String sqlCommandToGetBattingStatsId
-                        = "SELECT * FROM BattingStats WHERE player_id = ? AND team_id = ?  AND match_id = ?";
+                        = "SELECT * FROM BattingStats WHERE player_id = ? AND team_id = ?  AND match_id = ? AND " +
+                          "is_deleted != 1";
                 try {
                     statement = connection.prepareStatement(sqlCommandToGetBattingStatsId);
                     statement.setInt(1, playerId);
@@ -180,7 +181,7 @@ public class BattingStatsRepository {
         */
         if (connection != null) {
             PreparedStatement statement;
-            String SqlQueryToUpdateNumberOfFoursPlayed = "UPDATE BattingStats SET Fours = Fours+? Where id = ?";
+            String SqlQueryToUpdateNumberOfFoursPlayed = "UPDATE BattingStats SET Fours = Fours+? Where id = ? ";
             try {
                 statement = connection.prepareStatement(SqlQueryToUpdateNumberOfFoursPlayed);
                 statement.setInt(1, 1);
@@ -247,7 +248,8 @@ public class BattingStatsRepository {
             PreparedStatement statement;
             try {
                 String sqlQueryToFetchBattingStatsOfAPlayer
-                        = "SELECT * FROM BattingStats WHERE player_id = ? AND team_id = ? AND match_id = ?";
+                        = "SELECT * FROM BattingStats WHERE player_id = ? AND team_id = ? AND match_id = ? AND " +
+                          "is_deleted != 1";
                 statement = connection.prepareStatement(sqlQueryToFetchBattingStatsOfAPlayer);
                 statement.setInt(1, playerId);
                 statement.setInt(2, teamId);
@@ -277,7 +279,7 @@ public class BattingStatsRepository {
         if (connection != null) {
             PreparedStatement statement;
             String sqlCommandToGetBattingScoreCardOfAnInning
-                    = "SELECT * FROM BattingStats WHERE team_id = ? AND match_id = ?";
+                    = "SELECT * FROM BattingStats WHERE team_id = ? AND match_id = ? AND is_deleted != 1";
             try {
                 statement = connection.prepareStatement(sqlCommandToGetBattingScoreCardOfAnInning);
                 statement.setInt(1, teamId);

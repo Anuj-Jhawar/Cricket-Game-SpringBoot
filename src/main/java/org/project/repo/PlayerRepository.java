@@ -51,7 +51,7 @@ public class PlayerRepository {
         if (connection != null) {
             PreparedStatement statement;
             try {
-                String sqlCommandToGetPlayerId = "SELECT * FROM Players WHERE Name = ?";
+                String sqlCommandToGetPlayerId = "SELECT * FROM Players WHERE Name = ? AND is_deleted !=1";
                 statement = connection.prepareStatement(sqlCommandToGetPlayerId);
                 statement.setString(1, playerName);
                 try {
@@ -81,7 +81,7 @@ public class PlayerRepository {
         connection = JdbcConnection.getConnection();
         if (connection != null) {
             PreparedStatement statement;
-            String sqlCommandToGetPlayerName = "SELECT Name from Players WHERE id = ?";
+            String sqlCommandToGetPlayerName = "SELECT Name from Players WHERE id = ? AND is_deleted != 1";
             try {
                 statement = connection.prepareStatement(sqlCommandToGetPlayerName);
                 statement.setInt(1, playerId);
