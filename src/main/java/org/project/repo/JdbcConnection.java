@@ -1,14 +1,12 @@
 package org.project.repo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+@Slf4j
 public class JdbcConnection {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(JdbcConnection.class);
     private static Connection connection;
 
     public static void initializeConnection() {
@@ -22,7 +20,7 @@ public class JdbcConnection {
             String password = "rootroot";
             connection = DriverManager.getConnection(url, username, password);
         } catch (Exception e) {
-            LOGGER.error(e.getMessage());
+            log.error(e.getMessage());
         }
     }
 
@@ -30,7 +28,7 @@ public class JdbcConnection {
         try {
             connection.close();
         } catch (Exception e) {
-            LOGGER.error(e.getMessage());
+            log.error(e.getMessage());
         }
     }
 

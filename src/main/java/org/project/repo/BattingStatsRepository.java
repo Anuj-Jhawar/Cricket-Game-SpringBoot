@@ -1,10 +1,9 @@
 package org.project.repo;
 
+import lombok.extern.slf4j.Slf4j;
 import org.project.model.ScoreCardForPlayer;
 import org.project.service.PlayerService;
 import org.project.utilities.GetBattingStatsFromDatabase;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -14,9 +13,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 @Repository
+@Slf4j
 public class BattingStatsRepository {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(BattingStatsRepository.class);
     private Connection connection;
     @Autowired
     private PlayerService playerService;
@@ -46,14 +44,14 @@ public class BattingStatsRepository {
                 try {
                     statement.executeUpdate();
                 } catch (Exception e) {
-                    LOGGER.error(e.getMessage());
-                    LOGGER.error("Query not completed in org.repo.BattingStats.addBattingStats");
+                    log.error(e.getMessage());
+                    log.error("Query not completed in org.repo.BattingStats.addBattingStats");
                 }
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
-            LOGGER.error("Connection not established in org.repo.BattingStats.addBattingStats");
+            log.error("Connection not established in org.repo.BattingStats.addBattingStats");
         }
     }
 
@@ -101,13 +99,13 @@ public class BattingStatsRepository {
                         return 0;
                     }
                 } catch (Exception e) {
-                    LOGGER.error(e.getMessage());
+                    log.error(e.getMessage());
                 }
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
-            LOGGER.error("Connection not established in org.repo.BattingStats.getBattingStatsId");
+            log.error("Connection not established in org.repo.BattingStats.getBattingStatsId");
         }
         return 1;
     }
@@ -126,10 +124,10 @@ public class BattingStatsRepository {
                 statement.executeUpdate();
 
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
-            LOGGER.error("Connection not established in org.repo.BattingStats.updateBallsPlayed");
+            log.error("Connection not established in org.repo.BattingStats.updateBallsPlayed");
         }
     }
 
@@ -146,10 +144,10 @@ public class BattingStatsRepository {
                 statement.executeUpdate();
 
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
-            LOGGER.error("Connection not established in org.repo.BattingStats.updateNotOut");
+            log.error("Connection not established in org.repo.BattingStats.updateNotOut");
         }
     }
 
@@ -168,10 +166,10 @@ public class BattingStatsRepository {
                 statement.executeUpdate();
 
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
-            LOGGER.error("Connection not established in org.repo.BattingStats.updateRunsScored");
+            log.error("Connection not established in org.repo.BattingStats.updateRunsScored");
         }
     }
 
@@ -189,10 +187,10 @@ public class BattingStatsRepository {
                 statement.executeUpdate();
 
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
-            LOGGER.error("Connection not established in org.repo.BattingStats.updateFoursScored");
+            log.error("Connection not established in org.repo.BattingStats.updateFoursScored");
         }
     }
 
@@ -210,10 +208,10 @@ public class BattingStatsRepository {
                 statement.executeUpdate();
 
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
-            LOGGER.error("Connection not established in org.repo.BattingStats.updateSixesScored");
+            log.error("Connection not established in org.repo.BattingStats.updateSixesScored");
         }
     }
 
@@ -232,10 +230,10 @@ public class BattingStatsRepository {
                 statement.executeUpdate();
 
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
-            LOGGER.error("Connection not established in org.repo.BattingStats.updateStrikeRate");
+            log.error("Connection not established in org.repo.BattingStats.updateStrikeRate");
         }
     }
 
@@ -262,10 +260,10 @@ public class BattingStatsRepository {
                     return null;
                 }
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
-            LOGGER.error("Connection not established in org.repo.BattingStats.getBattingStats");
+            log.error("Connection not established in org.repo.BattingStats.getBattingStats");
         }
         return null;
     }
@@ -299,10 +297,10 @@ public class BattingStatsRepository {
                     return null;
                 }
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
-            LOGGER.error("Connection not established in org.repo.GetBattingScoreCardOfAnInning.");
+            log.error("Connection not established in org.repo.GetBattingScoreCardOfAnInning.");
         }
         return battingStats;
     }

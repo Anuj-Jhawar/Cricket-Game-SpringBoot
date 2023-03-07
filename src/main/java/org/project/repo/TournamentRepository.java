@@ -1,7 +1,6 @@
 package org.project.repo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -10,9 +9,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 @Repository
+@Slf4j
 public class TournamentRepository {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TournamentRepository.class);
     private Connection connection;
 
     public TournamentRepository() {
@@ -36,14 +35,14 @@ public class TournamentRepository {
                     statement.executeUpdate(sqlCommandToCreateTournamentTable);
                     return modifiedTournamentName;
                 } catch (Exception e) {
-                    LOGGER.error(e.getMessage());
+                    log.error(e.getMessage());
                 }
 
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
-            LOGGER.error("Connection not established in org.repo.TournamentDB.addTournament");
+            log.error("Connection not established in org.repo.TournamentDB.addTournament");
         }
         return "";
     }
@@ -66,13 +65,13 @@ public class TournamentRepository {
                         return 0;
                     }
                 } catch (Exception e) {
-                    LOGGER.error(e.getMessage());
+                    log.error(e.getMessage());
                 }
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
-            LOGGER.error("Connection not established in org.repo.TournamentDB.getTournamentId.");
+            log.error("Connection not established in org.repo.TournamentDB.getTournamentId.");
         }
         return 1;
     }
@@ -93,7 +92,7 @@ public class TournamentRepository {
                     return 0;
                 }
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         }
         return 0;

@@ -1,7 +1,6 @@
 package org.project.repo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -9,9 +8,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 @Repository
+@Slf4j
 public class TeamRepository {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(TeamRepository.class);
     private Connection connection;
 
     public String addTeam(String teamName) {
@@ -32,13 +30,13 @@ public class TeamRepository {
                     statement.executeUpdate(sqlCommandToInsertTeamInTeamTable);
                     return modifiedTeamName;
                 } catch (Exception e) {
-                    LOGGER.error(e.getMessage());
+                    log.error(e.getMessage());
                 }
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
-            LOGGER.error("Connection not established in org.repo.TeamDB.addTeam");
+            log.error("Connection not established in org.repo.TeamDB.addTeam");
         }
         return "";
     }
@@ -61,13 +59,13 @@ public class TeamRepository {
                         return 0;
                     }
                 } catch (Exception e) {
-                    LOGGER.error(e.getMessage());
+                    log.error(e.getMessage());
                 }
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
-            LOGGER.error("Connection not established in org.repo.TeamDB.getTeamId");
+            log.error("Connection not established in org.repo.TeamDB.getTeamId");
         }
         return 1;
     }
@@ -89,7 +87,7 @@ public class TeamRepository {
                     return 0;
                 }
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         }
         return 0;

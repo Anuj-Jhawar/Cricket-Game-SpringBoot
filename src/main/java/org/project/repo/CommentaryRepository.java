@@ -4,15 +4,15 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import lombok.extern.slf4j.Slf4j;
 import org.bson.Document;
 import org.project.model.BallCommentary;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
 @Repository
+@Slf4j
 public class CommentaryRepository {
 
     private static final MongoClient mongoClient = MongoClients.create();
@@ -20,7 +20,6 @@ public class CommentaryRepository {
     private static final String COLLECTION_NAME = "Commentary";
     private static final MongoDatabase database = mongoClient.getDatabase(DATABASE_NAME);
     private static final MongoCollection<Document> collection = database.getCollection(COLLECTION_NAME);
-    private static final Logger LOGGER = LoggerFactory.getLogger(CommentaryRepository.class);
 
     public void updateCommentary(int matchId, BallCommentary ballCommentary, int inningNo) {
         /*

@@ -1,7 +1,6 @@
 package org.project.repo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -9,9 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 @Repository
+@Slf4j
 public class PlayerRepository {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PlayerRepository.class);
     private Connection connection;
 
     public void addPlayer(String playerName,String type, int age) {
@@ -32,14 +31,14 @@ public class PlayerRepository {
                 try {
                     statement.executeUpdate();
                 } catch (Exception e) {
-                    LOGGER.error(e.getMessage());
+                    log.error(e.getMessage());
                 }
 
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
-            LOGGER.error("Connection not established in org.repo.PlayerDb.addPlayer");
+            log.error("Connection not established in org.repo.PlayerDb.addPlayer");
         }
     }
 
@@ -62,14 +61,14 @@ public class PlayerRepository {
                         return 0;
                     }
                 } catch (Exception e) {
-                    LOGGER.error(e.getMessage());
+                    log.error(e.getMessage());
                 }
 
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
-            LOGGER.error("Connection not established in org.repo.PlayerDb.getPlayerId");
+            log.error("Connection not established in org.repo.PlayerDb.getPlayerId");
         }
         return 1;
     }
@@ -92,10 +91,10 @@ public class PlayerRepository {
                     return "";
                 }
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
-            LOGGER.error("Connection not established in org.repo.PlayerDb.getPlayerName.");
+            log.error("Connection not established in org.repo.PlayerDb.getPlayerName.");
         }
         return "";
     }

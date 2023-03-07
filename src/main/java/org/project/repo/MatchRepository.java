@@ -1,9 +1,8 @@
 package org.project.repo;
 
+import lombok.extern.slf4j.Slf4j;
 import org.project.service.TeamService;
 import org.project.service.TournamentService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -13,9 +12,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 @Repository
+@Slf4j
 public class MatchRepository {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MatchRepository.class);
     private Connection connection;
     @Autowired
     private TournamentService tournamentService;
@@ -53,13 +52,13 @@ public class MatchRepository {
                 try {
                     statement.executeUpdate();
                 } catch (Exception e) {
-                    LOGGER.error(e.getMessage());
+                    log.error(e.getMessage());
                 }
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
-            LOGGER.error("Connection not established in org.repo.MatchDb.addMatch");
+            log.error("Connection not established in org.repo.MatchDb.addMatch");
         }
     }
 
@@ -96,13 +95,13 @@ public class MatchRepository {
                         return 0;
                     }
                 } catch (Exception e) {
-                    LOGGER.error(e.getMessage());
+                    log.error(e.getMessage());
                 }
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
-            LOGGER.error("Connection not established in org.repo.MatchDb.getMatchId");
+            log.error("Connection not established in org.repo.MatchDb.getMatchId");
         }
         return 0;
     }
@@ -137,14 +136,14 @@ public class MatchRepository {
                         return 0;
                     }
                 } catch (Exception e) {
-                    LOGGER.error(e.getMessage());
+                    log.error(e.getMessage());
                 }
 
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
-            LOGGER.error("Connection not established in org.repo.MatchDb.getMatchIdByDate");
+            log.error("Connection not established in org.repo.MatchDb.getMatchIdByDate");
         }
         return 0;
     }
@@ -169,14 +168,14 @@ public class MatchRepository {
                         return 0;
                     }
                 } catch (Exception e) {
-                    LOGGER.error(e.getMessage());
+                    log.error(e.getMessage());
                 }
 
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
-            LOGGER.error("Connection not established in org.repo.MatchDb.FindBattingFirstTeamId.");
+            log.error("Connection not established in org.repo.MatchDb.FindBattingFirstTeamId.");
         }
         return 0;
     }
@@ -195,10 +194,10 @@ public class MatchRepository {
                 statement.setInt(2, matchId);
                 statement.executeUpdate();
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
-            LOGGER.error("Connection not established in org.repo.MatchDb.updateResult.");
+            log.error("Connection not established in org.repo.MatchDb.updateResult.");
         }
     }
 }
