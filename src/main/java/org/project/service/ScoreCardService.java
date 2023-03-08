@@ -1,5 +1,6 @@
 package org.project.service;
 
+import lombok.Data;
 import org.project.model.ScoreCardForPlayer;
 import org.project.repo.BattingStatsRepository;
 import org.project.repo.BowlingStatsRepository;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 @Service
+@Data
 public class ScoreCardService {
 
     private int tournamentId;

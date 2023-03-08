@@ -1,5 +1,6 @@
 package org.project.service;
 
+import lombok.Data;
 import org.project.model.stats.BattingStats;
 import org.project.model.stats.BowlingStats;
 import org.project.model.stats.Stats;
@@ -12,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Map;
 
 @Service
+@Data
 public class PlayerStatsService {
 
     private int tournamentId;

@@ -1,5 +1,7 @@
 package org.project.service;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.bson.Document;
 import org.project.model.Ball;
 import org.project.model.BallCommentary;
@@ -11,6 +13,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
+@NoArgsConstructor
+@Data
 public class CommentaryService {
 
     @Autowired

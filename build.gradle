@@ -24,6 +24,11 @@ dependencies {
     implementation 'mysql:mysql-connector-java:8.0.26'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.3'
 
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.7.2'
+    testImplementation("org.junit.jupiter:junit-jupiter:5.7.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.2")
+    testImplementation("org.mockito:mockito-core:3.12.4")
+
     testImplementation 'org.projectlombok:lombok:1.18.22'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'

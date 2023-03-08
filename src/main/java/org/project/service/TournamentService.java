@@ -1,10 +1,12 @@
 package org.project.service;
 
+import lombok.Data;
 import org.project.repo.TournamentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Data
 public class TournamentService {
 
     @Autowired

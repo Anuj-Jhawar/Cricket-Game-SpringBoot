@@ -1,5 +1,6 @@
 package org.project.model;
 
+import lombok.Data;
 import org.project.model.player.Player;
 import org.project.service.BattingStatsService;
 import org.project.service.BowlingStatsService;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@Data
 public class Match {
 
     @Autowired
@@ -15,18 +17,19 @@ public class Match {
     BowlingStatsService bowlingStatsService;
     private org.project.model.Team team1;
     private org.project.model.Team team2;
-    private org.project.model.Toss tossFormatch = new Toss();
+    private org.project.model.Toss tossForMatch = new Toss();
     @Autowired
     private Umpire umpire;
     private String venue;
     private String winner;
     private String format;
     private String tournamentName;
+    private int battingTeamIndex;
 
     public Match() {
     }
 
-    public void setCricketmatch(String tournamentName, org.project.model.Team team1, org.project.model.Team team2,
+    public void setCricketMatch(String tournamentName, org.project.model.Team team1, org.project.model.Team team2,
                                String venue, String format) {
         this.tournamentName = tournamentName;
         this.team1 = team1;
@@ -52,7 +55,9 @@ public class Match {
     }
 
     public int initiateToss() {
-        return tossFormatch.callForToss();
+        int returnValue = tossForMatch.callForToss();
+        battingTeamIndex = tossForMatch.getBattingTeamIndex();
+        return returnValue;
     }
 
     public String getFormat() {
@@ -94,7 +99,7 @@ public class Match {
     }
 
     public int getBowlingTeamIndex() {
-        return tossFormatch.getBowlingTeamIndex();
+        return tossForMatch.getBowlingTeamIndex();
     }
 
     public void updateBattingStatsOfBatsman(int teamIndex, int playerIndex, int runs) {
@@ -117,7 +122,7 @@ public class Match {
     }
 
     public int getBattingTeamIndex() {
-        return tossFormatch.getBattingTeamIndex();
+        return battingTeamIndex;
     }
 
     public void updateBowlingStatsOfBowler(int teamIndex, int playerIndex, int outcomeOfTheBall) {
@@ -159,5 +164,7 @@ public class Match {
         winner = winningTeam;
     }
 
-
+    public void setBattingTeamIndex(int teamIndex){
+        battingTeamIndex = teamIndex;
+    }
 }

@@ -1,5 +1,7 @@
 package org.project.service;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.project.model.Match;
 import org.project.model.Team;
 import org.project.model.player.Player;
@@ -8,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@NoArgsConstructor
+@Data
 public class BattingStatsService {
 
     @Autowired

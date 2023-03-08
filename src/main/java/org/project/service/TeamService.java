@@ -1,5 +1,6 @@
 package org.project.service;
 
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.project.model.player.Player;
 import org.project.repo.TeamRepository;
@@ -12,6 +13,7 @@ import java.util.Map;
 
 @Service
 @NoArgsConstructor
+@Data
 public class TeamService {
 
     @Autowired

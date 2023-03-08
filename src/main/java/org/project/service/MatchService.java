@@ -59,7 +59,7 @@ public class MatchService {
             Start playing cricket match.
         */
         Scanner scn = new Scanner(System.in);
-        match.setCricketmatch(tournamentName, team1, team2, venue, format);
+        match.setCricketMatch(tournamentName, team1, team2, venue, format);
         System.out.println("match Start");
         String teamWhoWonTheToss = matchHelper.completeToss(match);
         System.out.println("Toss won by" + teamWhoWonTheToss);
