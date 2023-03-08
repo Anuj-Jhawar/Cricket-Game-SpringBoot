@@ -44,4 +44,15 @@ class BattingStatsServiceTest {
         Mockito.verify(battingStatsRepository, Mockito.times(1)).addBattingStats(battingStats,1,1,1);
 
     }
+    @Test
+    void updateBattingStats(){
+        BattingStats battingStats = new BattingStats();
+        battingStats.setScore(1);
+        battingStats.setBallsPlayed(1);
+        battingStats.setStrikeRate();
+        battingStats.setStrikeRate();
+        battingStats.setBoundaries(1);
+        battingStatsService.updateBattingStats(1,1,1,4,5,2);
+        Mockito.verify(battingStatsRepository, Mockito.times(1)).updateBattingStats(1,1,1,4,5,2);
+    }
 }

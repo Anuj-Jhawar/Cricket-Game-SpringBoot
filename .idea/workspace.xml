@@ -5,21 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3083c863-6d26-46ca-9094-c6702de0e0d5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/model/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/model/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/BattingStatsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/BattingStatsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/BowlingStatsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/BowlingStatsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/CommentaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/CommentaryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/MatchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/MatchService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/PlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/PlayerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/PlayerStatsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/PlayerStatsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/ScoreCardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/ScoreCardService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/TeamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/TeamService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/TournamentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/TournamentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/project/service/BattingStatsServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/project/service/BattingStatsServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/project/service/CommentaryServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/project/service/CommentaryServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/project/service/PlayerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/project/service/PlayerServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +100,7 @@
       <recent name="test" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.SpringApplicationCode">
+  <component name="RunManager" selected="Gradle.BattingStatsServiceTest.updateBattingStats">
     <configuration name="SpringApplicationCode" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.project.SpringApplicationCode" />
       <module name="SpringBoot-Cricketmatch-Test.main" />
@@ -174,6 +160,29 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="BattingStatsServiceTest.updateBattingStats" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;org.project.service.BattingStatsServiceTest.updateBattingStats&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="PlayerServiceTest.addPlayer" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -197,36 +206,13 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="PlayerServiceTest.getPlayerName" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;org.project.service.PlayerServiceTest.getPlayerName&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.BattingStatsServiceTest.updateBattingStats" />
         <item itemvalue="Application.SpringApplicationCode" />
         <item itemvalue="Gradle.BattingStatsServiceTest.addBattingStats" />
         <item itemvalue="Gradle.BattingStatsServiceTest.getBattingStats" />
         <item itemvalue="Gradle.PlayerServiceTest.addPlayer" />
-        <item itemvalue="Gradle.PlayerServiceTest.getPlayerName" />
       </list>
     </recent_temporary>
   </component>
@@ -248,6 +234,16 @@
           <properties class="com.mongodb.MongoSocketOpenException" package="com.mongodb" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/project/repo/BattingStatsRepository.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/project/repo/BattingStatsRepository.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
