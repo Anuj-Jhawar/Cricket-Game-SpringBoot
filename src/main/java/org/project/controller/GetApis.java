@@ -21,7 +21,7 @@ public class GetApis {
     @Autowired
     private ScoreCardServiceImpl scoreCardServiceImpl;
     @Autowired
-    private PlayerStatsServiceImpl playerStatsServiceImpl;
+    private PlayerServiceImpl playerService;
     @Autowired
     private CommentaryServiceImpl commentaryService;
 
@@ -43,7 +43,7 @@ public class GetApis {
         */
         log.info("Request for Player Stats for tournament_id {}, team1_id {}, team2_id {}",
                 requestBody.get("tournamentId"), requestBody.get("team1Id"), requestBody.get("team2Id"));
-        return playerStatsServiceImpl.get(requestBody);
+        return playerService.get(requestBody);
     }
 
     @GetMapping("/startTournament/{tournamentName}")
