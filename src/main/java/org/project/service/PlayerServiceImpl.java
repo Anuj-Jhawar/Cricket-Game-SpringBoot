@@ -2,6 +2,7 @@ package org.project.service;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.project.dto.PlayerStatsDTO;
 import org.project.model.Match;
 import org.project.model.Team;
 import org.project.model.player.Bowler;
@@ -13,9 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Map;
 
 @Service
 @NoArgsConstructor
@@ -60,27 +58,12 @@ public class PlayerServiceImpl {
         playerRepository.addPlayer(playerName,type, age);
     }
 
-    public Stats[] get(Map<String, Object> requestBody) {
+    public Stats[] get(PlayerStatsDTO playerStatsDTO) {
         /*
             Return player stats for a specific match.
         */
-        return this.setPlayerStatsMetadata(requestBody);
-    }
-
-    public Stats[] setPlayerStatsMetadata(Map<String, Object> requestBody) {
-        int tournamentId = Integer.parseInt((String) requestBody.get("tournamentId"));
-        int team1Id = Integer.parseInt((String) requestBody.get("team1Id"));
-        int team2Id = Integer.parseInt((String) requestBody.get("team2Id"));
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date sqlDate = new Date(System.currentTimeMillis());
-        try {
-            sqlDate = new Date(dateFormat.parse((String) requestBody.get("date")).getTime());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        Date date = sqlDate;
-        int playerId = Integer.parseInt((String) requestBody.get("playerId"));
-        return this.findStats(tournamentId,team1Id,team2Id,date,playerId);
+        return this.findStats(playerStatsDTO.getTournamentId(), playerStatsDTO.getTeam1Id(), playerStatsDTO.getTeam2Id(),
+                playerStatsDTO.getDate(), playerStatsDTO.getPlayerId());
     }
     public Stats[] findStats(int tournamentId,int team1Id,int team2Id, Date date,int playerId){
         int matchId = matchService.getMatchIdByDate(tournamentId, team1Id, team2Id, date);

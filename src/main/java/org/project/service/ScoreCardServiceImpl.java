@@ -1,6 +1,7 @@
 package org.project.service;
 
 import lombok.Data;
+import org.project.dto.ScoreCardDTO;
 import org.project.model.ScoreCardForPlayer;
 import org.project.repo.BattingStatsRepository;
 import org.project.repo.BowlingStatsRepository;
@@ -30,11 +31,14 @@ public class ScoreCardServiceImpl {
     @Autowired
     private BowlingStatsRepository bowlingStatsRepository;
 
-    public ArrayList<ArrayList<ScoreCardForPlayer>> get(Map<String, Object> requestBody) {
+    public ArrayList<ArrayList<ScoreCardForPlayer>> get(ScoreCardDTO scoreCardDTO) {
         /*
             Return scorecard for a given match.
         */
-        this.setScoreCardService(requestBody);
+        tournamentId = scoreCardDTO.getTournamentId();
+        team1Id = scoreCardDTO.getTeam1Id();
+        team2Id = scoreCardDTO.getTeam2Id();
+        date = scoreCardDTO.getDate();
         JdbcConnection.initializeConnection();
         ArrayList<ArrayList<ScoreCardForPlayer>> stats = new ArrayList<>();
         Connection connection = JdbcConnection.getConnection();
@@ -47,20 +51,6 @@ public class ScoreCardServiceImpl {
         stats.add(getBattingScoreCard(battingSecondTeamId, matchId, connection));
         stats.add(getBowlingScoreCard(battingFirstTeamId, matchId, connection));
         return stats;
-    }
-
-    public void setScoreCardService(Map<String, Object> requestBody) {
-        tournamentId = Integer.parseInt((String) requestBody.get("tournamentId"));
-        team1Id = Integer.parseInt((String) requestBody.get("team1Id"));
-        team2Id = Integer.parseInt((String) requestBody.get("team2Id"));
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date sqlDate = new Date(System.currentTimeMillis());
-        try {
-            sqlDate = new Date(dateFormat.parse((String) requestBody.get("date")).getTime());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        date = sqlDate;
     }
 
     public int getMatchId(int tournamentId, int team1Id, int team2Id, Date date, Connection connection) {
