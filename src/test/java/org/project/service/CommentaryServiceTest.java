@@ -12,10 +12,7 @@ import org.project.model.Ball;
 import org.project.model.BallCommentary;
 import org.project.model.Match;
 import org.project.model.Team;
-import org.project.model.stats.BattingStats;
 import org.project.repo.CommentaryRepository;
-import org.project.repo.PlayerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -28,11 +25,11 @@ class CommentaryServiceTest {
     @Mock
     private CommentaryRepository commentaryRepository;
     @Mock
-    private MatchService matchService;
+    private MatchServiceImpl matchService;
     @Mock
-    private PlayerService playerService;
+    private PlayerServiceImpl playerServiceImpl;
     @InjectMocks
-    private CommentaryService commentaryService;
+    private CommentaryServiceImpl commentaryService;
     @BeforeEach
     void beforeEach(){
 
@@ -56,8 +53,8 @@ class CommentaryServiceTest {
 
 
         when(matchService.getMatchId("Anuj","Mumbai","Chennai",1)).thenReturn(1);
-        when(playerService.getPlayerId("Rohit")).thenReturn(1);
-        when(playerService.getPlayerId("Dhoni")).thenReturn(2);
+        when(playerServiceImpl.getPlayerId("Rohit")).thenReturn(1);
+        when(playerServiceImpl.getPlayerId("Dhoni")).thenReturn(2);
 
         String commentaryText = "Its a Four.";
         int inningNo = 1;

@@ -5,7 +5,7 @@ import org.project.model.Match;
 import org.project.model.Team;
 import org.project.model.player.Player;
 import org.project.model.stats.BattingStats;
-import org.project.service.BattingStatsService;
+import org.project.service.BattingStatsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +19,7 @@ public class BattingScoreCard implements InningScoreCard {
     @Autowired
     private Team battingTeam;
     @Autowired
-    private BattingStatsService battingStatsService;
+    private BattingStatsServiceImpl battingStatsServiceImpl;
 
     public void setBattingScoreCard(Match match, Team battingTeam) {
         this.match = match;
@@ -33,7 +33,7 @@ public class BattingScoreCard implements InningScoreCard {
         */
         printHeadings();
         for (Player batsman : players) {
-            BattingStats battingStats = battingStatsService.getBattingStats(match.getTournamentName(),
+            BattingStats battingStats = battingStatsServiceImpl.getBattingStats(match.getTournamentName(),
                     match.getTeam1().getTeamName(), match.getTeam2().getTeamName(), batsman, match.getBattingTeamIndex(),
                     battingTeam.getTeamName());
             if (battingStats.getBallsPlayed() > 0) {

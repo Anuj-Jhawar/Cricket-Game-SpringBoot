@@ -13,11 +13,11 @@ import org.project.repo.BattingStatsRepository;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
-class BattingStatsServiceTest {
+class BattingStatsServiceImplTest {
     @Mock
     private BattingStatsRepository battingStatsRepository;
     @InjectMocks
-    private BattingStatsService battingStatsService;
+    private BattingStatsServiceImpl battingStatsServiceImpl;
     @BeforeEach
     void beforeEach(){
 
@@ -30,7 +30,7 @@ class BattingStatsServiceTest {
         battingStats.setBallsPlayed(10);
         battingStats.setScore(11);
         when(battingStatsRepository.getBattingStats(1,1,1)).thenReturn(battingStats);
-        assertEquals(battingStats,battingStatsService.getBattingStats(1,1,1));
+        assertEquals(battingStats, battingStatsServiceImpl.getBattingStats(1,1,1));
     }
     @Test
     void addBattingStats(){
@@ -40,7 +40,7 @@ class BattingStatsServiceTest {
         battingStats.setStrikeRate();
         battingStats.setStrikeRate();
         battingStats.setBoundaries(1);
-        battingStatsService.addBattingStats(battingStats,1,1,1);
+        battingStatsServiceImpl.addBattingStats(battingStats,1,1,1);
         Mockito.verify(battingStatsRepository, Mockito.times(1)).addBattingStats(battingStats,1,1,1);
 
     }
@@ -52,7 +52,8 @@ class BattingStatsServiceTest {
         battingStats.setStrikeRate();
         battingStats.setStrikeRate();
         battingStats.setBoundaries(1);
-        battingStatsService.updateBattingStats(1,1,1,4,5,2);
+        battingStatsServiceImpl.updateBattingStats(1,1,1,4,5,2);
         Mockito.verify(battingStatsRepository, Mockito.times(1)).updateBattingStats(1,1,1,4,5,2);
     }
+
 }

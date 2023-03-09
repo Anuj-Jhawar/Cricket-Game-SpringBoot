@@ -1,8 +1,8 @@
 package org.project.repo;
 
 import lombok.extern.slf4j.Slf4j;
-import org.project.service.TeamService;
-import org.project.service.TournamentService;
+import org.project.service.TeamServiceImpl;
+import org.project.service.TournamentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -17,9 +17,9 @@ public class MatchRepository {
 
     private Connection connection;
     @Autowired
-    private TournamentService tournamentService;
+    private TournamentServiceImpl tournamentServiceImpl;
     @Autowired
-    private TeamService teamService;
+    private TeamServiceImpl teamServiceImpl;
 
     public void addMatch(String tournamentName, String team1Name, String team2Name, int battingTeamIndex) {
         /*
@@ -29,13 +29,13 @@ public class MatchRepository {
         int team1Id;
         int team2Id;
         if (battingTeamIndex == 1) {
-            team1Id = teamService.getTeamId(team1Name);
-            team2Id = teamService.getTeamId(team2Name);
+            team1Id = teamServiceImpl.getTeamId(team1Name);
+            team2Id = teamServiceImpl.getTeamId(team2Name);
         } else {
-            team1Id = teamService.getTeamId(team2Name);
-            team2Id = teamService.getTeamId(team1Name);
+            team1Id = teamServiceImpl.getTeamId(team2Name);
+            team2Id = teamServiceImpl.getTeamId(team1Name);
         }
-        int tournamentId = tournamentService.getId(tournamentName);
+        int tournamentId = tournamentServiceImpl.getId(tournamentName);
         if (connection != null) {
             PreparedStatement statement;
             Date date = new Date(System.currentTimeMillis());
@@ -70,13 +70,13 @@ public class MatchRepository {
         int team1Id;
         int team2Id;
         if (battingTeamIndex == 1) {
-            team1Id = teamService.getTeamId(team1Name);
-            team2Id = teamService.getTeamId(team2Name);
+            team1Id = teamServiceImpl.getTeamId(team1Name);
+            team2Id = teamServiceImpl.getTeamId(team2Name);
         } else {
-            team1Id = teamService.getTeamId(team2Name);
-            team2Id = teamService.getTeamId(team1Name);
+            team1Id = teamServiceImpl.getTeamId(team2Name);
+            team2Id = teamServiceImpl.getTeamId(team1Name);
         }
-        int tournamentId = tournamentService.getId(tournamentName);
+        int tournamentId = tournamentServiceImpl.getId(tournamentName);
         if (connection != null) {
             PreparedStatement statement;
             try {

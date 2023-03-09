@@ -2,8 +2,8 @@ package org.project.model;
 
 import lombok.Data;
 import org.project.model.player.Player;
-import org.project.service.BattingStatsService;
-import org.project.service.BowlingStatsService;
+import org.project.service.BattingStatsServiceImpl;
+import org.project.service.BowlingStatsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,9 +12,9 @@ import org.springframework.stereotype.Component;
 public class Match {
 
     @Autowired
-    BattingStatsService battingStatsService;
+    BattingStatsServiceImpl battingStatsServiceImpl;
     @Autowired
-    BowlingStatsService bowlingStatsService;
+    BowlingStatsServiceImpl bowlingStatsServiceImpl;
     private org.project.model.Team team1;
     private org.project.model.Team team2;
     private org.project.model.Toss tossForMatch = new Toss();
@@ -109,13 +109,13 @@ public class Match {
         if (teamIndex == 1) {
             team1.updateBattingStatsOfPlayer(playerIndex, runs);
             Player player = team1.getPlayer(playerIndex);
-            battingStatsService.updateBattingStats(tournamentName, team1.getTeamName(), team2.getTeamName(), player,
+            battingStatsServiceImpl.updateBattingStats(tournamentName, team1.getTeamName(), team2.getTeamName(), player,
                     this.getBattingTeamIndex(), team1.getTeamName(), runs, player.getBattingStats().getScore(),
                     player.getBattingStats().getBallsPlayed());
         } else {
             team2.updateBattingStatsOfPlayer(playerIndex, runs);
             Player player = team2.getPlayer(playerIndex);
-            battingStatsService.updateBattingStats(tournamentName, team1.getTeamName(), team2.getTeamName(), player,
+            battingStatsServiceImpl.updateBattingStats(tournamentName, team1.getTeamName(), team2.getTeamName(), player,
                     this.getBattingTeamIndex(), team2.getTeamName(), runs, player.getBattingStats().getScore(),
                     player.getBattingStats().getBallsPlayed());
         }
@@ -132,12 +132,12 @@ public class Match {
         if (teamIndex == 1) {
             team2.updateBowlingStatsOfPlayer(playerIndex, outcomeOfTheBall);
             Player player = team2.getPlayer(playerIndex);
-            bowlingStatsService.updateBowlingStats(tournamentName, team1.getTeamName(), team2.getTeamName(), player,
+            bowlingStatsServiceImpl.updateBowlingStats(tournamentName, team1.getTeamName(), team2.getTeamName(), player,
                     this.getBattingTeamIndex(), team2.getTeamName(), outcomeOfTheBall, player.getBowlingStats());
         } else {
             team1.updateBowlingStatsOfPlayer(playerIndex, outcomeOfTheBall);
             Player player = team1.getPlayer(playerIndex);
-            bowlingStatsService.updateBowlingStats(tournamentName, team1.getTeamName(), team2.getTeamName(), player,
+            bowlingStatsServiceImpl.updateBowlingStats(tournamentName, team1.getTeamName(), team2.getTeamName(), player,
                     this.getBattingTeamIndex(), team1.getTeamName(), outcomeOfTheBall, player.getBowlingStats());
         }
     }

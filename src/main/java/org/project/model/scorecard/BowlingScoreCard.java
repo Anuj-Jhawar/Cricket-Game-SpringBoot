@@ -5,7 +5,7 @@ import org.project.model.Match;
 import org.project.model.Team;
 import org.project.model.player.Player;
 import org.project.model.stats.BowlingStats;
-import org.project.service.BowlingStatsService;
+import org.project.service.BowlingStatsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +19,7 @@ public class BowlingScoreCard implements InningScoreCard {
     @Autowired
     private Team bowlingTeam;
     @Autowired
-    private BowlingStatsService bowlingStatsService;
+    private BowlingStatsServiceImpl bowlingStatsServiceImpl;
 
     public void setBowlingScoreCard(Match match, Team bowlingTeam) {
         this.match = match;
@@ -33,7 +33,7 @@ public class BowlingScoreCard implements InningScoreCard {
         */
         printHeadings();
         for (Player currentBowler : players) {
-            BowlingStats bowlingStats = bowlingStatsService.getBowlingStats(match.getTournamentName(),
+            BowlingStats bowlingStats = bowlingStatsServiceImpl.getBowlingStats(match.getTournamentName(),
                     match.getTeam1().getTeamName(), match.getTeam2().getTeamName(), currentBowler,
                     match.getBattingTeamIndex(), bowlingTeam.getTeamName());
             if (bowlingStats.getBallsBowled() > 0) {

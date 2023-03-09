@@ -1,7 +1,6 @@
 package org.project.model;
 
 import org.project.model.scorecard.ScoreCard;
-import org.project.service.ScoreCardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

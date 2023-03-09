@@ -10,19 +10,17 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.project.model.player.Player;
 import org.project.repo.PlayerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class PlayerServiceTest {
+class PlayerServiceImplTest {
     @Mock
     private PlayerRepository playerRepository;
 
     @InjectMocks
-    private PlayerService playerService;
+    private PlayerServiceImpl playerServiceImpl;
 
     @BeforeEach
     void beforeEach(){
@@ -35,20 +33,20 @@ class PlayerServiceTest {
     void getPlayerId() {
         //beforeEach();
         when(playerRepository.getPlayerId("Anuj")).thenReturn(1);
-        int playerID = playerService.getPlayerId("Anuj");
+        int playerID = playerServiceImpl.getPlayerId("Anuj");
         assertEquals(1,playerID);
     }
 
     @Test
     void getPlayerName() {
         when(playerRepository.getPlayerName(1)).thenReturn("Anuj");
-        String playerName = playerService.getPlayerName(1);
+        String playerName = playerServiceImpl.getPlayerName(1);
         assertEquals("Anuj", playerName);
     }
 
     @Test
     void addPlayer() {
-        playerService.addPlayer("Anuj","Batsman",21);
+        playerServiceImpl.addPlayer("Anuj","Batsman",21);
         Mockito.verify(playerRepository, Mockito.times(1)).addPlayer("Anuj","Batsman",21);
     }
 }

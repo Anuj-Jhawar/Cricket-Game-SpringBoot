@@ -3,7 +3,7 @@ package org.project.repo;
 
 import lombok.extern.slf4j.Slf4j;
 import org.project.model.ScoreCardForPlayer;
-import org.project.service.PlayerService;
+import org.project.service.PlayerServiceImpl;
 import org.project.utilities.GetBowlingStatsFromDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class BowlingStatsRepository {
     private Connection connection;
     @Autowired
-    private PlayerService playerService;
+    private PlayerServiceImpl playerServiceImpl;
 
     public void addBowlingStats(org.project.model.stats.BowlingStats bowlingStats, int matchId, int teamId,
                                 int playerId) {
@@ -246,7 +246,7 @@ public class BowlingStatsRepository {
                     do {
                         GetBowlingStatsFromDatabase getBowlingStatsFromDatabase = new GetBowlingStatsFromDatabase();
                         int playerId = resultSet.getInt("player_id");
-                        String playerName = playerService.getPlayerName(playerId);
+                        String playerName = playerServiceImpl.getPlayerName(playerId);
                         ScoreCardForPlayer scoreCardForPlayer = new ScoreCardForPlayer(playerName,
                                 getBowlingStatsFromDatabase.createBowlingStats(resultSet));
                         bowlingStats.add(scoreCardForPlayer);

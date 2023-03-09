@@ -1,6 +1,6 @@
 package org.project.model;
 
-import org.project.service.CommentaryService;
+import org.project.service.CommentaryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +9,7 @@ public class Umpire {
 
     private final String name;
     @Autowired
-    private CommentaryService commentaryService;
+    private CommentaryServiceImpl commentaryService;
 
     public Umpire() {
         name = "Kumar DharmaSena.";

@@ -15,15 +15,15 @@ import java.util.Map;
 @Slf4j
 public class GetApis {
     @Autowired
-    private MatchService matchService;
+    private MatchServiceImpl matchService;
     @Autowired
-    private TournamentService tournamentService;
+    private TournamentServiceImpl tournamentServiceImpl;
     @Autowired
-    private ScoreCardService scoreCardService;
+    private ScoreCardServiceImpl scoreCardServiceImpl;
     @Autowired
-    private PlayerStatsService playerStatsService;
+    private PlayerStatsServiceImpl playerStatsServiceImpl;
     @Autowired
-    private CommentaryService commentaryService;
+    private CommentaryServiceImpl commentaryService;
 
     @PostMapping("/scorecard")
     public ArrayList<ArrayList<ScoreCardForPlayer>> getScoreCardForGivenMatch(
@@ -33,7 +33,7 @@ public class GetApis {
         */
         log.info("Request for Scorecard for tournament_id {}, team1_id {}, team2_id {}",
                 requestBody.get("tournamentId"), requestBody.get("team1Id"), requestBody.get("team2Id"));
-        return scoreCardService.get(requestBody);
+        return scoreCardServiceImpl.get(requestBody);
     }
 
     @PostMapping("/playerStats")
@@ -43,13 +43,13 @@ public class GetApis {
         */
         log.info("Request for Player Stats for tournament_id {}, team1_id {}, team2_id {}",
                 requestBody.get("tournamentId"), requestBody.get("team1Id"), requestBody.get("team2Id"));
-        return playerStatsService.get(requestBody);
+        return playerStatsServiceImpl.get(requestBody);
     }
 
     @GetMapping("/startTournament/{tournamentName}")
     public String startANewTournament(@PathVariable String tournamentName) {
         log.info("Request for starting a tournament with name {}", tournamentName);
-        tournamentService.start(tournamentName);
+        tournamentServiceImpl.start(tournamentName);
         return "Tournament Started";
     }
 
