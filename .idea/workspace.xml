@@ -5,12 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3083c863-6d26-46ca-9094-c6702de0e0d5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/project/dto/PlayerStatsDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/project/dto/ScoreCardDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/controller/GetApis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/controller/GetApis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/BattingStatsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/BattingStatsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/BowlingStatsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/BowlingStatsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/CommentaryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/CommentaryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/MatchServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/MatchServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/PlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/PlayerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/PlayerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/PlayerServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/ScoreCardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/ScoreCardService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/ScoreCardServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/ScoreCardServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/TeamServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/TeamServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/project/service/TournamentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/service/TournamentServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -7,6 +7,7 @@ public class BattingStats implements Stats {
     private double battingStrikeRate;
     private int numberOfSixes;
     private int numberOfFours;
+
     public BattingStats() {
         score = 0;
         ballsPlayed = 0;

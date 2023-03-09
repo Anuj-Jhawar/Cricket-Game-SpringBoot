@@ -47,6 +47,28 @@ public class TournamentRepository {
         return "";
     }
 
+    public int tableSize() {
+        /*
+            Return table size.
+        */
+        if (connection != null) {
+            Statement statement;
+            try {
+                statement = connection.createStatement();
+                String sqlCommandToGetSize = "SELECT COUNT(*) FROM Tournaments";
+                ResultSet resultSet = statement.executeQuery(sqlCommandToGetSize);
+                if (resultSet.next()) {
+                    return resultSet.getInt(1);
+                } else {
+                    return 0;
+                }
+            } catch (Exception e) {
+                log.error(e.getMessage());
+            }
+        }
+        return 0;
+    }
+
     public int getTournamentId(String tournamentName) {
         /*
             Return tournament id.
@@ -74,27 +96,5 @@ public class TournamentRepository {
             log.error("Connection not established in org.repo.TournamentDB.getTournamentId.");
         }
         return 1;
-    }
-
-    public int tableSize() {
-        /*
-            Return table size.
-        */
-        if (connection != null) {
-            Statement statement;
-            try {
-                statement = connection.createStatement();
-                String sqlCommandToGetSize = "SELECT COUNT(*) FROM Tournaments";
-                ResultSet resultSet = statement.executeQuery(sqlCommandToGetSize);
-                if (resultSet.next()) {
-                    return resultSet.getInt(1);
-                } else {
-                    return 0;
-                }
-            } catch (Exception e) {
-                log.error(e.getMessage());
-            }
-        }
-        return 0;
     }
 }

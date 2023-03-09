@@ -10,18 +10,22 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.project.model.stats.BattingStats;
 import org.project.repo.BattingStatsRepository;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
+
 @ExtendWith(MockitoExtension.class)
 class BattingStatsServiceImplTest {
+
     @Mock
     private BattingStatsRepository battingStatsRepository;
     @InjectMocks
     private BattingStatsServiceImpl battingStatsServiceImpl;
+
     @BeforeEach
-    void beforeEach(){
+    void beforeEach() {
 
     }
+
     @Test
     void getBattingStats() {
         BattingStats battingStats = new BattingStats();
@@ -29,31 +33,33 @@ class BattingStatsServiceImplTest {
         battingStats.setBoundaries(6);
         battingStats.setBallsPlayed(10);
         battingStats.setScore(11);
-        when(battingStatsRepository.getBattingStats(1,1,1)).thenReturn(battingStats);
-        assertEquals(battingStats, battingStatsServiceImpl.getBattingStats(1,1,1));
+        when(battingStatsRepository.getBattingStats(1, 1, 1)).thenReturn(battingStats);
+        assertEquals(battingStats, battingStatsServiceImpl.getBattingStats(1, 1, 1));
     }
+
     @Test
-    void addBattingStats(){
+    void addBattingStats() {
         BattingStats battingStats = new BattingStats();
         battingStats.setScore(1);
         battingStats.setBallsPlayed(1);
         battingStats.setStrikeRate();
         battingStats.setStrikeRate();
         battingStats.setBoundaries(1);
-        battingStatsServiceImpl.addBattingStats(battingStats,1,1,1);
-        Mockito.verify(battingStatsRepository, Mockito.times(1)).addBattingStats(battingStats,1,1,1);
+        battingStatsServiceImpl.addBattingStats(battingStats, 1, 1, 1);
+        Mockito.verify(battingStatsRepository, Mockito.times(1)).addBattingStats(battingStats, 1, 1, 1);
 
     }
+
     @Test
-    void updateBattingStats(){
+    void updateBattingStats() {
         BattingStats battingStats = new BattingStats();
         battingStats.setScore(1);
         battingStats.setBallsPlayed(1);
         battingStats.setStrikeRate();
         battingStats.setStrikeRate();
         battingStats.setBoundaries(1);
-        battingStatsServiceImpl.updateBattingStats(1,1,1,4,5,2);
-        Mockito.verify(battingStatsRepository, Mockito.times(1)).updateBattingStats(1,1,1,4,5,2);
+        battingStatsServiceImpl.updateBattingStats(1, 1, 1, 4, 5, 2);
+        Mockito.verify(battingStatsRepository, Mockito.times(1)).updateBattingStats(1, 1, 1, 4, 5, 2);
     }
 
 }

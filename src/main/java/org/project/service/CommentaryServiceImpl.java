@@ -15,7 +15,7 @@ import java.util.ArrayList;
 @Service
 @NoArgsConstructor
 @Data
-public class CommentaryServiceImpl implements CommentaryService{
+public class CommentaryServiceImpl implements CommentaryService {
 
     @Autowired
     private PlayerServiceImpl playerServiceImpl;
@@ -24,6 +24,7 @@ public class CommentaryServiceImpl implements CommentaryService{
     @Autowired
     private CommentaryRepository commentaryRepository;
 
+    @Override
     public void addCommentary(Ball ball, Match match, String commentaryText, int inningNo) {
         /*
             Add commentary of the match after every ball.
@@ -36,6 +37,7 @@ public class CommentaryServiceImpl implements CommentaryService{
         commentaryRepository.updateCommentary(matchId, ballCommentary, inningNo);
     }
 
+    @Override
     public ArrayList<ArrayList<Document>> getCommentary(int matchId) {
         /*
             Return commentary of the given match.

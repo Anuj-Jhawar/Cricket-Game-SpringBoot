@@ -30,7 +30,7 @@ public class Match {
     }
 
     public void setCricketMatch(String tournamentName, org.project.model.Team team1, org.project.model.Team team2,
-                               String venue, String format) {
+                                String venue, String format) {
         this.tournamentName = tournamentName;
         this.team1 = team1;
         this.team2 = team2;
@@ -125,6 +125,10 @@ public class Match {
         return battingTeamIndex;
     }
 
+    public void setBattingTeamIndex(int teamIndex) {
+        battingTeamIndex = teamIndex;
+    }
+
     public void updateBowlingStatsOfBowler(int teamIndex, int playerIndex, int outcomeOfTheBall) {
         /*
             Updating the bowler stats depending on the outcome of the ball.
@@ -162,9 +166,5 @@ public class Match {
 
     public void setWinner(String winningTeam) {
         winner = winningTeam;
-    }
-
-    public void setBattingTeamIndex(int teamIndex){
-        battingTeamIndex = teamIndex;
     }
 }

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 @NoArgsConstructor
 @Data
-public class BattingStatsServiceImpl implements BattingStatsService{
+public class BattingStatsServiceImpl implements BattingStatsService {
 
     @Autowired
     private TeamServiceImpl teamServiceImpl;
@@ -24,6 +24,7 @@ public class BattingStatsServiceImpl implements BattingStatsService{
     @Autowired
     private BattingStatsRepository battingStatsRepository;
 
+    @Override
     public void updateBattingStats(String tournamentName, String team1Name, String team2Name, Player player,
                                    int battingIndex, String teamName, int runs, int runsScored, int balls) {
         int matchId = matchService.getMatchId(tournamentName, team1Name, team2Name, battingIndex);
@@ -32,24 +33,27 @@ public class BattingStatsServiceImpl implements BattingStatsService{
         this.updateBattingStats(matchId, teamId, playerId, runs, runsScored, balls);
     }
 
+    @Override
     public void updateBattingStats(int matchId, int teamId, int playerId, int outComeOfTheBall, int runsScored,
                                    int ballsPlayed) {
         battingStatsRepository.updateBattingStats(matchId, teamId, playerId, outComeOfTheBall, runsScored, ballsPlayed);
     }
 
-    public BattingStats getBattingStats(String tournamentName, String team1Name,
-                                        String team2Name, Player player, int battingIndex,
-                                        String teamName) {
+    @Override
+    public BattingStats getBattingStats(String tournamentName, String team1Name, String team2Name, Player player,
+                                        int battingIndex, String teamName) {
         int matchId = matchService.getMatchId(tournamentName, team1Name, team2Name, battingIndex);
         int teamId = teamServiceImpl.getTeamId(teamName);
         int playerId = playerServiceImpl.getPlayerId(player.getName());
         return this.getBattingStats(matchId, teamId, playerId);
     }
 
+    @Override
     public BattingStats getBattingStats(int matchId, int teamId, int playerId) {
         return battingStatsRepository.getBattingStats(matchId, teamId, playerId);
     }
 
+    @Override
     public void addBattingStatsToBattingStatsTable(Match match, Team team) {
         /*
             Add batting stats for match.
@@ -65,6 +69,7 @@ public class BattingStatsServiceImpl implements BattingStatsService{
         }
     }
 
+    @Override
     public void addBattingStats(org.project.model.stats.BattingStats battingStats, int matchId, int teamId,
                                 int playerId) {
         this.battingStatsRepository.addBattingStats(battingStats, matchId, teamId, playerId);

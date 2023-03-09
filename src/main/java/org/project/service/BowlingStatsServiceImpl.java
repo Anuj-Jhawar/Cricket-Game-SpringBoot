@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Data
-public class BowlingStatsServiceImpl implements BowlingStatsService{
+public class BowlingStatsServiceImpl implements BowlingStatsService {
 
     @Autowired
     private TeamServiceImpl teamServiceImpl;
@@ -22,6 +22,7 @@ public class BowlingStatsServiceImpl implements BowlingStatsService{
     @Autowired
     private BowlingStatsRepository bowlingStatsRepository;
 
+    @Override
     public void updateBowlingStats(String tournamentName, String team1Name, String team2Name, Player player,
                                    int battingIndex, String teamName, int outcomeOfTheBall,
                                    org.project.model.stats.BowlingStats bowlingStats) {
@@ -31,24 +32,27 @@ public class BowlingStatsServiceImpl implements BowlingStatsService{
         this.updateBowlingStats(matchId, teamId, playerId, outcomeOfTheBall, bowlingStats);
     }
 
+    @Override
     public void updateBowlingStats(int matchId, int teamId, int playerId, int outComeOfTheBall,
                                    org.project.model.stats.BowlingStats bowlingStats) {
         this.bowlingStatsRepository.updateBowlingStats(matchId, teamId, playerId, outComeOfTheBall, bowlingStats);
     }
 
-    public BowlingStats getBowlingStats(String tournamentName, String team1Name,
-                                        String team2Name, Player player, int battingIndex,
-                                        String teamName) {
+    @Override
+    public BowlingStats getBowlingStats(String tournamentName, String team1Name, String team2Name, Player player,
+                                        int battingIndex, String teamName) {
         int matchId = matchService.getMatchId(tournamentName, team1Name, team2Name, battingIndex);
         int teamId = teamServiceImpl.getTeamId(teamName);
         int playerId = playerServiceImpl.getPlayerId(player.getName());
         return this.getBowlingStats(matchId, teamId, playerId);
     }
 
+    @Override
     public BowlingStats getBowlingStats(int matchId, int teamId, int playerId) {
         return bowlingStatsRepository.getBowlingStats(matchId, teamId, playerId);
     }
 
+    @Override
     public void addBowlingStatsToBowlingStatsTable(Match match, Team team) {
         /*
             Add bowling stats for match.
@@ -64,6 +68,7 @@ public class BowlingStatsServiceImpl implements BowlingStatsService{
         }
     }
 
+    @Override
     public void addBowlingStats(org.project.model.stats.BowlingStats bowlingStats, int matchId, int teamId,
                                 int playerId) {
         this.bowlingStatsRepository.addBowlingStats(bowlingStats, matchId, teamId, playerId);

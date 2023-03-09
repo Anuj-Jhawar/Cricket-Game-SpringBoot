@@ -15,11 +15,12 @@ import java.util.Map;
 @Service
 @NoArgsConstructor
 @Data
-public class TeamServiceImpl {
+public class TeamServiceImpl implements TeamService {
 
     @Autowired
     private TeamRepository teamRepository;
 
+    @Override
     public Team setTeamRepository(Map<String, Object> document) {
         /*
             Create team from the user input and return it.
@@ -40,6 +41,7 @@ public class TeamServiceImpl {
         return team;
     }
 
+    @Override
     public String addTeamToTeamTable(org.project.model.Team team) {
         /*
             Add team.
@@ -47,6 +49,7 @@ public class TeamServiceImpl {
         return this.teamRepository.addTeam(team.getTeamName());
     }
 
+    @Override
     public int getTeamId(String teamName) {
         return teamRepository.getTeamId(teamName);
     }

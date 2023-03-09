@@ -9,8 +9,10 @@ import java.util.Collections;
 
 @Component
 public class MatchHelper {
+
     @Autowired
     ScoreCard scoreCard;
+
     public String completeToss(Match match) {
         /*
             Function to complete the toss for the match.
@@ -24,6 +26,7 @@ public class MatchHelper {
             return match.getTeam2().getTeamName();
         }
     }
+
     public void printScoreCard(Match match) {
         /*
             Function to print Others.ScoreCard
@@ -31,6 +34,7 @@ public class MatchHelper {
         scoreCard.setScoreCard(match);
         scoreCard.printScoreCard();
     }
+
     public int initializeNumberOfOvers(Match match) {
         /*
             Decide number of overs based on the format of the match.
@@ -48,6 +52,7 @@ public class MatchHelper {
         }
         return numberofOversInmatch;
     }
+
     public int assignBowler(Match match, int bowlingTeamIndex, int lastBowler) {
         /*
             Assigning Others.Bowler for the next over and making sure that bowler does not repeat.
@@ -70,6 +75,7 @@ public class MatchHelper {
             return assignBatsmanIfOverNotDone(batsman1, batsman2, outcomeOfTheBall);
         }
     }
+
     public ArrayList<Integer> assignBatsmanIfOverDone(int batsman1, int batsman2, int outcomeOfTheBall) {
         /*
             Assigning the Others.Batsman depending on the OutcomeOfTheBall and If Others.Over done.
@@ -100,6 +106,7 @@ public class MatchHelper {
         Collections.reverse(BatsmanOrder);
         return BatsmanOrder;
     }
+
     public int assignNewBatsmanIfWicketFallen(int batsman1, int batsman2) {
         /*
             Returns The new Others.Batsman

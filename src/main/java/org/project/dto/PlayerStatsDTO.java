@@ -8,6 +8,7 @@ import java.sql.Date;
 @NoArgsConstructor
 @Data
 public class PlayerStatsDTO {
+
     int tournamentId;
     int team1Id;
     int team2Id;

@@ -34,8 +34,8 @@ public class BattingScoreCard implements InningScoreCard {
         printHeadings();
         for (Player batsman : players) {
             BattingStats battingStats = battingStatsServiceImpl.getBattingStats(match.getTournamentName(),
-                    match.getTeam1().getTeamName(), match.getTeam2().getTeamName(), batsman, match.getBattingTeamIndex(),
-                    battingTeam.getTeamName());
+                    match.getTeam1().getTeamName(), match.getTeam2().getTeamName(), batsman,
+                    match.getBattingTeamIndex(), battingTeam.getTeamName());
             if (battingStats.getBallsPlayed() > 0) {
                 System.out.printf("%-20s %10s %10s %10s %10s %10.2f %n", batsman.getName(), battingStats.getScore(),
                         battingStats.getBallsPlayed(), battingStats.getNumberOfFours(), battingStats.getNumberOfSixes(),

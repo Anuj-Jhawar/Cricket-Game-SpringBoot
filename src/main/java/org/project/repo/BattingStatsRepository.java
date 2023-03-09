@@ -15,6 +15,7 @@ import java.util.ArrayList;
 @Repository
 @Slf4j
 public class BattingStatsRepository {
+
     private Connection connection;
     @Autowired
     private PlayerServiceImpl playerServiceImpl;
@@ -28,9 +29,9 @@ public class BattingStatsRepository {
         if (connection != null) {
             PreparedStatement statement;
             try {
-                String sqlCommandToInsertBattingStatsInBattingStatsTable
-                        = "INSERT INTO BattingStats (player_id, team_id, match_id, RunsScored, BallsPlayed,Fours," +
-                          "Sixes,NotOut,StrikeRate,is_deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,0)";
+                String sqlCommandToInsertBattingStatsInBattingStatsTable =
+                        "INSERT INTO BattingStats (player_id, team_id, match_id, RunsScored, BallsPlayed,Fours," +
+                        "Sixes,NotOut,StrikeRate,is_deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,0)";
                 statement = connection.prepareStatement(sqlCommandToInsertBattingStatsInBattingStatsTable);
                 statement.setInt(1, playerId);
                 statement.setInt(2, teamId);
@@ -84,9 +85,9 @@ public class BattingStatsRepository {
         if (connection != null) {
             PreparedStatement statement;
             try {
-                String sqlCommandToGetBattingStatsId
-                        = "SELECT * FROM BattingStats WHERE player_id = ? AND team_id = ?  AND match_id = ? AND " +
-                          "is_deleted != 1";
+                String sqlCommandToGetBattingStatsId =
+                        "SELECT * FROM BattingStats WHERE player_id = ? AND team_id = ?  AND match_id = ? AND " +
+                        "is_deleted != 1";
                 try {
                     statement = connection.prepareStatement(sqlCommandToGetBattingStatsId);
                     statement.setInt(1, playerId);
@@ -245,9 +246,9 @@ public class BattingStatsRepository {
         if (connection != null) {
             PreparedStatement statement;
             try {
-                String sqlQueryToFetchBattingStatsOfAPlayer
-                        = "SELECT * FROM BattingStats WHERE player_id = ? AND team_id = ? AND match_id = ? AND " +
-                          "is_deleted != 1";
+                String sqlQueryToFetchBattingStatsOfAPlayer =
+                        "SELECT * FROM BattingStats WHERE player_id = ? AND team_id = ? AND match_id = ? AND " +
+                        "is_deleted != 1";
                 statement = connection.prepareStatement(sqlQueryToFetchBattingStatsOfAPlayer);
                 statement.setInt(1, playerId);
                 statement.setInt(2, teamId);

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 @Repository
 @Slf4j
 public class BowlingStatsRepository {
+
     private Connection connection;
     @Autowired
     private PlayerServiceImpl playerServiceImpl;
@@ -29,9 +30,9 @@ public class BowlingStatsRepository {
         if (connection != null) {
             PreparedStatement statement;
             try {
-                String sqlCommandToInsertBowlingStatsToBowlingStatsTable
-                        = "INSERT INTO BowlingStats (player_id, team_id, match_id, RunsConceded, BallsBalled,Wickets," +
-                          "Average,is_deleted) VALUES (?, ?, ?, ?, ?, ?, ?,0)";
+                String sqlCommandToInsertBowlingStatsToBowlingStatsTable =
+                        "INSERT INTO BowlingStats (player_id, team_id, match_id, RunsConceded, BallsBalled,Wickets," +
+                        "Average,is_deleted) VALUES (?, ?, ?, ?, ?, ?, ?,0)";
                 statement = connection.prepareStatement(sqlCommandToInsertBowlingStatsToBowlingStatsTable);
                 statement.setInt(1, playerId);
                 statement.setInt(2, teamId);
@@ -81,9 +82,9 @@ public class BowlingStatsRepository {
         if (connection != null) {
             PreparedStatement statement;
             try {
-                String sqlCommandToGetBowlingStatsId
-                        = "SELECT * FROM BowlingStats WHERE player_id = ? AND team_id = ?  AND match_id = ? AND " +
-                          "is_deleted != 1";
+                String sqlCommandToGetBowlingStatsId =
+                        "SELECT * FROM BowlingStats WHERE player_id = ? AND team_id = ?  AND match_id = ? AND " +
+                        "is_deleted != 1";
                 try {
                     statement = connection.prepareStatement(sqlCommandToGetBowlingStatsId);
                     statement.setInt(1, playerId);
@@ -202,9 +203,9 @@ public class BowlingStatsRepository {
         if (connection != null) {
             PreparedStatement statement;
             try {
-                String sqlQueryToFetchBattingStatsOfAPlayer
-                        = "SELECT * FROM BowlingStats WHERE player_id = ? AND team_id = ? AND match_id = ? AND " +
-                          "is_deleted != 1";
+                String sqlQueryToFetchBattingStatsOfAPlayer =
+                        "SELECT * FROM BowlingStats WHERE player_id = ? AND team_id = ? AND match_id = ? AND " +
+                        "is_deleted != 1";
                 //System.out.println(playerId + " " + teamId + " " + matchId);
                 statement = connection.prepareStatement(sqlQueryToFetchBattingStatsOfAPlayer);
                 statement.setInt(1, playerId);

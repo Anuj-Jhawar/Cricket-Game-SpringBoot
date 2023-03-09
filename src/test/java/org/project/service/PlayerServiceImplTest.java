@@ -8,14 +8,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.project.repo.PlayerRepository;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class PlayerServiceImplTest {
+
     @Mock
     private PlayerRepository playerRepository;
 
@@ -23,10 +23,11 @@ class PlayerServiceImplTest {
     private PlayerServiceImpl playerServiceImpl;
 
     @BeforeEach
-    void beforeEach(){
+    void beforeEach() {
     }
+
     @AfterEach
-    void afterEach(){
+    void afterEach() {
     }
 
     @Test
@@ -34,7 +35,7 @@ class PlayerServiceImplTest {
         //beforeEach();
         when(playerRepository.getPlayerId("Anuj")).thenReturn(1);
         int playerID = playerServiceImpl.getPlayerId("Anuj");
-        assertEquals(1,playerID);
+        assertEquals(1, playerID);
     }
 
     @Test
@@ -46,7 +47,7 @@ class PlayerServiceImplTest {
 
     @Test
     void addPlayer() {
-        playerServiceImpl.addPlayer("Anuj","Batsman",21);
-        Mockito.verify(playerRepository, Mockito.times(1)).addPlayer("Anuj","Batsman",21);
+        playerServiceImpl.addPlayer("Anuj", "Batsman", 21);
+        Mockito.verify(playerRepository, Mockito.times(1)).addPlayer("Anuj", "Batsman", 21);
     }
 }

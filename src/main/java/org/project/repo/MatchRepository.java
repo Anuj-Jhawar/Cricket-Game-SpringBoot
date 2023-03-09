@@ -40,9 +40,9 @@ public class MatchRepository {
             PreparedStatement statement;
             Date date = new Date(System.currentTimeMillis());
             try {
-                String sqlCommandToInsertMatchInMatchTable
-                        = "INSERT INTO Matches(team1_id, team2_id, tournament_id, result, Date,is_deleted) VALUES( ?," +
-                          " ?, ?, ?, ?,0)";
+                String sqlCommandToInsertMatchInMatchTable =
+                        "INSERT INTO Matches(team1_id, team2_id, tournament_id, result, Date,is_deleted) VALUES( ?," +
+                        " ?, ?, ?, ?,0)";
                 statement = connection.prepareStatement(sqlCommandToInsertMatchInMatchTable);
                 statement.setInt(1, team1Id);
                 statement.setInt(2, team2Id);
@@ -80,9 +80,9 @@ public class MatchRepository {
         if (connection != null) {
             PreparedStatement statement;
             try {
-                String sqlCommandToGetMatchId
-                        = "SELECT * FROM Matches WHERE team1_id = ? AND team2_id = ? AND tournament_id = ? AND " +
-                          "is_deleted != 1";
+                String sqlCommandToGetMatchId =
+                        "SELECT * FROM Matches WHERE team1_id = ? AND team2_id = ? AND tournament_id = ? AND " +
+                        "is_deleted != 1";
                 try {
                     statement = connection.prepareStatement(sqlCommandToGetMatchId);
                     statement.setInt(1, team1Id);
@@ -114,10 +114,10 @@ public class MatchRepository {
         if (connection != null) {
             PreparedStatement statement;
             try {
-                String sqlCommandToGetMatchId
-                        = "SELECT * FROM Matches WHERE (team1_id = ? AND team2_id = ? AND tournament_id = ? AND date " +
-                          "= ?) OR (team1_id = ? AND team2_id = ? AND tournament_id = ? AND date = ?) AND is_deleted " +
-                          "!= 1";
+                String sqlCommandToGetMatchId =
+                        "SELECT * FROM Matches WHERE (team1_id = ? AND team2_id = ? AND tournament_id = ? AND date " +
+                        "= ?) OR (team1_id = ? AND team2_id = ? AND tournament_id = ? AND date = ?) AND is_deleted " +
+                        "!= 1";
                 try {
                     statement = connection.prepareStatement(sqlCommandToGetMatchId);
                     statement.setInt(1, team1Id);

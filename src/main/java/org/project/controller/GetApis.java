@@ -16,6 +16,7 @@ import java.util.Map;
 @RestController
 @Slf4j
 public class GetApis {
+
     @Autowired
     private MatchServiceImpl matchService;
     @Autowired
@@ -28,13 +29,12 @@ public class GetApis {
     private CommentaryServiceImpl commentaryService;
 
     @PostMapping("/scorecard")
-    public ArrayList<ArrayList<ScoreCardForPlayer>> getScoreCardForGivenMatch(
-            @RequestBody ScoreCardDTO scoreCardDTO) {
+    public ArrayList<ArrayList<ScoreCardForPlayer>> getScoreCardForGivenMatch(@RequestBody ScoreCardDTO scoreCardDTO) {
         /*
             Four request variable that's why converted it to the post request.
         */
-        log.info("Request for Scorecard for tournament_id {}, team1_id {}, team2_id {}",
-                scoreCardDTO.getTournamentId(), scoreCardDTO.getTeam1Id(), scoreCardDTO.getTeam2Id());
+        log.info("Request for Scorecard for tournament_id {}, team1_id {}, team2_id {}", scoreCardDTO.getTournamentId(),
+                scoreCardDTO.getTeam1Id(), scoreCardDTO.getTeam2Id());
         return scoreCardServiceImpl.get(scoreCardDTO);
     }
 

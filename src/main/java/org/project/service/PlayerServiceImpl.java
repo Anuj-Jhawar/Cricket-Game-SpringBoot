@@ -18,7 +18,7 @@ import java.sql.Date;
 @Service
 @NoArgsConstructor
 @Data
-public class PlayerServiceImpl {
+public class PlayerServiceImpl implements PlayerService {
 
     @Autowired
     private PlayerRepository playerRepository;
@@ -29,6 +29,7 @@ public class PlayerServiceImpl {
     @Autowired
     private MatchServiceImpl matchService;
 
+    @Override
     public int getPlayerId(String playerName) {
         /*
             Return player id from database.
@@ -36,10 +37,12 @@ public class PlayerServiceImpl {
         return playerRepository.getPlayerId(playerName);
     }
 
+    @Override
     public String getPlayerName(int playerID) {
         return playerRepository.getPlayerName(playerID);
     }
 
+    @Override
     public void addPlayerToPlayerTable(Match match) {
         /*
             Add players to database.
@@ -49,23 +52,27 @@ public class PlayerServiceImpl {
             org.project.model.player.Player[] players = team.getPlayers();
             for (int j = 0; j < 11; j++) {
                 String type = players[j] instanceof Bowler ? "Bowler" : "Batsman";
-                this.addPlayer(players[j].getName(),type, 1);
+                this.addPlayer(players[j].getName(), type, 1);
             }
         }
     }
 
-    public void addPlayer(String playerName,String type, int age) {
-        playerRepository.addPlayer(playerName,type, age);
+    @Override
+    public void addPlayer(String playerName, String type, int age) {
+        playerRepository.addPlayer(playerName, type, age);
     }
 
+    @Override
     public Stats[] get(PlayerStatsDTO playerStatsDTO) {
         /*
             Return player stats for a specific match.
         */
-        return this.findStats(playerStatsDTO.getTournamentId(), playerStatsDTO.getTeam1Id(), playerStatsDTO.getTeam2Id(),
-                playerStatsDTO.getDate(), playerStatsDTO.getPlayerId());
+        return this.findStats(playerStatsDTO.getTournamentId(), playerStatsDTO.getTeam1Id(),
+                playerStatsDTO.getTeam2Id(), playerStatsDTO.getDate(), playerStatsDTO.getPlayerId());
     }
-    public Stats[] findStats(int tournamentId,int team1Id,int team2Id, Date date,int playerId){
+
+    @Override
+    public Stats[] findStats(int tournamentId, int team1Id, int team2Id, Date date, int playerId) {
         int matchId = matchService.getMatchIdByDate(tournamentId, team1Id, team2Id, date);
         BattingStats battingStats = battingStatsServiceImpl.getBattingStats(matchId, team1Id, playerId);
         BowlingStats bowlingStats = bowlingStatsServiceImpl.getBowlingStats(matchId, team1Id, playerId);

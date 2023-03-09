@@ -15,6 +15,7 @@ public class Team {
     private int runsScored;
     private int wicketsFallen;
     private String name;
+
     public Team() {
         //        InputService inputService = new InputService();
         //        inputService.playerTypeInput(this);

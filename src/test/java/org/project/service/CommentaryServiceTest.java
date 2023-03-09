@@ -14,14 +14,14 @@ import org.project.model.Match;
 import org.project.model.Team;
 import org.project.repo.CommentaryRepository;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.ArrayList;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class CommentaryServiceTest {
+
     @Mock
     private CommentaryRepository commentaryRepository;
     @Mock
@@ -30,10 +30,12 @@ class CommentaryServiceTest {
     private PlayerServiceImpl playerServiceImpl;
     @InjectMocks
     private CommentaryServiceImpl commentaryService;
+
     @BeforeEach
-    void beforeEach(){
+    void beforeEach() {
 
     }
+
     @Test
     void addCommentary() {
 
@@ -52,30 +54,30 @@ class CommentaryServiceTest {
         match.setTeam2(team1);
 
 
-        when(matchService.getMatchId("Anuj","Mumbai","Chennai",1)).thenReturn(1);
+        when(matchService.getMatchId("Anuj", "Mumbai", "Chennai", 1)).thenReturn(1);
         when(playerServiceImpl.getPlayerId("Rohit")).thenReturn(1);
         when(playerServiceImpl.getPlayerId("Dhoni")).thenReturn(2);
 
         String commentaryText = "Its a Four.";
         int inningNo = 1;
-        BallCommentary ballCommentary = new BallCommentary(1,2,"Its a Four.");
+        BallCommentary ballCommentary = new BallCommentary(1, 2, "Its a Four.");
 
-        commentaryService.addCommentary(ball,match,commentaryText,inningNo);
-        Mockito.verify(commentaryRepository, Mockito.times(1)).updateCommentary(1,ballCommentary,inningNo);
+        commentaryService.addCommentary(ball, match, commentaryText, inningNo);
+        Mockito.verify(commentaryRepository, Mockito.times(1)).updateCommentary(1, ballCommentary, inningNo);
     }
 
     @Test
     void getCommentary() {
         ArrayList<ArrayList<Document>> arrayLists = new ArrayList<>();
         Document document = new Document();
-        document.append("aa","bb");
-        ArrayList<Document>arrayList = new ArrayList<>();
+        document.append("aa", "bb");
+        ArrayList<Document> arrayList = new ArrayList<>();
         arrayList.add(document);
         arrayLists.add(arrayList);
         arrayLists.add(arrayList);
         arrayLists.add(arrayList);
         arrayLists.add(arrayList);
         when(commentaryRepository.getCommentary(1)).thenReturn(arrayLists);
-        assertEquals(arrayLists,commentaryService.getCommentary(1));
+        assertEquals(arrayLists, commentaryService.getCommentary(1));
     }
 }

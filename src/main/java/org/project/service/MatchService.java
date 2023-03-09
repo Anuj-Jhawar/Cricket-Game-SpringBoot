@@ -3,14 +3,12 @@ package org.project.service;
 import org.project.model.Ball;
 import org.project.model.Match;
 import org.project.model.Team;
-import org.project.repo.JdbcConnection;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.Map;
-import java.util.Scanner;
 
 public interface MatchService {
+
     public String setUpMatch(Map<String, Object> requestBody);
 
     public void play(String tournamentName, Team team1, Team team2, String venue, String format);

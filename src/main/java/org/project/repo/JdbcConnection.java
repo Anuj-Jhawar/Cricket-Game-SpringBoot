@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 
 @Slf4j
 public class JdbcConnection {
+
     private static Connection connection;
 
     public static void initializeConnection() {

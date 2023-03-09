@@ -21,7 +21,7 @@ import java.util.Scanner;
 @Data
 @NoArgsConstructor
 @Service
-public class MatchServiceImpl {
+public class MatchServiceImpl implements MatchService {
 
     @Autowired
     private TeamServiceImpl teamServiceImpl;
@@ -40,6 +40,7 @@ public class MatchServiceImpl {
     @Autowired
     private MatchHelper matchHelper;
 
+    @Override
     public String setUpMatch(Map<String, Object> requestBody) {
         /*
             Organize user input and start the match.
@@ -53,6 +54,7 @@ public class MatchServiceImpl {
         return "";
     }
 
+    @Override
     public void play(String tournamentName, Team team1, Team team2, String venue, String format) {
         /*
             Start playing cricket match.
@@ -69,7 +71,7 @@ public class MatchServiceImpl {
         matchHelper.printScoreCard(match);
     }
 
-
+    @Override
     public void addToDataBase(Match match) {
         /*
             Add respective things to their respective databases.
@@ -85,7 +87,8 @@ public class MatchServiceImpl {
         battingStatsServiceImpl.addBattingStatsToBattingStatsTable(match, match.getTeam2());
     }
 
-    void letsPlayTheMatch(Match match) {
+    @Override
+    public void letsPlayTheMatch(Match match) {
         /*
             Function in which all the match happens.
         */
@@ -100,6 +103,7 @@ public class MatchServiceImpl {
         assignWinnerOfTheMatch(match);
     }
 
+    @Override
     public void addMatchToMatchTable(Match match) {
         /*
             Add match.
@@ -108,7 +112,8 @@ public class MatchServiceImpl {
                 match.getBattingTeamIndex());
     }
 
-    void playAInning(Match match, int target, int numberOfOversInmatch, int i) {
+    @Override
+    public void playAInning(Match match, int target, int numberOfOversInmatch, int i) {
         /*
             Function to play a Inning.
         */
@@ -121,8 +126,7 @@ public class MatchServiceImpl {
             for (int k = 0; k < 6; k++) {
                 int lastBallOutcome = lastBall.getOutcomeOfTheBall();
                 ArrayList<Integer> batsmanOrder = matchHelper.assignBatsman(batsmanOnStrikeIndex, batsman2,
-                        lastBallOutcome,
-                        k == 0 ? 1 : 0);
+                        lastBallOutcome, k == 0 ? 1 : 0);
                 batsmanOnStrikeIndex = batsmanOrder.get(0);
                 batsman2 = batsmanOrder.get(0);
                 Ball NewBall = playTheBall(match, i, batsmanOnStrikeIndex, currentBowler, target == -1 ? 0 : 1);
@@ -142,7 +146,8 @@ public class MatchServiceImpl {
         }
     }
 
-    void assignWinnerOfTheMatch(Match match) {
+    @Override
+    public void assignWinnerOfTheMatch(Match match) {
         /*
             Function to assign Winner of the match.
         */
@@ -157,11 +162,13 @@ public class MatchServiceImpl {
         }
     }
 
+    @Override
     public void addMatch(String tournamentName, String team1Name, String team2Name, int battingTeamIndex) {
         matchRepository.addMatch(tournamentName, team1Name, team2Name, battingTeamIndex);
     }
 
-    Ball playTheBall(Match match, int teamIndex, int batsmanOnStrikeIndex, int currentBowler, int inningNo) {
+    @Override
+    public Ball playTheBall(Match match, int teamIndex, int batsmanOnStrikeIndex, int currentBowler, int inningNo) {
         /*
             Playing and assigning every outcome of the ball.
         */
@@ -176,20 +183,24 @@ public class MatchServiceImpl {
         return newBall;
     }
 
-    boolean checkIfInningIsOver(Match match, int wickets, int target) {
+    @Override
+    public boolean checkIfInningIsOver(Match match, int wickets, int target) {
         return (target != -1 && match.getScoreOfTeam(1) > target) || wickets == 10;
     }
 
+    @Override
     public int getMatchId(String tournamentName, String team1Name, String team2Name, int battingTeamIndex) {
         return matchRepository.getMatchId(tournamentName, team1Name, team2Name, battingTeamIndex);
     }
 
+    @Override
     public void updateResult(int teamNo, int matchId) {
         matchRepository.updateResult(teamNo, matchId);
     }
 
-    void updateBattingAndBowlingStatsAfterEachBall(Match match, int teamIndex, int batsmanOnStrikeIndex,
-                                                   int currentBowler, Ball newBall) {
+    @Override
+    public void updateBattingAndBowlingStatsAfterEachBall(Match match, int teamIndex, int batsmanOnStrikeIndex,
+                                                          int currentBowler, Ball newBall) {
         /*
             Updating the stats of batsman and bowler after every ball.
         */
@@ -202,10 +213,12 @@ public class MatchServiceImpl {
         match.updateBowlingStatsOfBowler(teamIndex, currentBowler, newBall.getOutcomeOfTheBall());
     }
 
+    @Override
     public int getMatchIdByDate(int tournamentId, int team1Id, int team2Id, Date date) {
         return matchRepository.getMatchIdByDate(tournamentId, team1Id, team2Id, date);
     }
 
+    @Override
     public int findBattingFirstTeam(int matchId) {
         return matchRepository.findBattingFirstTeam(matchId);
     }

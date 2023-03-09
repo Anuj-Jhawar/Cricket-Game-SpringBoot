@@ -13,7 +13,7 @@ public class PlayerRepository {
 
     private Connection connection;
 
-    public void addPlayer(String playerName,String type, int age) {
+    public void addPlayer(String playerName, String type, int age) {
         /*
             Add player details to database.
         */
@@ -24,7 +24,8 @@ public class PlayerRepository {
         if (connection != null) {
             PreparedStatement statement;
             try {
-                String sqlCommandToInsertTeamInTeamTable = "INSERT INTO Players(Name,Type,Age,is_deleted) VALUES (?,?,0,0)";
+                String sqlCommandToInsertTeamInTeamTable
+                        = "INSERT INTO Players(Name,Type,Age,is_deleted) VALUES (?,?,0,0)";
                 statement = connection.prepareStatement(sqlCommandToInsertTeamInTeamTable);
                 statement.setString(1, playerName);
                 statement.setString(2, type);

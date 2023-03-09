@@ -11,14 +11,11 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
 import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Map;
 
 @Service
 @Data
-public class ScoreCardServiceImpl {
+public class ScoreCardServiceImpl implements ScoreCardService {
 
     private int tournamentId;
     private int team1Id;
@@ -31,6 +28,7 @@ public class ScoreCardServiceImpl {
     @Autowired
     private BowlingStatsRepository bowlingStatsRepository;
 
+    @Override
     public ArrayList<ArrayList<ScoreCardForPlayer>> get(ScoreCardDTO scoreCardDTO) {
         /*
             Return scorecard for a given match.
@@ -53,17 +51,20 @@ public class ScoreCardServiceImpl {
         return stats;
     }
 
+    @Override
     public int getMatchId(int tournamentId, int team1Id, int team2Id, Date date, Connection connection) {
         int matchId = matchService.getMatchIdByDate(tournamentId, team1Id, team2Id, date);
         return matchId;
     }
 
+    @Override
     public ArrayList<ScoreCardForPlayer> getBattingScoreCard(int teamId, int matchId, Connection connection) {
         ArrayList<ScoreCardForPlayer> teamBattingStats = battingStatsRepository.getBattingScoreCardOfAnInning(matchId,
                 teamId, connection);
         return teamBattingStats;
     }
 
+    @Override
     public ArrayList<ScoreCardForPlayer> getBowlingScoreCard(int teamId, int matchId, Connection connection) {
         ArrayList<ScoreCardForPlayer> teamBowlingStats = bowlingStatsRepository.getBowlingScoreCardOfAnInning(matchId,
                 teamId, connection);

@@ -7,11 +7,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Data
-public class TournamentServiceImpl {
+public class TournamentServiceImpl implements TournamentService {
 
     @Autowired
     private TournamentRepository tournamentRepository;
 
+    @Override
     public String start(String tournamentName) {
         /*
             Add tournament to database if not available.
@@ -22,6 +23,7 @@ public class TournamentServiceImpl {
         return "Tournament Created";
     }
 
+    @Override
     public int getId(String tournamentName) {
         return tournamentRepository.getTournamentId(tournamentName);
     }
